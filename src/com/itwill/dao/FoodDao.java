@@ -24,11 +24,13 @@ public class FoodDao {
 	public Food selectByNo(int food_no) throws Exception {
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(FoodSQL.FOOD_SELECT_BY_NO);
+		//아직안함
 		return null;
 	}
 	public Food selectByName(String food_name) throws Exception {
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(FoodSQL.FOOD_SELECT_BY_NAME);
+		//아직안함
 		return null;
 	}
 	public List<Food> selectByPrice(int low_price,int high_price) throws Exception {
