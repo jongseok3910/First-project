@@ -1,6 +1,6 @@
 package com.itwill.dao;
 
-public class StoreDao {
+public class CategoryDao {
 	public void create() throws Exception {}
 	public void selectByNo() throws Exception {}
 	public void selectAll() throws Exception {}
