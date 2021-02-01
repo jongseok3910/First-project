@@ -1,8 +1,8 @@
 package com.itwill.vo;
 
-public class Member {
+public class MemberJoin {
 	String name;//실험
-	public Member() {
+	public MemberJoin() {
 		// TODO Auto-generated constructor stub
 	}
 }
