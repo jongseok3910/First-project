@@ -10,8 +10,8 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 	private static String driverClass="oracle.jdbc.OracleDriver";
 	private static String url="jdbc:oracle:thin:@182.237.126.19:1521:xe";
-	private static String user="javabackend85";
-	private static String password="javabackend85";
+	private static String user="javabackend27";
+	private static String password="javabackend27";
 	private ConnectionFactory() {
 		
 	}
