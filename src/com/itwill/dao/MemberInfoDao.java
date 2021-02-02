@@ -21,8 +21,40 @@ public class MemberInfoDao {
 		ConnectionFactory.releaseConnection(con);
 		return rowCount;
 	}
-	public void selectById() throws Exception {}
-	public void selectByCardNo() throws Exception {}
+	public MemberInfo selectById(String member_id) throws Exception {
+		MemberInfo memberInfo = null;
+		Connection con = ConnectionFactory.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(MemberInfoSQL.MEMBERINFO_SELECT_BY_ID);
+		pstmt.setString(1, member_id);
+		ResultSet rs = pstmt.executeQuery();
+		if(rs.next()) {
+			memberInfo = new MemberInfo(rs.getString("member_no"), 
+										rs.getString("member_id"), 
+										rs.getString("card_no"), 
+										rs.getString("member_autologin"));
+		}
+		rs.close();
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
+		return memberInfo;
+	}
+	public MemberInfo selectByCardNo(String card_no) throws Exception {
+		MemberInfo memberInfo = null;
+		Connection con = ConnectionFactory.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(MemberInfoSQL.MEMBERINFO_SELECT_BY_CARD_NO);
+		pstmt.setString(1, card_no);
+		ResultSet rs = pstmt.executeQuery();
+		if(rs.next()) {
+			memberInfo = new MemberInfo(rs.getString("member_no"), 
+										rs.getString("member_id"), 
+										rs.getString("card_no"), 
+										rs.getString("member_autologin"));
+		}
+		rs.close();
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
+		return memberInfo;
+	}
 	public List<MemberInfo> selectAll() throws Exception {
 		ArrayList<MemberInfo> memberInfoList = new ArrayList<MemberInfo>();
 		Connection con = ConnectionFactory.getConnection();
@@ -35,7 +67,8 @@ public class MemberInfoDao {
 											  rs.getString("member_autologin")));
 		}
 		rs.close();
-		
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
 		return memberInfoList;
 	}
 	public int updateById(MemberInfo memberInfo) throws Exception {
