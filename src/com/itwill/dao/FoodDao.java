@@ -22,16 +22,36 @@ public class FoodDao {
 		return rowCount;
 	}
 	public Food selectByNo(int food_no) throws Exception {
+		Food food=null;
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(FoodSQL.FOOD_SELECT_BY_NO);
-		//아직안함
-		return null;
+		pstmt.setInt(1, food_no);
+		ResultSet rs=pstmt.executeQuery();
+		if(rs.next()) {
+			food= new Food(rs.getInt("food_no"), 
+					       rs.getString("food_name"),
+					       rs.getInt("food_price"), 
+					       rs.getInt("category_no"));
+		}
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
+		return food;
 	}
 	public Food selectByName(String food_name) throws Exception {
+		Food food=null;
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(FoodSQL.FOOD_SELECT_BY_NAME);
-		//아직안함
-		return null;
+		pstmt.setString(1, food_name);
+		ResultSet rs=pstmt.executeQuery();
+		if(rs.next()) {
+			food= new Food(rs.getInt("food_no"), 
+					       rs.getString("food_name"),
+					       rs.getInt("food_price"), 
+					       rs.getInt("category_no"));
+		}
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
+		return food;
 	}
 	public List<Food> selectByPrice(int low_price,int high_price) throws Exception {
 		ArrayList<Food> foodList = new ArrayList<Food>();
