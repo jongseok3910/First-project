@@ -39,9 +39,13 @@ public class StoreDao {
 		pstmt.setInt(7,store.getCategory_no());
 		pstmt.setInt(8,store.getJumun_no());
 		pstmt.setString(9,store.getStore_name());
+		int rowCount = pstmt.executeUpdate();
+		pstmt.close();
+		
 		return 0;
 	}
 	public int deleteByName(String store_name) throws Exception {
+
 		return 0;
 	}
 }
