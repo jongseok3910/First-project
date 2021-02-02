@@ -11,17 +11,17 @@ public class MemberInfoDaoTestMain {
 		
 		MemberInfoDao memberInfoDao = new MemberInfoDao();
 
-		System.out.println("create: " + memberInfoDao.create(new MemberInfo("1","aaa","1234-1234",null)));
+		System.out.println("create: " + memberInfoDao.create(new MemberInfo("2021/02/028","ID6","6486-5774-1331-6456",null)));
 		
 		
 		/*
-		MemberInfo memberInfo =  memberInfoDao.selectById("aaa");
+		MemberInfo memberInfo =  memberInfoDao.selectById(ID6");
 		
 		System.out.println("selectById : " + memberInfo);
 		
-		memberInfo.setMember_no("1");
-		memberInfo.setMember_id("aaa");
-		memberInfo.setCard_no("1234-1234");
+		memberInfo.setMember_no("6");
+		memberInfo.setMember_id("ID6");
+		memberInfo.setCard_no("6486-5774-1331-6456");
 		memberInfo.setMember_autologin(null);
 		*/
 		
