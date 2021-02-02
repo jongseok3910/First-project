@@ -12,19 +12,19 @@ CREATE TABLE MemberJoin(
 		member_password VARCHAR2(12),
 		member_name VARCHAR2(20),
 		member_phone VARCHAR2(13),
-		member_address VHRCHAR2(255),
+		member_address VARCHAR2(60),
 		member_joinDate DATE DEFAULT sysdate
 );
 
 CREATE TABLE Card(
 		card_no VARCHAR2(19) PRIMARY KEY,
-		card_validity VARCHAR2(10),
+		card_validity VARCHAR2(5),
 		card_cvc number,
 		card_password number
 );
 
 CREATE TABLE MemberInfo(
-		member_no VARCHAR2(255) PRIMARY KEY,
+		member_no VARCHAR2(20) PRIMARY KEY,
 		member_id VARCHAR2(10),
 		card_no VARCHAR2(19),
 		member_autoLogin VARCHAR2(1) DEFAULT 'F',
@@ -53,7 +53,7 @@ CREATE TABLE Jumun(
 		jumun_request VARCHAR2(255),
 		jumun_estimatedTime VARCHAR2(30),
 		card_no VARCHAR2(19),
-		member_no number,
+		member_no VARCHAR2(20),
 		food_no number,
   FOREIGN KEY (card_no) REFERENCES Card (card_no),
   FOREIGN KEY (member_no) REFERENCES MemberInfo (member_no),
