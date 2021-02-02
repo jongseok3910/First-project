@@ -1,5 +1,7 @@
 package com.itwill.test;
-
+/*
+ * 오류남
+ */
 import com.itwill.dao.BoardDao;
 import com.itwill.vo.Board;
 
