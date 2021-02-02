@@ -67,7 +67,7 @@ CREATE TABLE Store(
 		store_phone VARCHAR2(13),
 		store_address VARCHAR2(50),
 		store_deliveryPrice number,
-		jumun_estimatedTime VARCHAR2(30) DEFAULT '30遺�',
+		jumun_estimatedTime VARCHAR2(30) DEFAULT '30분',
 		store_rating number,
 		category_no number,
 		jumun_no number,
