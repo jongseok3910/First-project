@@ -13,11 +13,17 @@ public class CardDao {
 		pstmt.setString(2, card.getCard_validity()); 
 		pstmt.setInt(3, card.getCard_cvc());
 		pstmt.setInt(4, card.getCard_password());
+		int rowCount = pstmt.executeUpdate();
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
 	}
 
 	public void deleteByNo(Card card) throws Exception {
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(CardSQL.Card_delete);
 		pstmt.setString(1, card.getCard_no());
+		int rowCount = pstmt.executeUpdate();
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
 	}
 }
