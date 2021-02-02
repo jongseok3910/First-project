@@ -16,5 +16,5 @@ public class CategorySQL {
 	public static final String CATEGORY_DELETE_BY_NO=
 			"delete category where category_no=?";
 	public static final String CATEGORY_DELETE_BY_NAME=
-			"delete category wehre category_name=?";
+			"delete category where category_name=?";
 }
