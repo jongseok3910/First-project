@@ -2,6 +2,9 @@ package com.itwill.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.itwill.vo.Store;
 
@@ -24,9 +27,53 @@ public class StoreDao {
 		ConnectionFactory.releaseConnection(con);
 		return rowCount;
 	}
-	public void selectByName() throws Exception {}
-	public void selectByCategoryNo() throws Exception {}
-	public void selectAll() throws Exception {}
+	public Store selectByName(String store_name) throws Exception {
+		Store store = null;
+		Connection con = ConnectionFactory.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(StoreSQL.STORE_SELECT_BY_NAME);
+		pstmt.setString(1, store_name);
+		ResultSet rs = pstmt.executeQuery();
+		if(rs.next()) {
+			store = new Store(rs.getInt("store_no"),
+							  rs.getString("store_name"),
+							  rs.getString("store_businesstime"),
+							  rs.getString("store_phone"),
+							  rs.getString("store_address"),
+							  rs.getInt("store_deliveryprice"),
+							  rs.getString("jumun_estimatedtime"),
+							  rs.getDouble("store_rating"),
+							  rs.getInt("category_no"),
+							  rs.getInt("jumun_no")							  
+							  );
+		}
+		rs.close();
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
+		return store;
+	}
+	public List<Store> selectAll() throws Exception {
+		ArrayList<Store> storeList = new ArrayList<Store>();
+		Connection con = ConnectionFactory.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(StoreSQL.STORE_SELECT_ALL);
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			storeList.add(new Store(rs.getInt("store_no"),
+					  rs.getString("store_name"),
+					  rs.getString("store_businesstime"),
+					  rs.getString("store_phone"),
+					  rs.getString("store_address"),
+					  rs.getInt("store_deliveryprice"),
+					  rs.getString("jumun_estimatedtime"),
+					  rs.getDouble("store_rating"),
+					  rs.getInt("category_no"),
+					  rs.getInt("jumun_no")
+					  ));
+		}
+		rs.close();
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
+		return storeList;
+	}
 	public int updateByName(Store store) throws Exception {
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(StoreSQL.STORE_UPDATE_BY_NAME);
@@ -41,11 +88,16 @@ public class StoreDao {
 		pstmt.setString(9,store.getStore_name());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
-		
-		return 0;
+		ConnectionFactory.releaseConnection(con);
+		return rowCount;
 	}
 	public int deleteByName(String store_name) throws Exception {
-
-		return 0;
+		Connection con = ConnectionFactory.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(StoreSQL.STORE_DELETE_BY_NAME);
+		pstmt.setString(1, store_name);
+		int rowCount = pstmt.executeUpdate();
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
+		return rowCount;
 	}
 }
