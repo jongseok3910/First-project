@@ -24,6 +24,18 @@ public class MemberJoin {
 		// TODO Auto-generated constructor stub
 	}
 
+
+	public MemberJoin(String member_id, String member_password, String member_name, String member_phone,
+			String member_address) {
+		super();
+		this.member_id = member_id;
+		this.member_password = member_password;
+		this.member_name = member_name;
+		this.member_phone = member_phone;
+		this.member_address = member_address;
+	}
+
+
 	public MemberJoin(String member_id, String member_password, String member_name, String member_phone,
 			String member_address, Date member_joinDate) {
 		super();
@@ -34,6 +46,7 @@ public class MemberJoin {
 		this.member_address = member_address;
 		this.member_joinDate = member_joinDate;
 	}
+
 
 	public String getMember_id() {
 		return member_id;
