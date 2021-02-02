@@ -12,10 +12,9 @@ public class MemberInfoDao {
 	public int create(MemberInfo memberInfo) throws Exception {
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(MemberInfoSQL.MEMBERINFO_INSERT);
-		pstmt.setString(1, memberInfo.getCard_no());
-		pstmt.setString(2, memberInfo.getMember_id());
-		pstmt.setString(3, memberInfo.getCard_no());
-		pstmt.setString(4, memberInfo.getMember_autologin());
+		pstmt.setString(1, memberInfo.getMember_id());
+		pstmt.setString(2, memberInfo.getCard_no());
+		pstmt.setString(3, memberInfo.getMember_autologin());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);
