@@ -17,6 +17,15 @@ public class MemberInfo {
 		// TODO Auto-generated constructor stub
 	}
 
+		
+	public MemberInfo(String member_id, String card_no, String member_autologin) {
+		super();
+		this.member_id = member_id;
+		this.card_no = card_no;
+		this.member_autologin = member_autologin;
+	}
+
+
 	public MemberInfo(String member_no, String member_id, String card_no, String member_autologin) {
 		super();
 		this.member_no = member_no;
