@@ -17,7 +17,7 @@ public class CardDao {
 
 	public void deleteByNo(Card card) throws Exception {
 		Connection con = ConnectionFactory.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(CardSQL.Card_insert);
+		PreparedStatement pstmt = con.prepareStatement(CardSQL.Card_delete);
 		pstmt.setString(1, card.getCard_no());
 	}
 }
