@@ -10,7 +10,7 @@ public class FoodSQL {
 	public static final String FOOD_SELECT_BY_PRICE=
 			"select * from food where food_price>=? and food_price <= ?";
 	public static final String FOOD_SELECT_BY_CATEGORY_NO=
-			"select * from food where food_category";
+			"select * from food where category_no=?";
 	public static final String FOOD_SELECT_ALL=
 			"select * from food";
 	public static final String FOOD_UPDATE_BY_NO=
