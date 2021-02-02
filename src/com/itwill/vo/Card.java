@@ -12,7 +12,7 @@ import java.util.Date;
 
 public class Card {
 	private String card_no;
-	private Date card_validity;
+	private String card_validity;
 	private int card_cvc;
 	private int card_password;
 	
@@ -20,7 +20,7 @@ public class Card {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Card(String card_no, Date card_validity, int card_cvc, int card_password) {
+	public Card(String card_no, String card_validity, int card_cvc, int card_password) {
 		super();
 		this.card_no = card_no;
 		this.card_validity = card_validity;
@@ -36,11 +36,11 @@ public class Card {
 		this.card_no = card_no;
 	}
 
-	public Date getCard_validity() {
+	public String getCard_validity() {
 		return card_validity;
 	}
 
-	public void setCard_validity(Date card_validity) {
+	public void setCard_validity(String card_validity) {
 		this.card_validity = card_validity;
 	}
 

@@ -12,19 +12,19 @@ CREATE TABLE MemberJoin(
 		member_password VARCHAR2(12),
 		member_name VARCHAR2(20),
 		member_phone VARCHAR2(13),
-		member_address number,
+		member_address VHRCHAR2(255),
 		member_joinDate DATE DEFAULT sysdate
 );
 
 CREATE TABLE Card(
 		card_no VARCHAR2(19) PRIMARY KEY,
-		card_validity DATE,
+		card_validity VARCHAR2(10),
 		card_cvc number,
 		card_password number
 );
 
 CREATE TABLE MemberInfo(
-		member_no number PRIMARY KEY,
+		member_no VARCHAR2(255) PRIMARY KEY,
 		member_id VARCHAR2(10),
 		card_no VARCHAR2(19),
 		member_autoLogin VARCHAR2(1) DEFAULT 'F',
@@ -67,7 +67,7 @@ CREATE TABLE Store(
 		store_phone VARCHAR2(13),
 		store_address VARCHAR2(50),
 		store_deliveryPrice number,
-		jumun_estimatedTime VARCHAR2(30) DEFAULT '30분',
+		jumun_estimatedTime VARCHAR2(30) DEFAULT '30遺�',
 		store_rating number,
 		category_no number,
 		jumun_no number,

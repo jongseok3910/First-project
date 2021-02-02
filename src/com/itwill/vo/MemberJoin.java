@@ -17,7 +17,7 @@ public class MemberJoin {
 	private String member_password;
 	private String member_name;
 	private String member_phone;
-	private int member_address;
+	private String member_address;
 	private Date member_joinDate;
 	
 	public MemberJoin() {
@@ -25,7 +25,7 @@ public class MemberJoin {
 	}
 
 	public MemberJoin(String member_id, String member_password, String member_name, String member_phone,
-			int member_address, Date member_joinDate) {
+			String member_address, Date member_joinDate) {
 		super();
 		this.member_id = member_id;
 		this.member_password = member_password;
@@ -67,11 +67,11 @@ public class MemberJoin {
 		this.member_phone = member_phone;
 	}
 
-	public int getMember_address() {
+	public String getMember_address() {
 		return member_address;
 	}
 
-	public void setMember_address(int member_address) {
+	public void setMember_address(String member_address) {
 		this.member_address = member_address;
 	}
 
