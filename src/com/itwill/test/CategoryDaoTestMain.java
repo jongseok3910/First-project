@@ -3,11 +3,7 @@
  */
 package com.itwill.test;
 
-import com.itwill.dao.CardDao;
 import com.itwill.dao.CategoryDao;
-import com.itwill.dao.JumunDao;
-import com.itwill.vo.Card;
-import com.itwill.vo.Category;
 
 public class CategoryDaoTestMain {
 
