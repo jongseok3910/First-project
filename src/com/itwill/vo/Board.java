@@ -20,6 +20,15 @@ public class Board {
 	public Board() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Board(int board_no, String board_content, int board_rating, int store_no) {
+		super();
+		this.board_no = board_no;
+		this.board_content = board_content;
+		this.board_rating = board_rating;
+		this.store_no = store_no;
+	}
+
 	public Board(int board_no, Date date, String board_content, int board_rating, int store_no) {
 		super();
 		this.board_no = board_no;

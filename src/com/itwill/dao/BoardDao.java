@@ -65,6 +65,7 @@ public class BoardDao {
 		pstmt.setInt(1, board.getStore_no());
 		pstmt.setInt(2, board.getBoard_rating());
 		pstmt.setString(3, board.getBoard_content());
+		pstmt.setInt(4, board.getBoard_no());
 		int rowCount=pstmt.executeUpdate();
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);
