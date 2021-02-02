@@ -55,7 +55,7 @@ CREATE TABLE Jumun(
 		card_no VARCHAR2(19),
 		member_no number,
 		food_no number,
-  FOREIGN KEY (jumun_payment) REFERENCES Card (card_no),
+  FOREIGN KEY (card_no) REFERENCES Card (card_no),
   FOREIGN KEY (member_no) REFERENCES MemberInfo (member_no),
   FOREIGN KEY (food_no) REFERENCES Food (food_no)
 );

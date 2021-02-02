@@ -2,7 +2,7 @@ package com.itwill.vo;
 /*
 이름               널?       유형           
 ---------------- -------- ------------ 
-MEMBER_NO        NOT NULL NUMBER       
+MEMBER_NO        NOT NULL VARCHAR2(255)       
 MEMBER_ID                 VARCHAR2(10) 
 CARD_NO                   VARCHAR2(19) 
 MEMBER_AUTOLOGIN          VARCHAR2(1)  
@@ -11,13 +11,13 @@ public class MemberInfo {
 	private String member_no;
 	private String member_id;
 	private String card_no;
-	private char member_autologin;
+	private String member_autologin;
 	
 	public MemberInfo() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberInfo(String member_no, String member_id, String card_no, char member_autologin) {
+	public MemberInfo(String member_no, String member_id, String card_no, String member_autologin) {
 		super();
 		this.member_no = member_no;
 		this.member_id = member_id;
@@ -49,11 +49,11 @@ public class MemberInfo {
 		this.card_no = card_no;
 	}
 
-	public char getMember_autologin() {
+	public String getMember_autologin() {
 		return member_autologin;
 	}
 
-	public void setMember_autologin(char member_autologin) {
+	public void setMember_autologin(String member_autologin) {
 		this.member_autologin = member_autologin;
 	}
 
