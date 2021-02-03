@@ -12,34 +12,33 @@ public class BoardDao {
 	public int create(Board board) throws Exception {
 		Connection con=ConnectionFactory.getConnection();
 		PreparedStatement pstmt=con.prepareStatement(BoardSQL.BOARD_INSERT);
-		pstmt.setInt(1,board.getBoard_no());
-		pstmt.setString(2,board.getBoard_content());
-		pstmt.setInt(3,board.getBoard_rating());
-		pstmt.setInt(4,board.getStore_no());
+		pstmt.setString(1,board.getBoard_content());
+		pstmt.setInt(2,board.getBoard_rating());
+		pstmt.setInt(3,board.getStore_no());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);
 		return rowCount;
 	}
 	
-	public Board selectByNo(int store_no) throws Exception {
-		Board board = null;
+	public List<Board> selectByStoreNo(int store_no) throws Exception {
+		ArrayList<Board> boardList = new ArrayList<Board>();
 		Connection con = ConnectionFactory.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(BoardSQL.BOARD_SELECT_BY_NO);
+		PreparedStatement pstmt = con.prepareStatement(BoardSQL.BOARD_SELECT_BY_STORE_NO);
 		pstmt.setInt(1,store_no);
 		ResultSet rs = pstmt.executeQuery();
-		if (rs.next()) {
-			board = new Board(rs.getInt("board_no"),
-					          rs.getDate("board_date"),
+		while (rs.next()) {
+			boardList.add(new Board(rs.getInt("board_no"),
+					          rs.getString("board_date"),
 					          rs.getString("board_content"),
 					          rs.getInt("board_rating"),
 					          rs.getInt("store_no")
-					 	 	 );
+					 	 	 ));
 		}
 		rs.close();
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);
-		return board;
+		return boardList;
 		
 	}
 	public List<Board> selectAll() throws Exception {
@@ -49,7 +48,7 @@ public class BoardDao {
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
 			boardList.add(new Board(rs.getInt("board_no"),
-					  rs.getDate("board_date"),
+					  rs.getString("board_date"),
 			          rs.getString("board_content"),
 			          rs.getInt("board_rating"),
 			          rs.getInt("store_no")
@@ -68,6 +67,7 @@ public class BoardDao {
 		pstmt.setString(1,board.getBoard_content());
 		pstmt.setInt(2,board.getBoard_rating());
 		pstmt.setInt(3,board.getStore_no());
+		pstmt.setInt(4,board.getBoard_no());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);
@@ -84,3 +84,4 @@ public class BoardDao {
 		return rowCount;
 	}
 }
+
