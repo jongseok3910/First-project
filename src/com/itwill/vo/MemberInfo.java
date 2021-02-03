@@ -1,36 +1,43 @@
 package com.itwill.vo;
+
+import java.util.Date;
+
 /*
 이름               널?       유형           
 ---------------- -------- ------------ 
-MEMBER_NO        NOT NULL VARCHAR2(255)       
+MEMBER_NO        NOT NULL VARCHAR2(20) 
 MEMBER_ID                 VARCHAR2(10) 
-CARD_NO                   VARCHAR2(19) 
-MEMBER_AUTOLOGIN          VARCHAR2(1)  
+MEMBER_PASSWORD           VARCHAR2(12) 
+MEMBER_NAME               VARCHAR2(20) 
+MEMBER_PHONE              VARCHAR2(13) 
+MEMBER_ADDRESS            VARCHAR2(60) 
+MEMBER_JOINDATE           DATE         
+MEMBER_AUTOLOGIN          VARCHAR2(1) 
  */
 public class MemberInfo {
 	private String member_no;
 	private String member_id;
-	private String card_no;
+	private String member_password;
+	private String member_name;
+	private String member_phone;
+	private String member_address;
+	private Date joinDate;
 	private String member_autologin;
 	
 	public MemberInfo() {
 		// TODO Auto-generated constructor stub
 	}
 
-		
-	public MemberInfo(String member_id, String card_no, String member_autologin) {
-		super();
-		this.member_id = member_id;
-		this.card_no = card_no;
-		this.member_autologin = member_autologin;
-	}
-
-
-	public MemberInfo(String member_no, String member_id, String card_no, String member_autologin) {
+	public MemberInfo(String member_no, String member_id, String member_password, String member_name,
+			String member_phone, String member_address, Date joinDate, String member_autologin) {
 		super();
 		this.member_no = member_no;
 		this.member_id = member_id;
-		this.card_no = card_no;
+		this.member_password = member_password;
+		this.member_name = member_name;
+		this.member_phone = member_phone;
+		this.member_address = member_address;
+		this.joinDate = joinDate;
 		this.member_autologin = member_autologin;
 	}
 
@@ -50,12 +57,44 @@ public class MemberInfo {
 		this.member_id = member_id;
 	}
 
-	public String getCard_no() {
-		return card_no;
+	public String getMember_password() {
+		return member_password;
 	}
 
-	public void setCard_no(String card_no) {
-		this.card_no = card_no;
+	public void setMember_password(String member_password) {
+		this.member_password = member_password;
+	}
+
+	public String getMember_name() {
+		return member_name;
+	}
+
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
+
+	public String getMember_phone() {
+		return member_phone;
+	}
+
+	public void setMember_phone(String member_phone) {
+		this.member_phone = member_phone;
+	}
+
+	public String getMember_address() {
+		return member_address;
+	}
+
+	public void setMember_address(String member_address) {
+		this.member_address = member_address;
+	}
+
+	public Date getJoinDate() {
+		return joinDate;
+	}
+
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
 	}
 
 	public String getMember_autologin() {
@@ -68,8 +107,9 @@ public class MemberInfo {
 
 	@Override
 	public String toString() {
-		return "MemberInfo [member_no=" + member_no + ", member_id=" + member_id + ", card_no=" + card_no
-				+ ", member_autologin=" + member_autologin + "]";
+		return "MemberInfo [member_no=" + member_no + ", member_id=" + member_id + ", member_password="
+				+ member_password + ", member_name=" + member_name + ", member_phone=" + member_phone
+				+ ", member_address=" + member_address + ", joinDate=" + joinDate + ", member_autologin="
+				+ member_autologin + "]";
 	}
-	
 }
