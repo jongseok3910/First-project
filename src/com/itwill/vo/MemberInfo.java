@@ -12,7 +12,6 @@ MEMBER_NAME               VARCHAR2(20)
 MEMBER_PHONE              VARCHAR2(13) 
 MEMBER_ADDRESS            VARCHAR2(60) 
 MEMBER_JOINDATE           DATE         
-MEMBER_AUTOLOGIN          VARCHAR2(1) 
  */
 public class MemberInfo {
 	private String member_no;
@@ -22,14 +21,13 @@ public class MemberInfo {
 	private String member_phone;
 	private String member_address;
 	private Date joinDate;
-	private String member_autologin;
 	
 	public MemberInfo() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public MemberInfo(String member_no, String member_id, String member_password, String member_name,
-			String member_phone, String member_address, Date joinDate, String member_autologin) {
+			String member_phone, String member_address, Date joinDate) {
 		super();
 		this.member_no = member_no;
 		this.member_id = member_id;
@@ -38,7 +36,6 @@ public class MemberInfo {
 		this.member_phone = member_phone;
 		this.member_address = member_address;
 		this.joinDate = joinDate;
-		this.member_autologin = member_autologin;
 	}
 
 	public String getMember_no() {
@@ -97,19 +94,10 @@ public class MemberInfo {
 		this.joinDate = joinDate;
 	}
 
-	public String getMember_autologin() {
-		return member_autologin;
-	}
-
-	public void setMember_autologin(String member_autologin) {
-		this.member_autologin = member_autologin;
-	}
-
 	@Override
 	public String toString() {
 		return "MemberInfo [member_no=" + member_no + ", member_id=" + member_id + ", member_password="
 				+ member_password + ", member_name=" + member_name + ", member_phone=" + member_phone
-				+ ", member_address=" + member_address + ", joinDate=" + joinDate + ", member_autologin="
-				+ member_autologin + "]";
+				+ ", member_address=" + member_address + ", joinDate=" + joinDate + "]";
 	}
 }

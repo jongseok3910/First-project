@@ -35,8 +35,7 @@ public class MemberInfoDao {
 										rs.getString("member_name"),
 										rs.getString("member_phone"),
 										rs.getString("member_address"),
-										rs.getDate("member_joinDate"),
-										rs.getString("member_autologin")
+										rs.getDate("member_joinDate")
 										);
 		}
 		rs.close();
@@ -57,8 +56,7 @@ public class MemberInfoDao {
 										rs.getString("member_name"),
 										rs.getString("member_phone"),
 										rs.getString("member_address"),
-										rs.getDate("member_joinDate"),
-										rs.getString("member_autologin")
+										rs.getDate("member_joinDate")
 										);
 		}
 		rs.close();
@@ -78,8 +76,7 @@ public class MemberInfoDao {
 											  rs.getString("member_name"),
 											  rs.getString("member_phone"),
 											  rs.getString("member_address"),
-											  rs.getDate("member_joinDate"),
-											  rs.getString("member_autologin")
+											  rs.getDate("member_joinDate")
 											  ));
 		}
 		rs.close();
@@ -94,8 +91,7 @@ public class MemberInfoDao {
 		pstmt.setString(2,memberInfo.getMember_name());
 		pstmt.setString(3,memberInfo.getMember_phone());
 		pstmt.setString(4,memberInfo.getMember_address());
-		pstmt.setString(5,memberInfo.getMember_autologin());
-		pstmt.setString(6,memberInfo.getMember_id());
+		pstmt.setString(5,memberInfo.getMember_id());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);
