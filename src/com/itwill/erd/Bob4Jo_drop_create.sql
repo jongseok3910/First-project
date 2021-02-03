@@ -49,7 +49,7 @@ CREATE TABLE Jumun(
 		jumun_no number PRIMARY KEY,
 		jumun_quantity number,
 		jumun_sum number,
-		jumun_payment VARCHAR2(10),
+		jumun_payment VARCHAR2(30),
 		jumun_request VARCHAR2(255),
 		jumun_estimatedTime VARCHAR2(30),
 		card_no VARCHAR2(19),
