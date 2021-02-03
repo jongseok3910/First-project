@@ -1,10 +1,10 @@
-DROP TABLE Board;
-DROP TABLE Store;
 DROP TABLE Jumun;
-DROP TABLE MemberInfo;
-DROP TABLE Card;
 DROP TABLE Food;
 DROP TABLE Category;
+DROP TABLE Board;
+DROP TABLE Store;
+DROP TABLE Card;
+DROP TABLE MemberInfo;
 
 CREATE TABLE MemberInfo(
         member_no VARCHAR2(20) PRIMARY KEY,
