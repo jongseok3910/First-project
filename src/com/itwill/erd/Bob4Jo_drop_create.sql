@@ -39,6 +39,17 @@ CREATE TABLE Food(
   FOREIGN KEY (category_no) REFERENCES Category (category_no)
 );
 
+CREATE TABLE Store(
+		store_no number PRIMARY KEY,
+		store_name VARCHAR2(30),
+		store_businessTime VARCHAR2(30),
+		store_phone VARCHAR2(13),
+		store_address VARCHAR2(50),
+		store_deliveryPrice number,
+		jumun_estimatedTime VARCHAR2(30) DEFAULT '30분',
+		store_rating number
+);
+
 CREATE TABLE Jumun(
 		jumun_no number PRIMARY KEY,
 		jumun_quantity number,
@@ -52,17 +63,6 @@ CREATE TABLE Jumun(
   FOREIGN KEY (member_no) REFERENCES MemberInfo (member_no),
   FOREIGN KEY (food_no) REFERENCES Food (food_no),
   FOREIGN KEY (store_no) REFERENCES Store (store_no)
-);
-
-CREATE TABLE Store(
-		store_no number PRIMARY KEY,
-		store_name VARCHAR2(30),
-		store_businessTime VARCHAR2(30),
-		store_phone VARCHAR2(13),
-		store_address VARCHAR2(50),
-		store_deliveryPrice number,
-		jumun_estimatedTime VARCHAR2(30) DEFAULT '30분',
-		store_rating number
 );
 
 CREATE TABLE Board(
