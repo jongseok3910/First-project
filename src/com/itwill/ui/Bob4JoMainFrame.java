@@ -32,8 +32,9 @@ public class Bob4JoMainFrame extends JFrame {
 	private JMenuItem loginMenuItem;
 	private JMenuItem logoutMenuItem;
 	private JMenuItem joinMenuItem;
-	private JPanel baseCardLayoutPanel;
+	private JPanel mainImagePanel;
 	private JPanel nextPanel;
+	private JPanel baseCardLayoutPanel;
 	/*
 	 * Launch the application.
 	 */
@@ -76,6 +77,11 @@ public class Bob4JoMainFrame extends JFrame {
 		memberMenu.add(loginMenuItem);
 		
 		logoutMenuItem = new JMenuItem("로그아웃");
+		logoutMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				logoutProcess();
+			}
+		});
 		memberMenu.add(logoutMenuItem);
 		logoutMenuItem.setEnabled(false);
 		
@@ -97,22 +103,22 @@ public class Bob4JoMainFrame extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(new CardLayout(0, 0));
-		
 		baseCardLayoutPanel = new JPanel();
-		baseCardLayoutPanel.setBackground(Color.WHITE);
-		panel.add(baseCardLayoutPanel, "mainPanel");
-		baseCardLayoutPanel.setLayout(new BorderLayout(0, 0));
+		contentPane.add(baseCardLayoutPanel, BorderLayout.CENTER);
+		baseCardLayoutPanel.setLayout(new CardLayout(0, 0));
+		
+		mainImagePanel = new JPanel();
+		mainImagePanel.setBackground(Color.WHITE);
+		baseCardLayoutPanel.add(mainImagePanel, "mainPanel");
+		mainImagePanel.setLayout(new BorderLayout(0, 0));
 		
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setIcon(new ImageIcon(Bob4JoMainFrame.class.getResource("/com/itwill/ui/메인로고.png")));
-		baseCardLayoutPanel.add(lblNewLabel, BorderLayout.CENTER);
+		mainImagePanel.add(lblNewLabel, BorderLayout.CENTER);
 		
 		nextPanel = new JPanel();
-		panel.add(nextPanel, "nextPanel");
+		baseCardLayoutPanel.add(nextPanel, "nextPanel");
 		nextPanel.setLayout(new BorderLayout(0, 0));
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -130,8 +136,8 @@ public class Bob4JoMainFrame extends JFrame {
 		loginMenuItem.setEnabled(false);
 		logoutMenuItem.setEnabled(true);
 		joinMenuItem.setEnabled(false);
-		//CardLayout cl=(CardLayout)baseCardLayoutPanel.getLayout();
-		//cl.show(baseCardLayoutPanel, "mainPanel");
+		CardLayout cl=(CardLayout)baseCardLayoutPanel.getLayout();
+		cl.show(baseCardLayoutPanel, "nextPanel");
 	}
 	public void logoutProcess() {
 		this.loginMember=null;
@@ -139,8 +145,8 @@ public class Bob4JoMainFrame extends JFrame {
 		loginMenuItem.setEnabled(true);
 		logoutMenuItem.setEnabled(false);
 		joinMenuItem.setEnabled(true);
-		//CardLayout cl=(CardLayout)baseCardLayoutPanel.getLayout();
-		//cl.show(baseCardLayoutPanel,"mainPanel");
+		CardLayout cl=(CardLayout)baseCardLayoutPanel.getLayout();
+		cl.show(baseCardLayoutPanel,"mainPanel");
 	}
 
 }
