@@ -62,17 +62,19 @@ public class Bob4JoLoginDialog extends JDialog {
 		contentPanel.add(passwordTF);
 		{
 			JLabel lblNewLabel_2 = new JLabel("LOGIN");
-			lblNewLabel_2.setFont(new Font("D2Coding", Font.BOLD, 30));
-			lblNewLabel_2.setBounds(205, 0, 91, 184);
+			lblNewLabel_2.setFont(new Font("D2Coding", Font.BOLD, 35));
+			lblNewLabel_2.setBounds(205, 0, 156, 184);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
 			JLabel lblNewLabel_3 = new JLabel("회원으로 로그인하시면 제공하는");
+			lblNewLabel_3.setForeground(Color.LIGHT_GRAY);
 			lblNewLabel_3.setBounds(161, 125, 298, 29);
 			contentPanel.add(lblNewLabel_3);
 		}
 		{
 			JLabel lblNewLabel_4 = new JLabel("다양한 서비스를 이용할 수 있습니다");
+			lblNewLabel_4.setForeground(Color.LIGHT_GRAY);
 			lblNewLabel_4.setBounds(148, 149, 286, 15);
 			contentPanel.add(lblNewLabel_4);
 		}

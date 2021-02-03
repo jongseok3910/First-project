@@ -102,7 +102,7 @@ public class Bob4JoJoinDialog extends JDialog {
 		}
 		{
 			JLabel lblNewLabel_5 = new JLabel("JOIN");
-			lblNewLabel_5.setFont(new Font("D2Coding", Font.BOLD, 40));
+			lblNewLabel_5.setFont(new Font("D2Coding", Font.BOLD, 35));
 			lblNewLabel_5.setBounds(168, 10, 110, 118);
 			contentPanel.add(lblNewLabel_5);
 		}
