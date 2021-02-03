@@ -7,6 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.itwill.service.MemberService;
+import com.itwill.vo.MemberInfo;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -23,20 +27,9 @@ public class Bob4JoLoginDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField idTF;
 	private JPasswordField passwordTF;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			Bob4JoLoginDialog dialog = new Bob4JoLoginDialog();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
+	
+	Bob4JoMainFrame bob4JoMainFrame;
+	MemberService memberService;
 	/**
 	 * Create the dialog.
 	 */
@@ -103,7 +96,32 @@ public class Bob4JoLoginDialog extends JDialog {
 							idTF.requestFocus();
 							return;
 						}
-						
+						//MemberService객체 로그인메쏘드 호출
+						try {
+							int result = memberService.login(idStr, passwordStr);
+							/*
+							 * 0.성공
+							 * 1. 아이디존재안함
+							 * 2. 패스워드 불일치
+							 */
+							if(result==0) {
+								MemberInfo loginMember = memberService.selectById(idStr);
+								bob4JoMainFrame.loginProcess(loginMember);
+								dispose();
+							}else if((result==1)) {
+								JOptionPane.showMessageDialog(null, "아이디가 존재하지 않습니다");
+								idTF.requestFocus();
+								idTF.setSelectionStart(0);
+								idTF.setSelectionEnd(idStr.length());
+							}else {
+								JOptionPane.showMessageDialog(null, "패스워드가 일치하지 않습니다");
+								passwordTF.requestFocus();
+								passwordTF.setSelectionStart(0);
+								passwordTF.setSelectionEnd(passwordStr.length());
+							}
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
 					}
 				});
 				okButton.setBackground(new Color(51, 255, 51));
@@ -125,5 +143,11 @@ public class Bob4JoLoginDialog extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		//MemberService객체 생성
+		memberService=new MemberService();
+	}//로그인다이얼로그
+	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
+		this.bob4JoMainFrame=bob4JoMainFrame;
 	}
+	
 }

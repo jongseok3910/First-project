@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.itwill.vo.MemberInfo;
+
 import javax.swing.JMenuBar;
 import java.awt.CardLayout;
 import javax.swing.JLabel;
@@ -25,7 +28,13 @@ public class Bob4JoMainFrame extends JFrame {
 	private JPanel contentPane;
 	private JLabel lblNewLabel;
 
-	/**
+	MemberInfo loginMember;
+	private JMenuItem loginMenuItem;
+	private JMenuItem logoutMenuItem;
+	private JMenuItem joinMenuItem;
+	private JPanel baseCardLayoutPanel;
+	private JPanel nextPanel;
+	/*
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -55,13 +64,22 @@ public class Bob4JoMainFrame extends JFrame {
 		JMenu memberMenu = new JMenu("SUBWAY");
 		menuBar.add(memberMenu);
 		
-		JMenuItem loginMenuItem = new JMenuItem("로그인");
+		loginMenuItem = new JMenuItem("로그인");
+		loginMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Bob4JoLoginDialog loginDialog = new Bob4JoLoginDialog();
+				loginDialog.setBob4JoMainFrame(Bob4JoMainFrame.this);
+				loginDialog.setModal(true);
+				loginDialog.setVisible(true);
+			}
+		});
 		memberMenu.add(loginMenuItem);
 		
-		JMenuItem logoutMenuItem = new JMenuItem("로그아웃");
+		logoutMenuItem = new JMenuItem("로그아웃");
 		memberMenu.add(logoutMenuItem);
+		logoutMenuItem.setEnabled(false);
 		
-		JMenuItem joinMenuItem = new JMenuItem("가입");
+		joinMenuItem = new JMenuItem("가입");
 		memberMenu.add(joinMenuItem);
 		
 		JSeparator separator = new JSeparator();
@@ -83,22 +101,46 @@ public class Bob4JoMainFrame extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new CardLayout(0, 0));
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.WHITE);
-		panel.add(panel_1, "name_1287698926322500");
-		panel_1.setLayout(new BorderLayout(0, 0));
+		baseCardLayoutPanel = new JPanel();
+		baseCardLayoutPanel.setBackground(Color.WHITE);
+		panel.add(baseCardLayoutPanel, "mainPanel");
+		baseCardLayoutPanel.setLayout(new BorderLayout(0, 0));
 		
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setIcon(new ImageIcon(Bob4JoMainFrame.class.getResource("/com/itwill/ui/메인로고.png")));
-		panel_1.add(lblNewLabel, BorderLayout.CENTER);
+		baseCardLayoutPanel.add(lblNewLabel, BorderLayout.CENTER);
 		
-		JPanel panel_2 = new JPanel();
-		panel.add(panel_2, "name_1287940689146700");
-		panel_2.setLayout(new BorderLayout(0, 0));
+		nextPanel = new JPanel();
+		panel.add(nextPanel, "nextPanel");
+		nextPanel.setLayout(new BorderLayout(0, 0));
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		panel_2.add(tabbedPane, BorderLayout.CENTER);
+		nextPanel.add(tabbedPane, BorderLayout.CENTER);
+	}//MainFrame
+	public void loginProcess(MemberInfo loginMember) {
+		/*
+		 * 0.로그인멤버 저장
+		 * 1.MemberMainFrame타이틀변경
+		 * 2.로그인,회원가입메뉴아이템 불활성화
+		 * 3.로그아웃메뉴아이템 활성화
+		 */
+		this.loginMember=loginMember;
+		setTitle(loginMember.getMember_name()+"님 로그인");
+		loginMenuItem.setEnabled(false);
+		logoutMenuItem.setEnabled(true);
+		joinMenuItem.setEnabled(false);
+		//CardLayout cl=(CardLayout)baseCardLayoutPanel.getLayout();
+		//cl.show(baseCardLayoutPanel, "mainPanel");
+	}
+	public void logoutProcess() {
+		this.loginMember=null;
+		setTitle("");
+		loginMenuItem.setEnabled(true);
+		logoutMenuItem.setEnabled(false);
+		joinMenuItem.setEnabled(true);
+		//CardLayout cl=(CardLayout)baseCardLayoutPanel.getLayout();
+		//cl.show(baseCardLayoutPanel,"mainPanel");
 	}
 
 }
