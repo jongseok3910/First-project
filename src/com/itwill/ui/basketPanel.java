@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
+import java.awt.SystemColor;
 
 public class basketPanel extends JPanel {
 	private JTable basketTable;
@@ -22,7 +23,7 @@ public class basketPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public basketPanel() {
-		setBackground(new Color(85, 107, 47));
+		setBackground(new Color(255, 255, 255));
 		setLayout(null);
 		
 		basketTable = new JTable();
@@ -43,7 +44,7 @@ public class basketPanel extends JPanel {
 				"\uC74C\uC2DD\uBA85", "\uC218\uB7C9"
 			}
 		));
-		basketTable.setBounds(40, 178, 340, 121);
+		basketTable.setBounds(36, 178, 340, 121);
 		add(basketTable);
 		
 		JLabel totalLb = new JLabel("총금액");
@@ -105,7 +106,7 @@ public class basketPanel extends JPanel {
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon("C:\\JAVA_BACKEND\\IT학원강의자료\\image\\4401e56c414bf5ac.jpg"));
-		lblNewLabel_1.setBounds(98, 49, 225, 213);
+		lblNewLabel_1.setBounds(147, 55, 104, 113);
 		add(lblNewLabel_1);
 
 	}
