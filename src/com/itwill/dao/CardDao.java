@@ -6,18 +6,27 @@ import java.sql.PreparedStatement;
 import com.itwill.vo.Card;
 
 public class CardDao {
-	public void create(Card card) throws Exception {
+	public int create(Card card) throws Exception {
 		Connection con = ConnectionFactory.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(CardSQL.Card_insert);
+		PreparedStatement pstmt = con.prepareStatement(CardSQL.CARD_INSERT);
 		pstmt.setString(1, card.getCard_no());
 		pstmt.setString(2, card.getCard_validity()); 
 		pstmt.setInt(3, card.getCard_cvc());
 		pstmt.setInt(4, card.getCard_password());
+		pstmt.setString(5, card.getMember_no());
+		int rowCount = pstmt.executeUpdate();
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
+		return rowCount;
 	}
 
-	public void deleteByNo(Card card) throws Exception {
+	public int deleteByNo(String card_no) throws Exception {
 		Connection con = ConnectionFactory.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(CardSQL.Card_delete);
-		pstmt.setString(1, card.getCard_no());
+		PreparedStatement pstmt = con.prepareStatement(CardSQL.CARD_DELETE);
+		pstmt.setString(1, card_no);
+		int rowCount = pstmt.executeUpdate();
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
+		return rowCount;
 	}
 }

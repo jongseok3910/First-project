@@ -4,32 +4,26 @@ DROP TABLE Jumun;
 DROP TABLE MemberInfo;
 DROP TABLE Card;
 DROP TABLE Food;
-DROP TABLE MemberJoin;
 DROP TABLE Category;
 
-CREATE TABLE MemberJoin(
-		member_id VARCHAR2(10) PRIMARY KEY,
+CREATE TABLE MemberInfo(
+        member_no VARCHAR2(20) PRIMARY KEY,
+		member_id VARCHAR2(10),
 		member_password VARCHAR2(12),
 		member_name VARCHAR2(20),
 		member_phone VARCHAR2(13),
-		member_address VHRCHAR2(255),
-		member_joinDate DATE DEFAULT sysdate
+		member_address VARCHAR2(60),
+		member_joinDate DATE DEFAULT sysdate,
+        member_autoLogin VARCHAR2(1) DEFAULT 'F'
 );
 
 CREATE TABLE Card(
 		card_no VARCHAR2(19) PRIMARY KEY,
-		card_validity VARCHAR2(10),
+		card_validity VARCHAR2(5),
 		card_cvc number,
-		card_password number
-);
-
-CREATE TABLE MemberInfo(
-		member_no VARCHAR2(255) PRIMARY KEY,
-		member_id VARCHAR2(10),
-		card_no VARCHAR2(19),
-		member_autoLogin VARCHAR2(1) DEFAULT 'F',
-  FOREIGN KEY (member_id) REFERENCES MemberJoin (member_id),
-  FOREIGN KEY (card_no) REFERENCES Card (card_no)
+		card_password number,
+        member_no VARCHAR2(20),
+  FOREIGN KEY (member_no) REFERENCES MemberInfo (member_no)  
 );
 
 CREATE TABLE Category(
@@ -49,15 +43,15 @@ CREATE TABLE Jumun(
 		jumun_no number PRIMARY KEY,
 		jumun_quantity number,
 		jumun_sum number,
-		jumun_payment VARCHAR2(10),
-		jumun_request VARCHAR2(255),
-		jumun_estimatedTime VARCHAR2(30),
-		card_no VARCHAR2(19),
-		member_no number,
-		food_no number,
-  FOREIGN KEY (jumun_payment) REFERENCES Card (card_no),
+        jumun_request VARCHAR2(255),
+		jumun_paymentType VARCHAR2(30),
+		jumun_paymentTime DATE DEFAULT sysdate,
+		member_no VARCHAR2(20),
+        food_no number,
+        store_no number,
   FOREIGN KEY (member_no) REFERENCES MemberInfo (member_no),
-  FOREIGN KEY (food_no) REFERENCES Food (food_no)
+  FOREIGN KEY (food_no) REFERENCES Food (food_no),
+  FOREIGN KEY (store_no) REFERENCES Store (store_no)
 );
 
 CREATE TABLE Store(
@@ -67,12 +61,8 @@ CREATE TABLE Store(
 		store_phone VARCHAR2(13),
 		store_address VARCHAR2(50),
 		store_deliveryPrice number,
-		jumun_estimatedTime VARCHAR2(30) DEFAULT '30遺�',
-		store_rating number,
-		category_no number,
-		jumun_no number,
-  FOREIGN KEY (category_no) REFERENCES Category (category_no),
-  FOREIGN KEY (jumun_no) REFERENCES Jumun (jumun_no)
+		jumun_estimatedTime VARCHAR2(30) DEFAULT '30분',
+		store_rating number
 );
 
 CREATE TABLE Board(
