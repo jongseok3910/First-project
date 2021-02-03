@@ -69,9 +69,7 @@ CREATE TABLE Store(
 		store_deliveryPrice number,
 		jumun_estimatedTime VARCHAR2(30) DEFAULT '30분',
 		store_rating number,
-		category_no number,
 		jumun_no number,
-  FOREIGN KEY (category_no) REFERENCES Category (category_no),
   FOREIGN KEY (jumun_no) REFERENCES Jumun (jumun_no)
 );
 

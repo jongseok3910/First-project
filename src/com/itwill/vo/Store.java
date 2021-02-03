@@ -9,8 +9,7 @@ STORE_PHONE                  VARCHAR2(13)
 STORE_ADDRESS                VARCHAR2(50) 
 STORE_DELIVERYPRICE          NUMBER       
 JUMUN_ESTIMATEDTIME          VARCHAR2(30) 
-STORE_RATING                 NUMBER       
-CATEGORY_NO                  NUMBER       
+STORE_RATING                 NUMBER             
 JUMUN_NO                     NUMBER  
  */
 public class Store {
@@ -22,7 +21,6 @@ public class Store {
 	private int store_deliveryPrice;
 	private String jumun_estimatedTime;
 	private Double store_rating;
-	private int category_no;
 	private int jumun_no;
 	
 	public Store() {
@@ -30,7 +28,7 @@ public class Store {
 	}
 
 	public Store(int store_no, String store_name, String store_businessTime, String store_phone, String store_address,
-			int store_deliveryPrice, String jumun_estimatedTime, Double store_rating, int category_no, int jumun_no) {
+			int store_deliveryPrice, String jumun_estimatedTime, Double store_rating, int jumun_no) {
 		super();
 		this.store_no = store_no;
 		this.store_name = store_name;
@@ -40,7 +38,6 @@ public class Store {
 		this.store_deliveryPrice = store_deliveryPrice;
 		this.jumun_estimatedTime = jumun_estimatedTime;
 		this.store_rating = store_rating;
-		this.category_no = category_no;
 		this.jumun_no = jumun_no;
 	}
 
@@ -108,14 +105,6 @@ public class Store {
 		this.store_rating = store_rating;
 	}
 
-	public int getCategory_no() {
-		return category_no;
-	}
-
-	public void setCategory_no(int category_no) {
-		this.category_no = category_no;
-	}
-
 	public int getJumun_no() {
 		return jumun_no;
 	}
@@ -129,7 +118,7 @@ public class Store {
 		return "Store [store_no=" + store_no + ", store_name=" + store_name + ", store_businessTime="
 				+ store_businessTime + ", store_phone=" + store_phone + ", store_address=" + store_address
 				+ ", store_deliveryPrice=" + store_deliveryPrice + ", jumun_estimatedTime=" + jumun_estimatedTime
-				+ ", store_rating=" + store_rating + ", category_no=" + category_no + ", jumun_no=" + jumun_no + "]";
+				+ ", store_rating=" + store_rating + ", jumun_no=" + jumun_no + "]";
 	}
 	
 }
