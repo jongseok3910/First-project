@@ -21,6 +21,7 @@ import java.awt.Font;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class Bob4JoLoginDialog extends JDialog {
 
@@ -34,6 +35,7 @@ public class Bob4JoLoginDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public Bob4JoLoginDialog() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Bob4JoLoginDialog.class.getResource("/com/itwill/ui/창아이콘.png")));
 		setTitle("로그인");
 		setBounds(100, 100, 520, 500);
 		getContentPane().setLayout(new BorderLayout());
