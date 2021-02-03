@@ -22,7 +22,7 @@ public class basketPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public basketPanel() {
-		setBackground(new Color(85, 107, 47));
+		setBackground(new Color(255, 204, 51));
 		setLayout(null);
 		
 		basketTable = new JTable();
@@ -33,17 +33,12 @@ public class basketPanel extends JPanel {
 				{null, null},
 				{null, null},
 				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
 			},
 			new String[] {
 				"\uC74C\uC2DD\uBA85", "\uC218\uB7C9"
 			}
 		));
-		basketTable.setBounds(40, 178, 340, 121);
+		basketTable.setBounds(41, 208, 340, 99);
 		add(basketTable);
 		
 		JLabel totalLb = new JLabel("총금액");
@@ -98,14 +93,16 @@ public class basketPanel extends JPanel {
 		add(cancleBtn);
 		
 		JLabel listLb = new JLabel("장바구니 목록");
-		listLb.setFont(new Font("함초롬돋움", Font.BOLD, 13));
+		listLb.setForeground(new Color(0, 0, 0));
+		listLb.setFont(new Font("함초롬돋움", Font.PLAIN, 11));
 		listLb.setHorizontalAlignment(SwingConstants.CENTER);
-		listLb.setBounds(24, 24, 368, 15);
+		listLb.setBounds(24, 25, 368, 25);
 		add(listLb);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\JAVA_BACKEND\\IT학원강의자료\\image\\4401e56c414bf5ac.jpg"));
-		lblNewLabel_1.setBounds(98, 49, 225, 213);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\zhzh2\\OneDrive\\바탕 화면\\dafdsfafasfasdfs.png"));
+		lblNewLabel_1.setBounds(110, 49, 193, 140);
 		add(lblNewLabel_1);
 
 	}
