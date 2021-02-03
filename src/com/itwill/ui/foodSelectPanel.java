@@ -162,7 +162,7 @@ public class foodSelectPanel extends JPanel {
 		
 		basketBtn = new JButton("장바구니");
 		basketBtn.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
-		basketBtn.setBounds(286, 571, 97, 23);
+		basketBtn.setBounds(285, 570, 97, 23);
 		add(basketBtn);
 		
 		JLabel storeLb = new JLabel("지점선택");
