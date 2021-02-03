@@ -101,7 +101,7 @@ public class basketPanel extends JPanel {
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\zhzh2\\OneDrive\\바탕 화면\\dafdsfafasfasdfs.png"));
+		lblNewLabel_1.setIcon(new ImageIcon(basketPanel.class.getResource("/com/itwill/ui/장바구니.png")));
 		lblNewLabel_1.setBounds(110, 49, 193, 140);
 		add(lblNewLabel_1);
 
