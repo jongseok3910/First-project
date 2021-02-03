@@ -13,8 +13,10 @@ public class MemberInfoDao {
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(MemberInfoSQL.MEMBERINFO_INSERT);
 		pstmt.setString(1, memberInfo.getMember_id());
-		pstmt.setString(2, memberInfo.getCard_no());
-		pstmt.setString(3, memberInfo.getMember_autologin());
+		pstmt.setString(2, memberInfo.getMember_password());
+		pstmt.setString(3, memberInfo.getMember_name());
+		pstmt.setString(4, memberInfo.getMember_phone());
+		pstmt.setString(5, memberInfo.getMember_address());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);
@@ -29,8 +31,13 @@ public class MemberInfoDao {
 		if(rs.next()) {
 			memberInfo = new MemberInfo(rs.getString("member_no"), 
 										rs.getString("member_id"), 
-										rs.getString("card_no"), 
-										rs.getString("member_autologin"));
+										rs.getString("member_password"),
+										rs.getString("member_name"),
+										rs.getString("member_phone"),
+										rs.getString("member_address"),
+										rs.getDate("member_joinDate"),
+										rs.getString("member_autologin")
+										);
 		}
 		rs.close();
 		pstmt.close();
@@ -46,8 +53,13 @@ public class MemberInfoDao {
 		if(rs.next()) {
 			memberInfo = new MemberInfo(rs.getString("member_no"), 
 										rs.getString("member_id"), 
-										rs.getString("card_no"), 
-										rs.getString("member_autologin"));
+										rs.getString("member_password"),
+										rs.getString("member_name"),
+										rs.getString("member_phone"),
+										rs.getString("member_address"),
+										rs.getDate("member_joinDate"),
+										rs.getString("member_autologin")
+										);
 		}
 		rs.close();
 		pstmt.close();
@@ -62,8 +74,13 @@ public class MemberInfoDao {
 		while(rs.next()) {
 			memberInfoList.add(new MemberInfo(rs.getString("member_no"), 
 											  rs.getString("member_id"), 
-											  rs.getString("card_no"), 
-											  rs.getString("member_autologin")));
+											  rs.getString("member_password"),
+											  rs.getString("member_name"),
+											  rs.getString("member_phone"),
+											  rs.getString("member_address"),
+											  rs.getDate("member_joinDate"),
+											  rs.getString("member_autologin")
+											  ));
 		}
 		rs.close();
 		pstmt.close();
@@ -73,9 +90,12 @@ public class MemberInfoDao {
 	public int updateById(MemberInfo memberInfo) throws Exception {
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(MemberInfoSQL.MEMBERINFO_UPDATE_BY_ID);
-		pstmt.setString(1, memberInfo.getCard_no());
-		pstmt.setString(2, memberInfo.getMember_autologin());
-		pstmt.setString(3, memberInfo.getMember_id());
+		pstmt.setString(1,memberInfo.getMember_password());
+		pstmt.setString(2,memberInfo.getMember_name());
+		pstmt.setString(3,memberInfo.getMember_phone());
+		pstmt.setString(4,memberInfo.getMember_address());
+		pstmt.setString(5,memberInfo.getMember_autologin());
+		pstmt.setString(6,memberInfo.getMember_id());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);

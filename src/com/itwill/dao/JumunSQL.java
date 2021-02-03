@@ -2,13 +2,13 @@ package com.itwill.dao;
 
 public class JumunSQL {
 public static final String JUMUN_INSERT=
-"insert into JUMUN(jumun_no,jumun_quantity,jumun_sum,jumun_payment,jumun_request,jumun_estimatedTime,card_no,member_no,food_no) values(?,?,?,?,?,?,?,?,?)";
-public static final String JUMUN_UPDATE=
-"update jumun set jumun_quantity=?, jumun_sum=?,jumun_payment=?,jumun_request=?,card_no=?,food_no=? where member_no";
-public static final String JUMUN_DELETE=
-"delete jumun where member_no=?";
-public static final String JUMUN_SELECT_MEMBER_NO=
-"select jumun_no,jumun_quantity,jumun_sum,jumun_payment,jumun_request,jumun_estimatedTime,card_no,food_no where member_no=?";
+"insert into jumun values(?,?,?,?,?,?,?)";
+public static final String JUMUN_SELECT_BY_MEMBER_NO=
+"select * from jumun where member_no=?";
 public static final String JUMUN_SELECT_ALL=
 "select * from jumun";
+public static final String JUMUN_UPDATE_BY_JUMUN_NO=
+"update jumun set jumun_quantity=?, jumun_sum=?,jumun_request=?,jumun_payment=?,food_no=? where jumun_no=?";
+public static final String JUMUN_DELETE_BY_JUMUN_NO=
+"delete jumun where jumun_no=?";
 }

@@ -43,13 +43,10 @@ CREATE TABLE Jumun(
 		jumun_no number PRIMARY KEY,
 		jumun_quantity number,
 		jumun_sum number,
+        jumun_request VARCHAR2(255),
 		jumun_payment VARCHAR2(30),
-		jumun_request VARCHAR2(255),
-		jumun_estimatedTime VARCHAR2(30),
-		card_no VARCHAR2(19),
 		member_no VARCHAR2(20),
-		food_no number,
-  FOREIGN KEY (card_no) REFERENCES Card (card_no),
+        food_no number,
   FOREIGN KEY (member_no) REFERENCES MemberInfo (member_no),
   FOREIGN KEY (food_no) REFERENCES Food (food_no)
 );
