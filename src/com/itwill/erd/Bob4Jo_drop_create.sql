@@ -47,8 +47,10 @@ CREATE TABLE Jumun(
 		jumun_payment VARCHAR2(30),
 		member_no VARCHAR2(20),
         food_no number,
+        store_no number,
   FOREIGN KEY (member_no) REFERENCES MemberInfo (member_no),
-  FOREIGN KEY (food_no) REFERENCES Food (food_no)
+  FOREIGN KEY (food_no) REFERENCES Food (food_no),
+  FOREIGN KEY (store_no) REFERENCES Store (store_no)
 );
 
 CREATE TABLE Store(
