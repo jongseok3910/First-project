@@ -8,18 +8,21 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.Font;
 import javax.swing.JTextPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Bob4JoLoginDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JPasswordField passwordField;
+	private JTextField idTF;
+	private JPasswordField passwordTF;
 
 	/**
 	 * Launch the application.
@@ -56,14 +59,14 @@ public class Bob4JoLoginDialog extends JDialog {
 			contentPanel.add(lblNewLabel_1);
 		}
 		
-		textField = new JTextField();
-		textField.setBounds(252, 220, 125, 21);
-		contentPanel.add(textField);
-		textField.setColumns(10);
+		idTF = new JTextField();
+		idTF.setBounds(252, 220, 125, 21);
+		contentPanel.add(idTF);
+		idTF.setColumns(10);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(252, 275, 125, 21);
-		contentPanel.add(passwordField);
+		passwordTF = new JPasswordField();
+		passwordTF.setBounds(252, 275, 125, 21);
+		contentPanel.add(passwordTF);
 		{
 			JLabel lblNewLabel_2 = new JLabel("LOGIN");
 			lblNewLabel_2.setFont(new Font("D2Coding", Font.BOLD, 30));
@@ -87,6 +90,22 @@ public class Bob4JoLoginDialog extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("로그인");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						String idStr=idTF.getText();
+						char[] passwordChars = passwordTF.getPassword();
+						String passwordStr = new String(passwordChars);
+						//공백 입력했을 때
+						if(idStr.trim().equals("")||passwordStr.trim().equals("")) {
+							idTF.setText("");
+							passwordTF.setText("");
+							JOptionPane.showMessageDialog(null, "아이디와 패스워드를 입력하세요");
+							idTF.requestFocus();
+							return;
+						}
+						
+					}
+				});
 				okButton.setBackground(new Color(51, 255, 51));
 				okButton.setForeground(new Color(255, 255, 255));
 				okButton.setActionCommand("OK");
@@ -95,6 +114,11 @@ public class Bob4JoLoginDialog extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("취소");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setForeground(new Color(255, 255, 255));
 				cancelButton.setBackground(new Color(51, 255, 51));
 				cancelButton.setActionCommand("Cancel");

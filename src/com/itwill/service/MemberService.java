@@ -53,6 +53,7 @@ public class MemberService {
 			
 			}else {
 				result=2;
+			}
 		}else {
 			result=1;
 		}
@@ -73,7 +74,7 @@ public class MemberService {
  * 정보수정(update사용)
  */
 	public int memberUpdate(MemberInfo memberInfo) throws Exception{
-
+		return 0;
 	}
 		
 	
