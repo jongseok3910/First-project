@@ -115,6 +115,15 @@ public class Bob4JoJoinDialog extends JDialog {
 			contentPanel.add(lblNewLabel_5);
 		}
 		{
+			JButton btnNewButton = new JButton("중복확인");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+			btnNewButton.setBounds(262, 130, 91, 23);
+			contentPanel.add(btnNewButton);
+		}
+		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(new Color(255, 255, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
