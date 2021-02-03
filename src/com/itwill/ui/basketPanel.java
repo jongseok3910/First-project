@@ -105,7 +105,7 @@ public class basketPanel extends JPanel {
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon("C:\\JAVA_BACKEND\\IT학원강의자료\\image\\4401e56c414bf5ac.jpg"));
-		lblNewLabel_1.setBounds(86, 49, 260, 261);
+		lblNewLabel_1.setBounds(98, 49, 225, 213);
 		add(lblNewLabel_1);
 
 	}
