@@ -2,6 +2,7 @@ package com.itwill.test;
 
 import java.lang.reflect.Member;
 
+import com.itwill.dao.BoardDao;
 import com.itwill.dao.MemberInfoDao;
 import com.itwill.vo.MemberInfo;
 
@@ -9,12 +10,27 @@ public class MemberInfoDaoTestMain {
 
     public static void main(String[] args) throws Exception{
 
-        MemberInfoDao memberInfoDao = new MemberInfoDao();
+        MemberInfo MemberInfo= new MemberInfo ("ID43","1111-1111-1111-1111","T");
+    	MemberInfoDao memberInfoDao = new MemberInfoDao();
         
-//        create test
-//        System.out.println("create: " + memberInfoDao.create(new MemberInfo("2021/02/028","ID6","6486-5774-1331-6456",null)));
+        
+//      create test -> 오류 
+//        System.out.println("insert: " + memberInfoDao.create(MemberInfo));
 
-
+//		selectByID test 성공
+//		System.out.println("selectByID : " + memberInfoDao.selectById("ID1"));
+		
+//		selectByCardNo test 성공
+//		System.out.println("selectByID : " + memberInfoDao.selectByCardNo("4685-0046-4764-8858"));
+		
+//		selectAll test 성공
+//		System.out.println("selectAll : " + memberInfoDao.selectAll());
+		
+//		updateByName test
+//		System.out.println("updateByID : " + memberInfoDao.updateById("3213-4213-3333-1242","T","ID5"));
+		
+//		deleteByName test
+//		System.out.println("deleteByID : " + memberInfoDao.deleteById("ID4"));
    
 
     }
