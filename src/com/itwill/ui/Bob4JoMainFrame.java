@@ -86,6 +86,14 @@ public class Bob4JoMainFrame extends JFrame {
 		logoutMenuItem.setEnabled(false);
 		
 		joinMenuItem = new JMenuItem("가입");
+		joinMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Bob4JoJoinDialog joinDialog = new Bob4JoJoinDialog();
+				joinDialog.setBob4JoMainFrame(Bob4JoMainFrame.this);
+				joinDialog.setModal(true);
+				joinDialog.setVisible(true);
+			}
+		});
 		memberMenu.add(joinMenuItem);
 		
 		JSeparator separator = new JSeparator();

@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.itwill.service.MemberService;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -21,6 +24,9 @@ public class Bob4JoJoinDialog extends JDialog {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	
+	Bob4JoMainFrame bob4JoMainFrame;
+	MemberService memberService;
 
 	/**
 	 * Launch the application.
@@ -127,6 +133,11 @@ public class Bob4JoJoinDialog extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		//MemberService객체 생성
+		memberService=new MemberService();
+	}//조인다이얼로그
+	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
+		this.bob4JoMainFrame=bob4JoMainFrame;
 	}
-
+	
 }
