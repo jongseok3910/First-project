@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Bob4JoJoinDialog extends JDialog {
 
@@ -119,6 +121,11 @@ public class Bob4JoJoinDialog extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("가입");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+					}
+				});
 				okButton.setForeground(new Color(255, 255, 255));
 				okButton.setBackground(new Color(51, 255, 51));
 				okButton.setActionCommand("OK");
@@ -127,6 +134,11 @@ public class Bob4JoJoinDialog extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("취소");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setForeground(new Color(255, 255, 255));
 				cancelButton.setBackground(new Color(51, 255, 0));
 				cancelButton.setActionCommand("Cancel");
