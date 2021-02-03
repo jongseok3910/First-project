@@ -11,6 +11,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class basketPanel extends JPanel {
 	private JTable basketTable;
@@ -21,7 +22,7 @@ public class basketPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public basketPanel() {
-		setBackground(new Color(204, 255, 204));
+		setBackground(new Color(85, 107, 47));
 		setLayout(null);
 		
 		basketTable = new JTable();
@@ -42,7 +43,7 @@ public class basketPanel extends JPanel {
 				"\uC74C\uC2DD\uBA85", "\uC218\uB7C9"
 			}
 		));
-		basketTable.setBounds(36, 69, 340, 210);
+		basketTable.setBounds(40, 178, 340, 121);
 		add(basketTable);
 		
 		JLabel totalLb = new JLabel("총금액");
@@ -101,6 +102,11 @@ public class basketPanel extends JPanel {
 		listLb.setHorizontalAlignment(SwingConstants.CENTER);
 		listLb.setBounds(24, 24, 368, 15);
 		add(listLb);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\JAVA_BACKEND\\IT학원강의자료\\image\\4401e56c414bf5ac.jpg"));
+		lblNewLabel_1.setBounds(86, 49, 260, 261);
+		add(lblNewLabel_1);
 
 	}
 }
