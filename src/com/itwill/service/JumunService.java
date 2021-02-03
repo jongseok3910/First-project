@@ -1,6 +1,27 @@
 package com.itwill.service;
 
+import com.itwill.dao.JumunDao;
+import com.itwill.vo.Card;
+import com.itwill.vo.Food;
+import com.itwill.vo.MemberInfo;
+import com.itwill.vo.Store;
+
 public class JumunService {
+	private JumunDao jumunDao;
+	private Food food;
+	private MemberInfo memberInfo;
+	private Card card;
+	private Store store;
+	
+	public JumunService() {
+		jumunDao = new JumunDao();
+		food = new Food();
+		memberInfo = new MemberInfo();
+		card = new Card();
+		store = new Store();
+	}
+	
+	
 /*
  * 장바구니:메뉴선택내용,수량수정,합계금액,메뉴삭제
  * 

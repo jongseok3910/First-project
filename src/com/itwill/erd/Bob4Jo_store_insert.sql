@@ -1,9 +1,8 @@
 desc store;
 --1번 학동점 정보입력
-insert into STORE(store_no,store_name,store_businessTime,store_phone,store_address,store_deliveryPrice,jumun_estimatedTime,store_rating,jumun_no)
-values(1,'학동점','00:00~23:59','02-515-1014','서울 강남구 학동로 171',3000,'15분~20분',null,null);
+insert into STORE values(1,'학동점','00:00~23:59','02-515-1014','서울 강남구 학동로 171',3000,'15분~20분',null);
 --2번 수서점 정보입력
-insert into STORE(store_no,store_name,store_businessTime,store_phone,store_address,store_deliveryPrice,jumun_estimatedTime,store_rating,jumun_no)
+insert into STORE
 values(2,'수서점','08:00~23:00','02-445-1636','서울 강남구 밤고개로 1길 10 B1',2000,'10분~20분',null,null);
 --3번 봉은사점 정보입력
 insert into STORE(store_no,store_name,store_businessTime,store_phone,store_address,store_deliveryPrice,jumun_estimatedTime,store_rating,jumun_no)
