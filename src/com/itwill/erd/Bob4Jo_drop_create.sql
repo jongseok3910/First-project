@@ -62,9 +62,7 @@ CREATE TABLE Store(
 		store_address VARCHAR2(50),
 		store_deliveryPrice number,
 		jumun_estimatedTime VARCHAR2(30) DEFAULT '30분',
-		store_rating number,
-		jumun_no number,
-  FOREIGN KEY (jumun_no) REFERENCES Jumun (jumun_no)
+		store_rating number
 );
 
 CREATE TABLE Board(
