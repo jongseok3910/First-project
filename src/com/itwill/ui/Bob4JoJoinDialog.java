@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import com.itwill.service.MemberService;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.Color;
@@ -21,11 +22,11 @@ import java.awt.event.ActionEvent;
 public class Bob4JoJoinDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JPasswordField passwordField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField idTF;
+	private JPasswordField passwordTF;
+	private JTextField nameTF;
+	private JTextField phoneTF;
+	private JTextField addressTF;
 	
 	Bob4JoMainFrame bob4JoMainFrame;
 	MemberService memberService;
@@ -80,33 +81,33 @@ public class Bob4JoJoinDialog extends JDialog {
 			contentPanel.add(lblNewLabel_4);
 		}
 		{
-			textField = new JTextField();
-			textField.setBounds(139, 130, 96, 21);
-			contentPanel.add(textField);
-			textField.setColumns(10);
+			idTF = new JTextField();
+			idTF.setBounds(139, 130, 96, 21);
+			contentPanel.add(idTF);
+			idTF.setColumns(10);
 		}
 		{
-			passwordField = new JPasswordField();
-			passwordField.setBounds(139, 180, 96, 21);
-			contentPanel.add(passwordField);
+			passwordTF = new JPasswordField();
+			passwordTF.setBounds(139, 180, 96, 21);
+			contentPanel.add(passwordTF);
 		}
 		{
-			textField_1 = new JTextField();
-			textField_1.setBounds(139, 230, 96, 21);
-			contentPanel.add(textField_1);
-			textField_1.setColumns(10);
+			nameTF = new JTextField();
+			nameTF.setBounds(139, 230, 96, 21);
+			contentPanel.add(nameTF);
+			nameTF.setColumns(10);
 		}
 		{
-			textField_2 = new JTextField();
-			textField_2.setBounds(139, 280, 96, 21);
-			contentPanel.add(textField_2);
-			textField_2.setColumns(10);
+			phoneTF = new JTextField();
+			phoneTF.setBounds(139, 280, 96, 21);
+			contentPanel.add(phoneTF);
+			phoneTF.setColumns(10);
 		}
 		{
-			textField_3 = new JTextField();
-			textField_3.setBounds(139, 330, 240, 21);
-			contentPanel.add(textField_3);
-			textField_3.setColumns(10);
+			addressTF = new JTextField();
+			addressTF.setBounds(139, 330, 240, 21);
+			contentPanel.add(addressTF);
+			addressTF.setColumns(10);
 		}
 		{
 			JLabel lblNewLabel_5 = new JLabel("JOIN");
@@ -118,6 +119,16 @@ public class Bob4JoJoinDialog extends JDialog {
 			JButton btnNewButton = new JButton("중복확인");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					String idStr=idTF.getText();
+					//공백 입력했을 때
+					if(idStr.trim().equals("")) {
+						idTF.setText("");
+						JOptionPane.showMessageDialog(null, "아이디와 패스워드를 입력하세요");
+						idTF.requestFocus();
+						return;
+					}
+					//memberservice 중복확인 메쏘드 호출
+					
 				}
 			});
 			btnNewButton.setBounds(262, 130, 91, 23);
