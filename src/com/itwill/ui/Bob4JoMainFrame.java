@@ -36,6 +36,9 @@ public class Bob4JoMainFrame extends JFrame {
 	private JPanel mainUsePanel;
 	private JPanel baseCardLayoutPanel;
 	private FoodSelectPanel foodSelectPanel;
+	private BasketPanel basketPanel;
+	private PaymentListPanel paymentListPanel;
+	private MemberInfoPanel memberInfoPanel;
 	/*
 	 * Launch the application.
 	 */
@@ -136,13 +139,13 @@ public class Bob4JoMainFrame extends JFrame {
 		foodSelectPanel = new FoodSelectPanel();
 		tabbedPane.addTab("메뉴선택", null, foodSelectPanel, null);
 		
-		BasketPanel basketPanel = new BasketPanel();
+		basketPanel = new BasketPanel();
 		tabbedPane.addTab("장바구니", null, basketPanel, null);
 		
-		PaymentListPanel paymentListPanel = new PaymentListPanel();
+		paymentListPanel = new PaymentListPanel();
 		tabbedPane.addTab("주문목록", null, paymentListPanel, null);
 		
-		MemberInfoPanel memberInfoPanel = new MemberInfoPanel();
+		memberInfoPanel = new MemberInfoPanel();
 		tabbedPane.addTab("회원정보", null, memberInfoPanel, null);
 	}//MainFrame
 	public void loginProcess(MemberInfo loginMember) {
