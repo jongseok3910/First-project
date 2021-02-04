@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.itwill.dao.FoodDao;
 import com.itwill.dao.JumunDao;
+import com.itwill.dao.StoreDao;
 import com.itwill.vo.Card;
 import com.itwill.vo.Food;
 import com.itwill.vo.MemberInfo;
@@ -12,10 +13,12 @@ import com.itwill.vo.Store;
 public class JumunService {
 	private JumunDao jumunDao;
 	private FoodDao foodDao;
+	private StoreDao storeDao;
 	
 	public JumunService() {
 		jumunDao = new JumunDao();
 		foodDao = new FoodDao();
+		storeDao = new StoreDao();
 	}
 	
 	
@@ -30,5 +33,9 @@ public class JumunService {
 	//장바구니 목록
 	public List<Food> selectByCategoryNo(int CategoryNo) throws Exception {
 		return foodDao.selectByCategoryNo(CategoryNo);
+	}
+	//가게명
+	public List<Store> selectStoreAll() throws Exception {
+		return storeDao.selectAll();
 	}
 }
