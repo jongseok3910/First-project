@@ -13,8 +13,7 @@ CREATE TABLE MemberInfo(
 		member_name VARCHAR2(20),
 		member_phone VARCHAR2(13),
 		member_address VARCHAR2(60),
-		member_joinDate DATE DEFAULT sysdate,
-        member_autoLogin VARCHAR2(1) DEFAULT 'F'
+		member_joinDate DATE DEFAULT sysdate
 );
 
 CREATE TABLE Card(
@@ -46,7 +45,7 @@ CREATE TABLE Store(
 		store_phone VARCHAR2(13),
 		store_address VARCHAR2(50),
 		store_deliveryPrice number,
-		jumun_estimatedTime VARCHAR2(30) DEFAULT '30분',
+		jumun_estimatedTime VARCHAR2(30) DEFAULT '30遺�',
 		store_rating number
 );
 

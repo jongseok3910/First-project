@@ -10,8 +10,17 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import com.itwill.dao.JumunDao;
+import com.itwill.service.JumunService;
+import com.itwill.service.MemberService;
+import com.itwill.vo.Food;
+
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
+import java.util.List;
+import java.util.Vector;
+
 import javax.swing.ImageIcon;
 
 public class foodSelectPanel extends JPanel {
@@ -23,6 +32,9 @@ public class foodSelectPanel extends JPanel {
 	private JTable drinkTable;
 	private JButton basketBtn;
 	private JComboBox quantityCB;
+	MemberService memberService;
+	JumunService jumunService;
+	Food food;
 
 	/**
 	 * Create the panel.
@@ -180,5 +192,29 @@ public class foodSelectPanel extends JPanel {
 		lblNewLabel.setBounds(34, 575, 57, 15);
 		add(lblNewLabel);
 
+		memberService = new MemberService();
+		jumunService = new JumunService();
+	}//푸드셀렉트패널
+	private void foodListTable(int categoryNo) {
+		try {
+			List<Food> foodList = jumunService.selectByCategoryNo(categoryNo);
+			
+			Vector foodListVector = new Vector();
+			for (Food food : foodList) {
+				Vector foodVector=new Vector();
+				foodVector.add(food.getFood_name());
+				foodVector.add(food.getFood_price());
+				foodListVector.add(foodVector);
+			}
+			
+			Vector columnNames=new Vector();
+			columnNames.add("음식명");
+			columnNames.add("가격");
+			
+			DefaultTableModel defaultTableModel =
+					new DefaultTableModel(foodListVector, columnNames);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
