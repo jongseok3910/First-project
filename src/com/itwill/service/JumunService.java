@@ -7,6 +7,7 @@ import com.itwill.dao.JumunDao;
 import com.itwill.dao.StoreDao;
 import com.itwill.vo.Card;
 import com.itwill.vo.Food;
+import com.itwill.vo.Jumun;
 import com.itwill.vo.MemberInfo;
 import com.itwill.vo.Store;
 
@@ -37,5 +38,14 @@ public class JumunService {
 	//가게명
 	public List<Store> selectStoreAll() throws Exception {
 		return storeDao.selectAll();
+	}
+	//푸드명으로 정보찾기
+	public Food selectByFoodName(String food_name) throws Exception {
+		return foodDao.selectByName(food_name);
+	}
+	//주문정보 입력
+	public int JumunInsert(Jumun jumun) throws Exception {
+		int rowCount = jumunDao.create(jumun);
+		return rowCount;
 	}
 }

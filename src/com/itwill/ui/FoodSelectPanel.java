@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 import com.itwill.service.JumunService;
 import com.itwill.service.MemberService;
 import com.itwill.vo.Food;
+import com.itwill.vo.Jumun;
+import com.itwill.vo.MemberInfo;
 import com.itwill.vo.Store;
 
 import javax.swing.DefaultComboBoxModel;
@@ -42,8 +44,6 @@ public class FoodSelectPanel extends JPanel {
 	private JTable drinkTable;
 	private JButton basketBtn;
 	private JComboBox quantityCB;
-	MemberService memberService;
-	JumunService jumunService;
 	private JPanel sandwichPanel;
 	private JPanel labPanel;
 	private JPanel saladPanel;
@@ -52,6 +52,11 @@ public class FoodSelectPanel extends JPanel {
 	private JPanel drinkPanel;
 	private JTabbedPane foodTabbedPane;
 	private JComboBox storeListCB;
+	
+	private String selectedFoodName;
+	MemberService memberService;
+	JumunService jumunService;
+	Bob4JoMainFrame bob4JoMainFrame;
 
 
 	/**
@@ -77,6 +82,14 @@ public class FoodSelectPanel extends JPanel {
 		sandwichPanel.setLayout(new BorderLayout(0, 0));
 		
 		sandwichTable = new JTable();
+		
+		sandwichTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selectedRow = sandwichTable.getSelectedRow();
+				selectedFoodName = (String)sandwichTable.getValueAt(selectedRow, 0);
+			}
+		});
 		sandwichTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -112,6 +125,13 @@ public class FoodSelectPanel extends JPanel {
 		labPanel.setLayout(new BorderLayout(0, 0));
 		
 		labTable = new JTable();
+		labTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selectedRow = labTable.getSelectedRow();
+				selectedFoodName = (String)labTable.getValueAt(selectedRow, 0);
+			}
+		});
 		labTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -131,6 +151,13 @@ public class FoodSelectPanel extends JPanel {
 		saladPanel.setLayout(new BorderLayout(0, 0));
 		
 		saladTable = new JTable();
+		saladTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selectedRow = saladTable.getSelectedRow();
+				selectedFoodName = (String)saladTable.getValueAt(selectedRow, 0);
+			}
+		});
 		saladPanel.add(saladTable, BorderLayout.CENTER);
 		
 		sidePanel = new JPanel();
@@ -138,6 +165,13 @@ public class FoodSelectPanel extends JPanel {
 		sidePanel.setLayout(new BorderLayout(0, 0));
 		
 		sidemenuTable = new JTable();
+		sidemenuTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selectedRow = sidemenuTable.getSelectedRow();
+				selectedFoodName = (String)sidemenuTable.getValueAt(selectedRow, 0);
+			}
+		});
 		sidemenuTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -157,6 +191,13 @@ public class FoodSelectPanel extends JPanel {
 		cookiePanel.setLayout(new BorderLayout(0, 0));
 		
 		cookieTable = new JTable();
+		cookieTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selectedRow = cookieTable.getSelectedRow();
+				selectedFoodName = (String)cookieTable.getValueAt(selectedRow, 0);
+			}
+		});
 		cookieTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -178,6 +219,13 @@ public class FoodSelectPanel extends JPanel {
 		drinkPanel.setLayout(new BorderLayout(0, 0));
 		
 		drinkTable = new JTable();
+		drinkTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int selectedRow = drinkTable.getSelectedRow();
+				selectedFoodName = (String)drinkTable.getValueAt(selectedRow, 0);
+			}
+		});
 		drinkTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -217,7 +265,31 @@ public class FoodSelectPanel extends JPanel {
 		basketBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int Store_no = storeListCB.getSelectedIndex()+1;
-				int quantity = quantityCB.getSelectedIndex()+1;
+				int jumun_quantity = quantityCB.getSelectedIndex()+1;
+				int index=foodTabbedPane.getSelectedIndex();
+				int category_No=(index+1)*10;
+				String food_name=selectedFoodName;
+				Food findFood=null;
+				try {
+					findFood=jumunService.selectByFoodName(food_name);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				int food_no=findFood.getFood_no();
+				int jumun_sum=findFood.getFood_price()*jumun_quantity;
+				/*
+				로그인 한 멤버넘버 받아오기★★★★★★★★★★★★★★★★
+				*/
+				Jumun jumun = new Jumun(0, jumun_quantity, jumun_sum, "", "", "", "202102047", food_no, Store_no);
+				try {
+					jumunService.JumunInsert(jumun);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
 			}
 		});
 		basketBtn.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
