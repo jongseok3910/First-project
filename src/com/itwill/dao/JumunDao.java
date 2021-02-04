@@ -16,9 +16,11 @@ public class JumunDao {
 	pstmt.setInt(2,jumun.getJumun_quantity());
 	pstmt.setInt(3,jumun.getJumun_sum());
 	pstmt.setString(4,jumun.getJumun_request());
-	pstmt.setString(5,jumun.getJumun_payment());
-	pstmt.setInt(6,jumun.getMember_no());
-	pstmt.setInt(7,jumun.getFood_no());
+	pstmt.setString(5,jumun.getJumun_paymentType());
+	pstmt.setString(6,jumun.getJumun_paymentTime());
+	pstmt.setString(7,jumun.getMember_no());
+	pstmt.setInt(8,jumun.getFood_no());
+	pstmt.setInt(9,jumun.getStore_no());
 	int rowCount=pstmt.executeUpdate();
 	pstmt.close();
 	ConnectionFactory.releaseConnection(con);
@@ -31,12 +33,15 @@ public class JumunDao {
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
 			jumunList.add(new Jumun(rs.getInt("jumun_no"),
-					rs.getInt("jumun_quantity"),
-					rs.getInt("jumun_sum"),
-					rs.getString("jumun_request"),
-					rs.getString("jumun_payment"),
-					rs.getInt("member_no"),
-					rs.getInt("food_no")));
+									rs.getInt("jumun_quantity"),
+									rs.getInt("jumun_sum"),
+									rs.getString("jumun_request"),
+									rs.getString("jumun_paymentType"),
+									rs.getString("jumun_paymentTime"),
+									rs.getString("member_no"),
+									rs.getInt("food_no"),
+									rs.getInt("store_no")
+									));
 		}
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);
@@ -49,12 +54,15 @@ public class JumunDao {
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
 			jumunList.add(new Jumun(rs.getInt("jumun_no"),
-								    rs.getInt("jumun_quantity"),
-								    rs.getInt("jumun_sum"),
-								    rs.getString("jumun_request"),
-								    rs.getString("jumun_payment"),
-								    rs.getInt("member_no"),
-								    rs.getInt("food_no")));
+									rs.getInt("jumun_quantity"),
+									rs.getInt("jumun_sum"),
+									rs.getString("jumun_request"),
+									rs.getString("jumun_paymentType"),
+									rs.getString("jumun_paymentTime"),
+									rs.getString("member_no"),
+									rs.getInt("food_no"),
+									rs.getInt("store_no")
+								    ));
 		}
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);
@@ -66,9 +74,12 @@ public class JumunDao {
 		pstmt.setInt(1,jumun.getJumun_quantity());
 		pstmt.setInt(2,jumun.getJumun_sum());
 		pstmt.setString(3,jumun.getJumun_request());
-		pstmt.setString(4,jumun.getJumun_payment());
-		pstmt.setInt(5,jumun.getFood_no());
-		pstmt.setInt(6,jumun.getJumun_no());
+		pstmt.setString(4,jumun.getJumun_paymentType());
+		pstmt.setString(5,jumun.getJumun_paymentTime());
+		pstmt.setString(6,jumun.getMember_no());
+		pstmt.setInt(7,jumun.getFood_no());
+		pstmt.setInt(8,jumun.getStore_no());
+		pstmt.setInt(9,jumun.getJumun_no());
 		int rowCount=pstmt.executeUpdate();
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);
