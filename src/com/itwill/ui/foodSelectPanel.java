@@ -17,6 +17,9 @@ import com.itwill.vo.Food;
 
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
+import java.util.List;
+import java.util.Vector;
+
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
@@ -196,5 +199,29 @@ public class foodSelectPanel extends JPanel {
 		foodImage.setBounds(285, 10, 118, 117);
 		add(foodImage);
 
+		memberService = new MemberService();
+		jumunService = new JumunService();
+	}//푸드셀렉트 패널
+	private void foodListTable(int categoryNo) {
+		try {
+			List<Food> foodList = jumunService.selectByCategoryNo(categoryNo);
+			
+			Vector foodListVector = new Vector();
+			for (Food food : foodList) {
+				Vector foodVector=new Vector();
+				foodVector.add(food.getFood_name());
+				foodVector.add(food.getFood_price());
+				foodListVector.add(foodVector);
+			}
+			
+			Vector columnNames=new Vector();
+			columnNames.add("음식명");
+			columnNames.add("가격");
+			
+			DefaultTableModel defaultTableModel =
+					new DefaultTableModel(foodListVector, columnNames);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
