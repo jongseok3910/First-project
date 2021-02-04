@@ -13,7 +13,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 
-public class basketPanel extends JPanel {
+public class BasketPanel extends JPanel {
 	private JTable basketTable;
 	private JTextField totalTF;
 	private JTextField textField;
@@ -24,7 +24,7 @@ public class basketPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public basketPanel() {
+	public BasketPanel() {
 		setBackground(new Color(255, 204, 51));
 		setLayout(null);
 		
@@ -104,7 +104,7 @@ public class basketPanel extends JPanel {
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setIcon(new ImageIcon(basketPanel.class.getResource("/com/itwill/ui/장바구니.png")));
+		lblNewLabel_1.setIcon(new ImageIcon(BasketPanel.class.getResource("/com/itwill/ui/장바구니.png")));
 		lblNewLabel_1.setBounds(110, 49, 193, 140);
 		add(lblNewLabel_1);
 

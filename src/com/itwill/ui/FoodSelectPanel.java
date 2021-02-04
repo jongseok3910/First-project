@@ -33,7 +33,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 
-public class foodSelectPanel extends JPanel {
+public class FoodSelectPanel extends JPanel {
 	private JTable sandwichTable;
 	private JTable labTable;
 	private JTable saladTable;
@@ -57,7 +57,7 @@ public class foodSelectPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public foodSelectPanel() {
+	public FoodSelectPanel() {
 		setBackground(new Color(255, 215, 0));
 		setLayout(null);
 		
@@ -247,7 +247,7 @@ public class foodSelectPanel extends JPanel {
 		
 		JLabel foodImage = new JLabel("");
 		foodImage.setHorizontalAlignment(SwingConstants.CENTER);
-		foodImage.setIcon(new ImageIcon(foodSelectPanel.class.getResource("/com/itwill/ui/음식선택.png")));
+		foodImage.setIcon(new ImageIcon(FoodSelectPanel.class.getResource("/com/itwill/ui/음식선택.png")));
 		foodImage.setBounds(285, 10, 118, 117);
 		add(foodImage);
 

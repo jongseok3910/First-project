@@ -35,7 +35,7 @@ public class Bob4JoMainFrame extends JFrame {
 	private JPanel mainImagePanel;
 	private JPanel mainUsePanel;
 	private JPanel baseCardLayoutPanel;
-	private foodSelectPanel foodSelectPanel;
+	private FoodSelectPanel foodSelectPanel;
 	/*
 	 * Launch the application.
 	 */
@@ -133,10 +133,10 @@ public class Bob4JoMainFrame extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		mainUsePanel.add(tabbedPane, BorderLayout.CENTER);
 		
-		foodSelectPanel = new foodSelectPanel();
+		foodSelectPanel = new FoodSelectPanel();
 		tabbedPane.addTab("메뉴선택", null, foodSelectPanel, null);
 		
-		basketPanel basketPanel = new basketPanel();
+		BasketPanel basketPanel = new BasketPanel();
 		tabbedPane.addTab("장바구니", null, basketPanel, null);
 		
 		PaymentListPanel paymentListPanel = new PaymentListPanel();
