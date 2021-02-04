@@ -1,6 +1,5 @@
 package com.itwill.vo;
 
-import java.util.Date;
 
 /*
 이름                널?       유형            
