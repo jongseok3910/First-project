@@ -10,6 +10,11 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import com.itwill.service.JumunService;
+import com.itwill.service.MemberService;
+import com.itwill.vo.Food;
+
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.ImageIcon;
@@ -24,6 +29,10 @@ public class foodSelectPanel extends JPanel {
 	private JTable drinkTable;
 	private JButton basketBtn;
 	private JComboBox quantityCB;
+	MemberService memberService;
+	JumunService jumunService;
+	Food food;
+
 
 	/**
 	 * Create the panel.
