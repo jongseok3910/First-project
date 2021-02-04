@@ -12,15 +12,14 @@ public class JumunDao {
 	public int create(Jumun jumun) throws Exception {
 	Connection con=ConnectionFactory.getConnection();
 	PreparedStatement pstmt=con.prepareStatement(JumunSQL.JUMUN_INSERT);
-	pstmt.setInt(1,jumun.getJumun_no());
-	pstmt.setInt(2,jumun.getJumun_quantity());
-	pstmt.setInt(3,jumun.getJumun_sum());
-	pstmt.setString(4,jumun.getJumun_request());
-	pstmt.setString(5,jumun.getJumun_paymentType());
-	pstmt.setString(6,jumun.getJumun_paymentTime());
-	pstmt.setString(7,jumun.getMember_no());
-	pstmt.setInt(8,jumun.getFood_no());
-	pstmt.setInt(9,jumun.getStore_no());
+	pstmt.setInt(1,jumun.getJumun_quantity());
+	pstmt.setInt(2,jumun.getJumun_sum());
+	pstmt.setString(3,jumun.getJumun_request());
+	pstmt.setString(4,jumun.getJumun_paymentType());
+	pstmt.setString(5,jumun.getJumun_paymentTime());
+	pstmt.setString(6,jumun.getMember_no());
+	pstmt.setInt(7,jumun.getFood_no());
+	pstmt.setInt(8,jumun.getStore_no());
 	int rowCount=pstmt.executeUpdate();
 	pstmt.close();
 	ConnectionFactory.releaseConnection(con);
