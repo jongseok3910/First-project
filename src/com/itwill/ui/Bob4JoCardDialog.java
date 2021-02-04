@@ -85,6 +85,7 @@ public class Bob4JoCardDialog extends JDialog {
 		textField_2.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("월(2자리)/");
+		lblNewLabel_5.setForeground(Color.LIGHT_GRAY);
 		lblNewLabel_5.setBounds(231, 376, 81, 15);
 		contentPanel.add(lblNewLabel_5);
 		
@@ -94,10 +95,12 @@ public class Bob4JoCardDialog extends JDialog {
 		contentPanel.add(textField_4);
 		
 		JLabel lblNewLabel_6 = new JLabel("년(2자리)");
+		lblNewLabel_6.setForeground(Color.LIGHT_GRAY);
 		lblNewLabel_6.setBounds(342, 376, 64, 15);
 		contentPanel.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_7 = new JLabel("※ 카드 뒷면 서명란에 표기된 CVC 번호");
+		lblNewLabel_7.setForeground(Color.LIGHT_GRAY);
 		lblNewLabel_7.setBounds(231, 427, 245, 15);
 		contentPanel.add(lblNewLabel_7);
 		
