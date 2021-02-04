@@ -33,8 +33,9 @@ public class Bob4JoMainFrame extends JFrame {
 	private JMenuItem logoutMenuItem;
 	private JMenuItem joinMenuItem;
 	private JPanel mainImagePanel;
-	private JPanel nextPanel;
+	private JPanel mainUsePanel;
 	private JPanel baseCardLayoutPanel;
+	private foodSelectPanel foodSelectPanel;
 	/*
 	 * Launch the application.
 	 */
@@ -125,12 +126,18 @@ public class Bob4JoMainFrame extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon(Bob4JoMainFrame.class.getResource("/com/itwill/ui/메인로고.png")));
 		mainImagePanel.add(lblNewLabel, BorderLayout.CENTER);
 		
-		nextPanel = new JPanel();
-		baseCardLayoutPanel.add(nextPanel, "nextPanel");
-		nextPanel.setLayout(new BorderLayout(0, 0));
+		mainUsePanel = new JPanel();
+		baseCardLayoutPanel.add(mainUsePanel, "mainUsePanel");
+		mainUsePanel.setLayout(new BorderLayout(0, 0));
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		nextPanel.add(tabbedPane, BorderLayout.CENTER);
+		mainUsePanel.add(tabbedPane, BorderLayout.CENTER);
+		
+		foodSelectPanel = new foodSelectPanel();
+		tabbedPane.addTab("New tab", null, foodSelectPanel, null);
+		
+		basketPanel basketPanel = new basketPanel();
+		tabbedPane.addTab("New tab", null, basketPanel, null);
 	}//MainFrame
 	public void loginProcess(MemberInfo loginMember) {
 		/*
@@ -145,7 +152,7 @@ public class Bob4JoMainFrame extends JFrame {
 		logoutMenuItem.setEnabled(true);
 		joinMenuItem.setEnabled(false);
 		CardLayout cl=(CardLayout)baseCardLayoutPanel.getLayout();
-		cl.show(baseCardLayoutPanel, "nextPanel");
+		cl.show(baseCardLayoutPanel, "mainUsePanel");
 	}
 	public void logoutProcess() {
 		this.loginMember=null;
@@ -156,5 +163,4 @@ public class Bob4JoMainFrame extends JFrame {
 		CardLayout cl=(CardLayout)baseCardLayoutPanel.getLayout();
 		cl.show(baseCardLayoutPanel,"mainPanel");
 	}
-
 }
