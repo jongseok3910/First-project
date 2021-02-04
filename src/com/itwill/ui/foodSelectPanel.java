@@ -248,9 +248,21 @@ public class foodSelectPanel extends JPanel {
 		//service객체 생성
 		memberService = new MemberService();
 		jumunService = new JumunService();
+		
+		
+		/**************************************/
+		foodTabbedPane.setSelectedIndex(0);
+		int index=foodTabbedPane.getSelectedIndex();
+		int categoryNo=(index+1)*10;
+		foodListTable(categoryNo);
+		/**************************************/
+		
 	}//푸드셀렉트 패널
 	private void foodListTable(int categoryNo) {
 		try {
+			if(jumunService==null) {
+				return;
+			}
 			List<Food> foodList = jumunService.selectByCategoryNo(categoryNo);
 			
 			Vector foodListVector = new Vector();
