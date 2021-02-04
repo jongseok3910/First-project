@@ -29,4 +29,24 @@ public class CardDao {
 		ConnectionFactory.releaseConnection(con);
 		return rowCount;
 	}
+	
+	
+	public int updateByNo(Card card) throws Exception {
+		Connection con = ConnectionFactory.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(CardSQL.CARD_UPDATE_BY_MEMBER_NO);
+		pstmt.setString(1, card.getCard_no());
+		pstmt.setString(2, card.getCard_validity()); 
+		pstmt.setInt(3, card.getCard_cvc());
+		pstmt.setInt(4, card.getCard_password());
+		pstmt.setString(5, card.getMember_no());
+		int rowCount = pstmt.executeUpdate();
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
+		return rowCount;
+	}
+	
+	
+	
+	
+	
 }
