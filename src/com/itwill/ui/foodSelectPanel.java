@@ -77,6 +77,7 @@ public class foodSelectPanel extends JPanel {
 		sandwichPanel.setLayout(new BorderLayout(0, 0));
 		
 		sandwichTable = new JTable();
+		sandwichTable.setRowSelectionAllowed(false);
 		sandwichTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -112,6 +113,7 @@ public class foodSelectPanel extends JPanel {
 		labPanel.setLayout(new BorderLayout(0, 0));
 		
 		labTable = new JTable();
+		labTable.setRowSelectionAllowed(false);
 		labTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -131,6 +133,7 @@ public class foodSelectPanel extends JPanel {
 		saladPanel.setLayout(new BorderLayout(0, 0));
 		
 		saladTable = new JTable();
+		saladTable.setRowSelectionAllowed(false);
 		saladPanel.add(saladTable, BorderLayout.CENTER);
 		
 		sidePanel = new JPanel();
@@ -138,6 +141,7 @@ public class foodSelectPanel extends JPanel {
 		sidePanel.setLayout(new BorderLayout(0, 0));
 		
 		sidemenuTable = new JTable();
+		sidemenuTable.setRowSelectionAllowed(false);
 		sidemenuTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -157,6 +161,7 @@ public class foodSelectPanel extends JPanel {
 		cookiePanel.setLayout(new BorderLayout(0, 0));
 		
 		cookieTable = new JTable();
+		cookieTable.setRowSelectionAllowed(false);
 		cookieTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -178,6 +183,7 @@ public class foodSelectPanel extends JPanel {
 		drinkPanel.setLayout(new BorderLayout(0, 0));
 		
 		drinkTable = new JTable();
+		drinkTable.setRowSelectionAllowed(false);
 		drinkTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},

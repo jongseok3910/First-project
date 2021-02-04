@@ -17,6 +17,9 @@ public class basketPanel extends JPanel {
 	private JTable basketTable;
 	private JTextField totalTF;
 	private JTextField textField;
+	private JComboBox paymentCB;
+	private JButton paymentBtn;
+	private JButton cancleBtn;
 
 	/**
 	 * Create the panel.
@@ -76,18 +79,18 @@ public class basketPanel extends JPanel {
 		lblNewLabel.setBounds(40, 488, 57, 15);
 		add(lblNewLabel);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"카드결제", "현장결제"}));
-		comboBox.setBounds(118, 480, 251, 23);
-		add(comboBox);
+		paymentCB = new JComboBox();
+		paymentCB.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
+		paymentCB.setModel(new DefaultComboBoxModel(new String[] {"카드결제", "현장결제"}));
+		paymentCB.setBounds(118, 480, 251, 23);
+		add(paymentCB);
 		
-		JButton paymentBtn = new JButton("결제하기");
+		paymentBtn = new JButton("결제하기");
 		paymentBtn.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
 		paymentBtn.setBounds(35, 556, 132, 23);
 		add(paymentBtn);
 		
-		JButton cancleBtn = new JButton("취소");
+		cancleBtn = new JButton("취소");
 		cancleBtn.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
 		cancleBtn.setBounds(237, 556, 132, 23);
 		add(cancleBtn);

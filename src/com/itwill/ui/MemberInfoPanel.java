@@ -10,9 +10,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 
 public class MemberInfoPanel extends JPanel {
-	private JTextField textField;
+	private JTextField nameField;
 	private JPasswordField passwordField;
-	private JTextField textField_1;
+	private JTextField addressField;
+	private JButton withdrawBtn;
+	private JButton nameChangeBtn;
+	private JButton passwordChangeBtn;
+	private JButton addressBtn;
 
 	/**
 	 * Create the panel.
@@ -22,65 +26,69 @@ public class MemberInfoPanel extends JPanel {
 		
 		JLabel nameLb = new JLabel("닉네임");
 		nameLb.setHorizontalAlignment(SwingConstants.CENTER);
-		nameLb.setBounds(31, 294, 57, 15);
+		nameLb.setBounds(32, 260, 57, 15);
 		add(nameLb);
 		
-		textField = new JTextField();
-		textField.setBounds(100, 290, 207, 22);
-		add(textField);
-		textField.setColumns(10);
+		nameField = new JTextField();
+		nameField.setBounds(101, 256, 207, 22);
+		add(nameField);
+		nameField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("변경");
-		btnNewButton.setBounds(311, 290, 71, 23);
-		add(btnNewButton);
+		nameChangeBtn = new JButton("변경");
+		nameChangeBtn.setBounds(312, 256, 71, 23);
+		add(nameChangeBtn);
 		
-		JLabel lblNewLabel_2 = new JLabel("비밀번호");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(31, 339, 57, 15);
-		add(lblNewLabel_2);
+		JLabel passLb = new JLabel("비밀번호");
+		passLb.setHorizontalAlignment(SwingConstants.CENTER);
+		passLb.setBounds(32, 305, 57, 15);
+		add(passLb);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(100, 335, 207, 23);
+		passwordField.setBounds(101, 301, 207, 23);
 		add(passwordField);
 		
-		JButton btnNewButton_1 = new JButton("변경");
-		btnNewButton_1.setBounds(311, 335, 71, 23);
-		add(btnNewButton_1);
+		passwordChangeBtn = new JButton("변경");
+		passwordChangeBtn.setBounds(312, 301, 71, 23);
+		add(passwordChangeBtn);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(100, 385, 207, 21);
-		add(textField_1);
-		textField_1.setColumns(10);
+		addressField = new JTextField();
+		addressField.setBounds(101, 351, 207, 21);
+		add(addressField);
+		addressField.setColumns(10);
 		
-		JButton btnNewButton_2 = new JButton("변경");
-		btnNewButton_2.setBounds(311, 384, 71, 23);
-		add(btnNewButton_2);
+		addressBtn = new JButton("변경");
+		addressBtn.setBounds(312, 350, 71, 23);
+		add(addressBtn);
 		
 		JLabel lblNewLabel_3 = new JLabel("주소");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(31, 388, 57, 15);
+		lblNewLabel_3.setBounds(32, 354, 57, 15);
 		add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드등록.jpg")));
-		lblNewLabel_4.setBounds(38, 462, 350, 149);
-		add(lblNewLabel_4);
+		JLabel creditCardRegistLb = new JLabel("");
+		creditCardRegistLb.setHorizontalAlignment(SwingConstants.CENTER);
+		creditCardRegistLb.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드등록.jpg")));
+		creditCardRegistLb.setBounds(39, 428, 350, 130);
+		add(creditCardRegistLb);
 		
-		JLabel lblNewLabel_5 = new JLabel(" 자주 사용하는 카드를 등록해주세요.");
-		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_5.setBounds(38, 433, 344, 15);
-		add(lblNewLabel_5);
+		JLabel 문구Lb = new JLabel(" 자주 사용하는 카드를 등록해주세요.");
+		문구Lb.setHorizontalAlignment(SwingConstants.CENTER);
+		문구Lb.setBounds(39, 399, 344, 15);
+		add(문구Lb);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(32, 244, 350, 2);
+		separator.setBounds(33, 224, 350, 2);
 		add(separator);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/회원사진.png")));
-		lblNewLabel.setBounds(31, 46, 351, 181);
-		add(lblNewLabel);
+		JLabel profileLb = new JLabel("");
+		profileLb.setHorizontalAlignment(SwingConstants.CENTER);
+		profileLb.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/회원사진.png")));
+		profileLb.setBounds(32, 27, 351, 181);
+		add(profileLb);
+		
+		withdrawBtn = new JButton("탈퇴하기");
+		withdrawBtn.setBounds(281, 568, 108, 23);
+		add(withdrawBtn);
 
 	}
 }

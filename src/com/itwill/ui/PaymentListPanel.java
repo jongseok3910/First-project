@@ -22,6 +22,7 @@ public class PaymentListPanel extends JPanel {
 	private JTextField menuTF;
 	private JTextField quantityTF;
 	private JTextField sumTF;
+	private JList showPaymentDateList;
 
 	/**
 	 * Create the panel.
@@ -34,7 +35,7 @@ public class PaymentListPanel extends JPanel {
 		scrollPane.setBounds(22, 187, 368, 194);
 		add(scrollPane);
 		
-		JList showPaymentDateList = new JList();
+		showPaymentDateList = new JList();
 		scrollPane.setViewportView(showPaymentDateList);
 		
 		JLabel manImageLb = new JLabel("");
@@ -42,63 +43,69 @@ public class PaymentListPanel extends JPanel {
 		manImageLb.setBounds(24, 27, 366, 107);
 		add(manImageLb);
 		
-		JLabel PaymentListLb = new JLabel("------------------------------주문내역------------------------------");
+		JLabel PaymentListLb = new JLabel("");
+		PaymentListLb.setIcon(new ImageIcon(PaymentListPanel.class.getResource("/com/itwill/ui/주문내역글자.png")));
 		PaymentListLb.setForeground(new Color(255, 255, 255));
-		PaymentListLb.setBounds(3, 152, 413, 19);
+		PaymentListLb.setBounds(3, 152, 412, 19);
 		add(PaymentListLb);
 		
-		JLabel PaymentListLb_1 = new JLabel("------------------------------주문상세------------------------------");
+		JLabel PaymentListLb_1 = new JLabel("");
+		PaymentListLb_1.setIcon(new ImageIcon(PaymentListPanel.class.getResource("/com/itwill/ui/주문상세글자.png")));
 		PaymentListLb_1.setForeground(Color.WHITE);
-		PaymentListLb_1.setBounds(2, 412, 413, 19);
+		PaymentListLb_1.setBounds(3, 394, 413, 19);
 		add(PaymentListLb_1);
 		
 		JLabel menuLb = new JLabel("메뉴");
 		menuLb.setHorizontalAlignment(SwingConstants.CENTER);
-		menuLb.setBounds(37, 498, 57, 15);
+		menuLb.setBounds(37, 460, 57, 15);
 		add(menuLb);
 		
 		JLabel quantityLb = new JLabel("수량");
 		quantityLb.setHorizontalAlignment(SwingConstants.CENTER);
-		quantityLb.setBounds(37, 542, 57, 15);
+		quantityLb.setBounds(37, 498, 57, 15);
 		add(quantityLb);
 		
 		JLabel sumLb = new JLabel("총금액");
 		sumLb.setHorizontalAlignment(SwingConstants.CENTER);
-		sumLb.setBounds(37, 592, 57, 15);
+		sumLb.setBounds(37, 541, 57, 15);
 		add(sumLb);
 		
 		JLabel storenameLb = new JLabel("가게명");
 		storenameLb.setHorizontalAlignment(SwingConstants.CENTER);
-		storenameLb.setBounds(37, 453, 57, 15);
+		storenameLb.setBounds(37, 426, 57, 15);
 		add(storenameLb);
 		
 		storeNameTF = new JTextField();
+		storeNameTF.setEditable(false);
 		storeNameTF.setBackground(new Color(255, 239, 213));
-		storeNameTF.setBounds(113, 450, 237, 21);
+		storeNameTF.setBounds(113, 423, 237, 21);
 		add(storeNameTF);
 		storeNameTF.setColumns(10);
 		
 		menuTF = new JTextField();
+		menuTF.setEditable(false);
 		menuTF.setColumns(10);
 		menuTF.setBackground(new Color(255, 239, 213));
-		menuTF.setBounds(113, 495, 237, 21);
+		menuTF.setBounds(113, 457, 237, 21);
 		add(menuTF);
 		
 		quantityTF = new JTextField();
+		quantityTF.setEditable(false);
 		quantityTF.setColumns(10);
 		quantityTF.setBackground(new Color(255, 239, 213));
-		quantityTF.setBounds(113, 539, 237, 21);
+		quantityTF.setBounds(113, 495, 237, 21);
 		add(quantityTF);
 		
 		sumTF = new JTextField();
+		sumTF.setEditable(false);
 		sumTF.setColumns(10);
 		sumTF.setBackground(new Color(255, 239, 213));
-		sumTF.setBounds(113, 589, 212, 21);
+		sumTF.setBounds(113, 538, 212, 21);
 		add(sumTF);
 		
 		JLabel wonLb = new JLabel("원");
 		wonLb.setHorizontalAlignment(SwingConstants.CENTER);
-		wonLb.setBounds(326, 592, 26, 15);
+		wonLb.setBounds(324, 541, 26, 15);
 		add(wonLb);
 
 	}
