@@ -29,6 +29,8 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class foodSelectPanel extends JPanel {
 	private JTable sandwichTable;
@@ -192,8 +194,9 @@ public class foodSelectPanel extends JPanel {
 		drinkPanel.add(drinkTable, BorderLayout.CENTER);
 		
 		storeListCB = new JComboBox();
-		storeListCB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		storeListCB.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
 				try {
 					List<Store> storeList= jumunService.selectStoreAll();
 					DefaultComboBoxModel defaultComboBoxModel=new DefaultComboBoxModel();
@@ -241,6 +244,7 @@ public class foodSelectPanel extends JPanel {
 		foodImage.setBounds(285, 10, 118, 117);
 		add(foodImage);
 
+		//service객체 생성
 		memberService = new MemberService();
 		jumunService = new JumunService();
 	}//푸드셀렉트 패널
