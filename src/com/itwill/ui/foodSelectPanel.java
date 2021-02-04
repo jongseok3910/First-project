@@ -10,18 +10,10 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-import com.itwill.dao.JumunDao;
-import com.itwill.service.JumunService;
-import com.itwill.service.MemberService;
-import com.itwill.vo.Food;
-
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
-import java.util.List;
-import java.util.Vector;
-
 import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class foodSelectPanel extends JPanel {
 	private JTable sandwichTable;
@@ -32,15 +24,12 @@ public class foodSelectPanel extends JPanel {
 	private JTable drinkTable;
 	private JButton basketBtn;
 	private JComboBox quantityCB;
-	MemberService memberService;
-	JumunService jumunService;
-	Food food;
 
 	/**
 	 * Create the panel.
 	 */
 	public foodSelectPanel() {
-		setBackground(new Color(204, 255, 204));
+		setBackground(new Color(255, 215, 0));
 		setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -169,7 +158,7 @@ public class foodSelectPanel extends JPanel {
 		drinkPanel.add(drinkTable, BorderLayout.CENTER);
 		
 		JComboBox storeCheckCB = new JComboBox();
-		storeCheckCB.setBounds(105, 44, 277, 23);
+		storeCheckCB.setBounds(105, 44, 183, 23);
 		add(storeCheckCB);
 		
 		basketBtn = new JButton("장바구니");
@@ -191,30 +180,12 @@ public class foodSelectPanel extends JPanel {
 		lblNewLabel.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
 		lblNewLabel.setBounds(34, 575, 57, 15);
 		add(lblNewLabel);
+		
+		JLabel foodImage = new JLabel("");
+		foodImage.setHorizontalAlignment(SwingConstants.CENTER);
+		foodImage.setIcon(new ImageIcon(foodSelectPanel.class.getResource("/com/itwill/ui/음식선택.png")));
+		foodImage.setBounds(285, 10, 118, 117);
+		add(foodImage);
 
-		memberService = new MemberService();
-		jumunService = new JumunService();
-	}//푸드셀렉트패널
-	private void foodListTable(int categoryNo) {
-		try {
-			List<Food> foodList = jumunService.selectByCategoryNo(categoryNo);
-			
-			Vector foodListVector = new Vector();
-			for (Food food : foodList) {
-				Vector foodVector=new Vector();
-				foodVector.add(food.getFood_name());
-				foodVector.add(food.getFood_price());
-				foodListVector.add(foodVector);
-			}
-			
-			Vector columnNames=new Vector();
-			columnNames.add("음식명");
-			columnNames.add("가격");
-			
-			DefaultTableModel defaultTableModel =
-					new DefaultTableModel(foodListVector, columnNames);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }
