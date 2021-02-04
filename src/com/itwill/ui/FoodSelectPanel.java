@@ -279,8 +279,8 @@ public class FoodSelectPanel extends JPanel {
 				int food_no=findFood.getFood_no();
 				int jumun_sum=findFood.getFood_price()*jumun_quantity;
 				/*
-				로그인 한 멤버넘버 받아오기★★★★★★★★★★★★★★★★
-				*/
+				 *로그인 한 멤버넘버 받아오기★★★★★★★★★★★★★★★★
+				 */
 				Jumun jumun = new Jumun(0, jumun_quantity, jumun_sum, "", "", "", "202102047", food_no, Store_no);
 				try {
 					jumunService.JumunInsert(jumun);
@@ -288,7 +288,9 @@ public class FoodSelectPanel extends JPanel {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+				/*
+				 * 장바구니 패널(탭)으로 넘어가기
+				 */
 				
 			}
 		});
