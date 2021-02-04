@@ -10,12 +10,12 @@ public class MemberInfoDaoTestMain {
 
     public static void main(String[] args) throws Exception{
 
-        MemberInfo MemberInfo= new MemberInfo ("ID43","1111-1111-1111-1111","T");
+        MemberInfo MemberInfo= new MemberInfo (null,"ID10","1111","이현민","010-1234-5678","경기도 다산동",null);
     	MemberInfoDao memberInfoDao = new MemberInfoDao();
         
         
 //      create test -> 오류 
-//        System.out.println("insert: " + memberInfoDao.create(MemberInfo));
+        System.out.println("insert: " + memberInfoDao.create(MemberInfo));
 
 //		selectByID test 성공
 //		System.out.println("selectByID : " + memberInfoDao.selectById("ID1"));

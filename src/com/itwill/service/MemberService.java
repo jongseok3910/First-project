@@ -16,6 +16,15 @@ public class MemberService {
 	 * -존재하면 메세지:아이디중복(가입불가 기능)
 	 * -존재안하면 가입:순서대로 정보 입력
 	 */
+	public boolean memberIdCheck(String idStr) throws Exception{
+		boolean isRegister=false;
+		if (!isExistedId(idStr)) {
+			isRegister=true;
+		} else {
+			isRegister=false;
+		}
+		return isRegister;
+	}
 	public boolean memberRegister(MemberInfo newMemberInfo) throws Exception{
 		boolean isRegister=false;
 		if (!isExistedId(newMemberInfo.getMember_id())) {
@@ -24,7 +33,6 @@ public class MemberService {
 		} else {
 			isRegister=false;
 		}
-				
 		return isRegister;
 	}
 	

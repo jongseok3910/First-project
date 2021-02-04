@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.itwill.service.MemberService;
+import com.itwill.vo.MemberInfo;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,19 +31,7 @@ public class Bob4JoJoinDialog extends JDialog {
 	
 	Bob4JoMainFrame bob4JoMainFrame;
 	MemberService memberService;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			Bob4JoJoinDialog dialog = new Bob4JoJoinDialog();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	private JButton idCheckBtn;
 
 	/**
 	 * Create the dialog.
@@ -116,8 +105,8 @@ public class Bob4JoJoinDialog extends JDialog {
 			contentPanel.add(lblNewLabel_5);
 		}
 		{
-			JButton btnNewButton = new JButton("중복확인");
-			btnNewButton.addActionListener(new ActionListener() {
+			idCheckBtn = new JButton("중복확인");
+			idCheckBtn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String idStr=idTF.getText();
 					//공백 입력했을 때
@@ -128,11 +117,24 @@ public class Bob4JoJoinDialog extends JDialog {
 						return;
 					}
 					//memberservice 중복확인 메쏘드 호출
-					
+					try {
+						boolean isSuccess=memberService.memberIdCheck(idStr);
+						if(isSuccess) {
+							JOptionPane.showMessageDialog(null, "사용가능한 아이디입니다");
+						}else {
+							JOptionPane.showMessageDialog(null, "이미 존재하는 아이디입니다");
+							idTF.requestFocus();
+							idTF.setSelectionStart(0);
+							idTF.setSelectionEnd(idStr.length());
+							return;
+						}
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				}
 			});
-			btnNewButton.setBounds(262, 130, 91, 23);
-			contentPanel.add(btnNewButton);
+			idCheckBtn.setBounds(262, 130, 91, 23);
+			contentPanel.add(idCheckBtn);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -143,6 +145,34 @@ public class Bob4JoJoinDialog extends JDialog {
 				JButton okButton = new JButton("가입");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						String idStr=idTF.getText();
+						char[] passChars=passwordTF.getPassword();
+						String passwordStr=new String(passChars);
+						String nameStr=nameTF.getText();
+						String phoneStr=phoneTF.getText();
+						String addressStr=addressTF.getText();
+						//유효성체크
+						if(idStr.trim().equals("")) {
+							JOptionPane.showMessageDialog(null, "아이디를 입력하세요");
+							idTF.setText("");
+							idTF.requestFocus();
+							return;
+						}
+						MemberInfo newMember=new MemberInfo(null, idStr, passwordStr, nameStr, phoneStr, addressStr, null);
+						try {
+							boolean isSuccess=memberService.memberRegister(newMember);
+							if(isSuccess) {
+								dispose();
+							}else {
+								JOptionPane.showMessageDialog(null, "이미 존재하는 아이디입니다");
+								idTF.requestFocus();
+								idTF.setSelectionStart(0);
+								idTF.setSelectionEnd(idStr.length());
+								return;
+							}
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
 						
 					}
 				});
