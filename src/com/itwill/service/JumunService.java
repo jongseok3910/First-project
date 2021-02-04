@@ -48,4 +48,8 @@ public class JumunService {
 		int rowCount = jumunDao.create(jumun);
 		return rowCount;
 	}
+	//주문정보 찾기
+	public Jumun SelectByJumunNo(int jumun_no) throws Exception {
+		return jumunDao.selectByJumunNo(jumun_no);
+	}
 }

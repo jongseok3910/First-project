@@ -3,6 +3,9 @@ package com.itwill.ui;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import com.itwill.service.JumunService;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -20,7 +23,8 @@ public class BasketPanel extends JPanel {
 	private JComboBox paymentCB;
 	private JButton paymentBtn;
 	private JButton cancleBtn;
-
+	
+	JumunService jumunService;
 	/**
 	 * Create the panel.
 	 */
@@ -107,6 +111,9 @@ public class BasketPanel extends JPanel {
 		lblNewLabel_1.setIcon(new ImageIcon(BasketPanel.class.getResource("/com/itwill/ui/장바구니.png")));
 		lblNewLabel_1.setBounds(110, 49, 193, 140);
 		add(lblNewLabel_1);
+		
+		//service객체 생성
+		jumunService = new JumunService();
 
-	}
+	}//바스켓 패널
 }

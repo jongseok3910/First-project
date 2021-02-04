@@ -17,6 +17,8 @@ public static final String JUMUN_INSERT=
 "insert into jumun values(JUMUN_SEQ1.NEXTVAL,?,?,?,?,?,?,?,?)";
 public static final String JUMUN_SELECT_BY_MEMBER_NO=
 "select * from jumun where member_no=?";
+public static final String JUMUN_SELECT_BY_JUMUN_NO=
+"select * from jumun where jumun_no=?";
 public static final String JUMUN_SELECT_ALL=
 "select * from jumun";
 public static final String JUMUN_UPDATE_BY_JUMUN_NO=
