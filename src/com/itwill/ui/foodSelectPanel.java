@@ -31,6 +31,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
 
 public class foodSelectPanel extends JPanel {
 	private JTable sandwichTable;
@@ -65,8 +66,7 @@ public class foodSelectPanel extends JPanel {
 			public void stateChanged(ChangeEvent e) {
 				int index=foodTabbedPane.getSelectedIndex();
 				int categoryNo=(index+1)*10;
-				System.out.println(categoryNo);
-				//foodListTable(categoryNo);
+				foodListTable(categoryNo);
 			}
 		});
 		foodTabbedPane.setBounds(19, 107, 374, 436);
@@ -216,7 +216,8 @@ public class foodSelectPanel extends JPanel {
 		basketBtn = new JButton("장바구니");
 		basketBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				int Store_no = storeListCB.getSelectedIndex()+1;
+				int quantity = quantityCB.getSelectedIndex()+1;
 			}
 		});
 		basketBtn.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
@@ -266,6 +267,19 @@ public class foodSelectPanel extends JPanel {
 			
 			DefaultTableModel defaultTableModel =
 					new DefaultTableModel(foodListVector, columnNames);
+			if(categoryNo==10) {
+				sandwichTable.setModel(defaultTableModel);				
+			}else if(categoryNo==20) {
+				labTable.setModel(defaultTableModel);
+			}else if(categoryNo==30) {
+				saladTable.setModel(defaultTableModel);
+			}else if(categoryNo==40 ) {
+				sidemenuTable.setModel(defaultTableModel);
+			}else if(categoryNo==50 ) {
+				cookieTable.setModel(defaultTableModel);
+			}else if(categoryNo==60 ) {
+				drinkTable.setModel(defaultTableModel);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
