@@ -20,10 +20,10 @@ public class MemberInfoPanel extends JPanel {
 	public MemberInfoPanel() {
 		setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("닉네임");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(31, 294, 57, 15);
-		add(lblNewLabel_1);
+		JLabel nameLb = new JLabel("닉네임");
+		nameLb.setHorizontalAlignment(SwingConstants.CENTER);
+		nameLb.setBounds(31, 294, 57, 15);
+		add(nameLb);
 		
 		textField = new JTextField();
 		textField.setBounds(100, 290, 207, 22);
