@@ -78,8 +78,8 @@ public class MemberInfoPanel extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\zhzh2\\OneDrive\\바탕 화면\\회원사진.png"));
-		lblNewLabel.setBounds(38, 40, 320, 193);
+		lblNewLabel.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/회원사진.png")));
+		lblNewLabel.setBounds(31, 32, 351, 198);
 		add(lblNewLabel);
 
 	}
