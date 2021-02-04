@@ -5,6 +5,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.itwill.service.JumunService;
+import com.itwill.vo.Food;
+import com.itwill.vo.Jumun;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -14,6 +16,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Vector;
+
 import javax.swing.ImageIcon;
 
 public class BasketPanel extends JPanel {
@@ -116,4 +120,28 @@ public class BasketPanel extends JPanel {
 		jumunService = new JumunService();
 
 	}//바스켓 패널
+	private void jumunListTable(int jumun_No) {
+		try {
+			if(jumunService==null) {
+				return;
+			}
+			Jumun jumun=jumunService.SelectByJumunNo(jumun_No);
+			Food food=jumunService.selectByFoodNo(jumun.getFood_no());
+			
+			Vector jumunVector = new Vector();
+			jumunVector.add(food.getFood_name());
+			jumunVector.add(food.getFood_price());
+			
+			Vector columnNames=new Vector();
+			columnNames.add("음식명");
+			columnNames.add("가격");
+			
+			DefaultTableModel defaultTableModel =
+					new DefaultTableModel(jumunVector, columnNames);
+			basketTable.setModel(defaultTableModel);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}//주문리스트테이블
 }

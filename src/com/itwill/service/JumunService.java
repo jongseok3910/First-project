@@ -43,6 +43,10 @@ public class JumunService {
 	public Food selectByFoodName(String food_name) throws Exception {
 		return foodDao.selectByName(food_name);
 	}
+	//푸드넘버로 정보찾기
+	public Food selectByFoodNo(int food_no) throws Exception {
+		return foodDao.selectByNo(food_no);
+	}
 	//주문정보 입력
 	public int JumunInsert(Jumun jumun) throws Exception {
 		int rowCount = jumunDao.create(jumun);
