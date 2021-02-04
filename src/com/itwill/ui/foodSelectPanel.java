@@ -41,8 +41,6 @@ public class foodSelectPanel extends JPanel {
 	private JComboBox quantityCB;
 	MemberService memberService;
 	JumunService jumunService;
-	Food food;
-	Store store;
 	private JPanel sandwichPanel;
 	private JPanel labPanel;
 	private JPanel saladPanel;
@@ -66,7 +64,7 @@ public class foodSelectPanel extends JPanel {
 				int index=foodTabbedPane.getSelectedIndex();
 				int categoryNo=(index+1)*10;
 				System.out.println(categoryNo);
-				foodListTable(categoryNo);
+				//foodListTable(categoryNo);
 			}
 		});
 		foodTabbedPane.setBounds(19, 107, 374, 436);
