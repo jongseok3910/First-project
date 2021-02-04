@@ -61,10 +61,10 @@ public class MemberInfoPanel extends JPanel {
 		lblNewLabel_3.setBounds(31, 388, 57, 15);
 		add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
+		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\zhzh2\\OneDrive\\바탕 화면\\카드등록.jpg"));
-		lblNewLabel_4.setBounds(38, 462, 344, 149);
+		lblNewLabel_4.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드등록.jpg")));
+		lblNewLabel_4.setBounds(38, 462, 350, 149);
 		add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel(" 자주 사용하는 카드를 등록해주세요.");
@@ -79,7 +79,7 @@ public class MemberInfoPanel extends JPanel {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/회원사진.png")));
-		lblNewLabel.setBounds(31, 32, 351, 198);
+		lblNewLabel.setBounds(31, 46, 351, 181);
 		add(lblNewLabel);
 
 	}
