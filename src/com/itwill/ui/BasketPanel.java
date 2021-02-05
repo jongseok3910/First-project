@@ -110,6 +110,8 @@ public class BasketPanel extends JPanel {
 		add(paymentCB);
 		
 		paymentBtn = new JButton("결제하기");
+		paymentBtn.setForeground(Color.WHITE);
+		paymentBtn.setBackground(Color.GREEN);
 		paymentBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
