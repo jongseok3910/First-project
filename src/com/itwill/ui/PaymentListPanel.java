@@ -65,7 +65,7 @@ public class PaymentListPanel extends JPanel {
 					int selectedIndex = showPaymentDateList.getSelectedIndex();
 					MemberInfo member = bob4JoMainFrame.loginMember;
 					String member_no=member.getMember_no();
-					List<Jumun> jumunList = jumunService.selectByJumunMemberNo(member_no);
+					List<Jumun> jumunList = jumunService.selectByJumunMemberNoTypeIsNotNull(member_no);
 					jumunList.get(selectedIndex);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -156,7 +156,7 @@ public class PaymentListPanel extends JPanel {
 			}
 			MemberInfo member = bob4JoMainFrame.loginMember;
 			String member_no=member.getMember_no();
-			List<Jumun> jumunList = jumunService.selectByJumunMemberNo(member_no);
+			List<Jumun> jumunList = jumunService.selectByJumunMemberNoTypeIsNotNull(member_no);
 			DefaultListModel defaultListModel=new DefaultListModel();
 			for (Jumun jumun : jumunList) {
 				defaultListModel.addElement(jumun.getJumun_paymentTime());
@@ -166,7 +166,6 @@ public class PaymentListPanel extends JPanel {
 			e1.printStackTrace();
 		}
 	}
-
 	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
 		this.bob4JoMainFrame=bob4JoMainFrame;		
 	}

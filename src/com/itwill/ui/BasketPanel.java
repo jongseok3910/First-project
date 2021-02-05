@@ -50,7 +50,7 @@ public class BasketPanel extends JPanel {
 				jumunListTable();
 				List<Jumun> jumunList=null;
 				try {
-					jumunList = jumunService.selectByJumunTypeIsNull();
+					jumunList = jumunService.selectByJumunTypeIsNull(bob4JoMainFrame.loginMember.getMember_no());
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -131,6 +131,9 @@ public class BasketPanel extends JPanel {
 		paymentBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Jumun jumun=null;
+				/*
+				 * 수정해야함★★★★★★★★★★★★★★★★★★★★★
+				 
 				try {
 					jumun = jumunService.selectByJumunNo(jumun_no);
 				} catch (Exception e2) {
@@ -176,6 +179,7 @@ public class BasketPanel extends JPanel {
 						e1.printStackTrace();
 					}
 				}
+				*/
 			}
 		});
 		paymentBtn.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
@@ -216,7 +220,7 @@ public class BasketPanel extends JPanel {
 			if(jumunService==null) {
 				return;
 			}
-			List<Jumun> jumunList = jumunService.selectByJumunTypeIsNull();
+			List<Jumun> jumunList = jumunService.selectByJumunTypeIsNull(bob4JoMainFrame.loginMember.getMember_no());
 			Vector jumunListVector = new Vector();
 			for (Jumun jumun : jumunList) {
 				Food food=jumunService.selectByFoodNo(jumun.getFood_no());
