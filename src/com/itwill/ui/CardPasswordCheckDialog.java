@@ -8,6 +8,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.itwill.service.JumunService;
+import com.itwill.vo.Card;
 import com.itwill.vo.Jumun;
 import com.itwill.vo.MemberInfo;
 
@@ -29,6 +31,10 @@ public class CardPasswordCheckDialog extends JDialog {
 	
 	Bob4JoMainFrame bob4JoMainFrame;
 	BasketPanel basketPanel;
+	JumunService jumunService;
+	
+	Bob4JoCardDialog bob4JoCardDialog;
+//	private CardPasswordCheckDialog cardPasswordCheckDialog;
 
 	/**
 	 * Create the dialog.
@@ -63,26 +69,29 @@ public class CardPasswordCheckDialog extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
-//					MemberInfo member = bob4JoMainFrame.loginMember;
-//					String member_no = member.getMember_no();
-//				//	Card card = jumunService.select 
-//					try {
-//						//jumunService.cardPasswordCheck
-//						if (result == 0) {
-//						//	Jumun card = jumunService.select(card_noStr);
-//						//	bob4JoMainFrame.jumunService(cardpassword);
-//						}else (result == 1){
-//							JOptionPane.showMessageDialog(null,"카드 비밀번호가 일치하지 않습니다.");
-//							
-//						}
-//						catch (Exception e1) {
-//							e1.printStackTrace();
-//						}
-//					}
-//					}
-//				});
-				okButton.setBackground(Color.GREEN);
-				okButton.setForeground(Color.WHITE);
+					try {
+						 MemberInfo member = bob4JoMainFrame.loginMember;
+						 Card card = jumunService.selectByMemberNo(member.getMember_no());
+//						 일치하면 확인되었습니다.
+						 char[] passChars = passwordField.getPassword();
+						 String passwordStr = new String(passChars);
+						 if(passwordStr.equals(card.getCard_password()+"")) {
+							 JOptionPane.showMessageDialog(null, "확인되었습니다.");
+						 }else if(passwordStr.trim().equals("")) {
+							 JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요.");
+						 }else {
+							 JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.");
+						 }
+//						 일치하지 않으면 비밀번호가 일치하지 않습니다.
+					}
+						catch (Exception e1) {
+							e1.printStackTrace();
+						}
+					
+					}
+				});
+				okButton.setBackground(new Color(240, 240, 240));
+				okButton.setForeground(new Color(0, 0, 0));
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -94,14 +103,19 @@ public class CardPasswordCheckDialog extends JDialog {
 						dispose();
 					}
 				});
-				cancelButton.setBackground(Color.GREEN);
-				cancelButton.setForeground(Color.WHITE);
+				cancelButton.setBackground(new Color(240, 240, 240));
+				cancelButton.setForeground(new Color(0, 0, 0));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 	}
-
+	// 다이어로그
+	public void setBob4JoCardDialog(Bob4JoCardDialog bob4JoCardDialog) {
+		this.bob4JoCardDialog = bob4JoCardDialog;
+	}
+	
+		
 	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
 		this.bob4JoMainFrame=bob4JoMainFrame;
 		
@@ -111,4 +125,5 @@ public class CardPasswordCheckDialog extends JDialog {
 		this.basketPanel=basketPanel;
 		
 	}
+	
 }

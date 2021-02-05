@@ -122,8 +122,8 @@ public class BasketPanel extends JPanel {
 		add(paymentCB);
 		
 		paymentBtn = new JButton("결제하기");
-		paymentBtn.setForeground(Color.WHITE);
-		paymentBtn.setBackground(Color.GREEN);
+		paymentBtn.setForeground(new Color(0, 0, 0));
+		paymentBtn.setBackground(new Color(240, 240, 240));
 		paymentBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -223,11 +223,13 @@ public class BasketPanel extends JPanel {
 				Vector foodVector=new Vector();
 				foodVector.add(food.getFood_name());
 				foodVector.add(food.getFood_price());
+				foodVector.add(jumun.getJumun_quantity());
 				jumunListVector.add(foodVector);
 			}
 			Vector columnNames=new Vector();
 			columnNames.add("음식명");
 			columnNames.add("가격");
+			columnNames.add("수량");
 			
 			DefaultTableModel defaultTableModel =
 					new DefaultTableModel(jumunListVector, columnNames);
