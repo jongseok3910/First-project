@@ -16,7 +16,7 @@ public class JumunSQL {
 public static final String JUMUN_INSERT=
 "insert into jumun values(JUMUN_SEQ1.NEXTVAL,?,?,?,?,sysdate,?,?,?)";
 public static final String JUMUN_SELECT_BY_MEMBER_NO=
-"select * from jumun where member_no=?";
+"select * from jumun where member_no=? order by jumun_paymenttime desc";
 public static final String JUMUN_SELECT_BY_JUMUN_NO=
 "select * from jumun where jumun_no=?";
 public static final String JUMUN_SELECT_ALL=

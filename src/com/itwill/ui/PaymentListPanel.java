@@ -25,6 +25,8 @@ import javax.swing.JList;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class PaymentListPanel extends JPanel {
 	private JTextField storeNameTF;
@@ -40,6 +42,12 @@ public class PaymentListPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public PaymentListPanel() {
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				paymentListList();
+			}
+		});
 		setBackground(new Color(255, 204, 51));
 		setLayout(null);
 		
