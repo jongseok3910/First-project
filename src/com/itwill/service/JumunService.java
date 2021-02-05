@@ -2,6 +2,7 @@ package com.itwill.service;
 
 import java.util.List;
 
+import com.itwill.dao.CardDao;
 import com.itwill.dao.FoodDao;
 import com.itwill.dao.JumunDao;
 import com.itwill.dao.StoreDao;
@@ -15,11 +16,13 @@ public class JumunService {
 	private JumunDao jumunDao;
 	private FoodDao foodDao;
 	private StoreDao storeDao;
+	private CardDao cardDao;
 	
 	public JumunService() {
 		jumunDao = new JumunDao();
 		foodDao = new FoodDao();
 		storeDao = new StoreDao();
+		cardDao = new CardDao();
 	}
 	
 	
@@ -62,9 +65,9 @@ public class JumunService {
 	}
 
 	// memberID로 Card찾기 
-	public Card selectByCardMemberID(String member_id) throws Exception{
-		return null;
-		// null <--
+	public Card selectByMemberNo(String member_no) throws Exception{
+		return cardDao.selectByMemberNo(member_no);
+		
 	}
 	//주문목록 리스트
 	public List<Jumun> selectByJumunMemberNo(String member_no) throws Exception {
