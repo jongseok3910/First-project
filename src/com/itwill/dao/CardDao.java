@@ -47,23 +47,23 @@ public class CardDao {
 		ConnectionFactory.releaseConnection(con);
 		return rowCount;
 	}
-	public List<Card> selectByMemberNo(String member_no) throws Exception{
-		ArrayList<Card> cardList = new ArrayList<Card>();
+	public Card selectByMemberNo(String member_no) throws Exception{
+		Card card = null;
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(CardSQL.CARD_SELECT_BY_MEMBER_NO);
 		pstmt.setString(1, member_no);
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
-			cardList.add(new Card(rs.getString("card_no"),
+			card = new Card(rs.getString("card_no"),
 						rs.getString("card_validity"),
 						rs.getInt("card_cvc"),
 						rs.getInt("card_password"),
-						rs.getString("member_no")));
+						rs.getString("member_no"));
 		}
 		rs.close();
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);
-		return cardList;
+		return card;
 	}
 	
 	
