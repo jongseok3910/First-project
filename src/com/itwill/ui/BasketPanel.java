@@ -45,6 +45,7 @@ public class BasketPanel extends JPanel {
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
+				//입력안하고 열었을 때 널포인터익셉션 생김
 				jumunListTable();
 				Jumun selectedJumun = bob4JoMainFrame.selectedJumun();
 				totalTF.setText(selectedJumun.getJumun_sum()+"");

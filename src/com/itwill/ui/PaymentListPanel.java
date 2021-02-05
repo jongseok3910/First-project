@@ -7,10 +7,19 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JTabbedPane;
 import java.awt.Color;
+import java.util.List;
+import java.util.Vector;
+
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import com.itwill.service.JumunService;
+import com.itwill.vo.Jumun;
+import com.itwill.vo.MemberInfo;
+
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.ImageIcon;
@@ -25,6 +34,7 @@ public class PaymentListPanel extends JPanel {
 	private JList showPaymentDateList;
 	
 	Bob4JoMainFrame bob4JoMainFrame;
+	JumunService jumunService;
 
 	/**
 	 * Create the panel.
@@ -109,7 +119,27 @@ public class PaymentListPanel extends JPanel {
 		wonLb.setHorizontalAlignment(SwingConstants.CENTER);
 		wonLb.setBounds(324, 541, 26, 15);
 		add(wonLb);
+		
+		//service객체 생성
+		jumunService = new JumunService();
 
+	}//페이먼트리스트패널
+	private void paymentListList() {
+		try {
+			if(jumunService==null) {
+				return;
+			}
+			MemberInfo member = bob4JoMainFrame.loginMember;
+			String member_no=member.getMember_no();
+			List<Jumun> jumunList = jumunService.selectByJumunMemberNo(member_no);
+			DefaultListModel defaultListModel=new DefaultListModel();
+			for (Jumun jumun : jumunList) {
+				defaultListModel.addElement(jumun.getJumun_paymentTime());
+			}
+			showPaymentDateList.setModel(defaultListModel);
+		}catch(Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 
 	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
