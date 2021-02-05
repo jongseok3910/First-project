@@ -2,6 +2,9 @@ package com.itwill.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.itwill.vo.Card;
 
@@ -44,7 +47,24 @@ public class CardDao {
 		ConnectionFactory.releaseConnection(con);
 		return rowCount;
 	}
-	
+	public List<Card> selectByMemberNo(String member_no) throws Exception{
+		ArrayList<Card> cardList = new ArrayList<Card>();
+		Connection con = ConnectionFactory.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(CardSQL.CARD_SELECT_BY_MEMBER_NO);
+		pstmt.setString(1, member_no);
+		ResultSet rs = pstmt.executeQuery();
+		while (rs.next()) {
+			cardList.add(new Card(rs.getString("card_no"),
+						rs.getString("card_validity"),
+						rs.getInt("card_cvc"),
+						rs.getInt("card_password"),
+						rs.getString("member_no")));
+		}
+		rs.close();
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
+		return cardList;
+	}
 	
 	
 	
