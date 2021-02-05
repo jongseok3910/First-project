@@ -75,6 +75,12 @@ public class JumunService {
 	public int updateByJumunNo(Jumun jumun) throws Exception {
 		return jumunDao.updateByNo(jumun);
 	}
+
+	// memberID로 Card찾기 
+	public Card selectByCardMemberID(String member_id) throws Exception{
+		return null;
+		// null <--
+	}
 	//주문목록 리스트
 	public List<Jumun> selectByJumunMemberNo(String member_no) throws Exception {
 		return jumunDao.selectByMemberNo(member_no);

@@ -11,4 +11,6 @@ public class CardSQL {
 	public static final String CARD_DELETE=
 	"delete card where card_no=?";
 
+	public static final String CARD_SELECT_BY_MEMBER_NO=
+	"select * from card where member_no=?";		
 }
