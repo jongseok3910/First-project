@@ -50,7 +50,7 @@ public class BasketPanel extends JPanel {
 				jumunListTable();
 				List<Jumun> jumunList=null;
 				try {
-					jumunList = jumunService.selectByJumunTypeIsNull();
+					jumunList = jumunService.selectByJumunTypeIsNull("");
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -132,7 +132,7 @@ public class BasketPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				Jumun jumun=null;
 				try {
-					jumun = jumunService.selectByJumunNo(jumun_no);
+					jumun = jumunService.selectByJumunNo(1);
 				} catch (Exception e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
@@ -216,7 +216,7 @@ public class BasketPanel extends JPanel {
 			if(jumunService==null) {
 				return;
 			}
-			List<Jumun> jumunList = jumunService.selectByJumunTypeIsNull();
+			List<Jumun> jumunList = jumunService.selectByJumunTypeIsNull("");
 			Vector jumunListVector = new Vector();
 			for (Jumun jumun : jumunList) {
 				Food food=jumunService.selectByFoodNo(jumun.getFood_no());
