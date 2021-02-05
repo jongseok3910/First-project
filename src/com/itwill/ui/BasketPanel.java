@@ -125,7 +125,7 @@ public class BasketPanel extends JPanel {
 			if(jumunService==null) {
 				return;
 			}
-			Jumun jumun=jumunService.SelectByJumunNo(jumun_No);
+			Jumun jumun=jumunService.selectByJumunNo(jumun_No);
 			Food food=jumunService.selectByFoodNo(jumun.getFood_no());
 			
 			Vector jumunVector = new Vector();

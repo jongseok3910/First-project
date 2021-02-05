@@ -48,12 +48,14 @@ public class JumunService {
 		return foodDao.selectByNo(food_no);
 	}
 	//주문정보 입력
-	public int JumunInsert(Jumun jumun) throws Exception {
+	public int jumunInsert(Jumun jumun) throws Exception {
 		int rowCount = jumunDao.create(jumun);
 		return rowCount;
 	}
 	//주문정보 찾기
-	public Jumun SelectByJumunNo(int jumun_no) throws Exception {
+	public Jumun selectByJumunNo(int jumun_no) throws Exception {
 		return jumunDao.selectByJumunNo(jumun_no);
 	}
+	//주문정보 업데이트
+	//public Jumun Up
 }

@@ -283,7 +283,7 @@ public class FoodSelectPanel extends JPanel {
 				 */
 				Jumun jumun = new Jumun(0, jumun_quantity, jumun_sum, "", "", "", "202102047", food_no, Store_no);
 				try {
-					jumunService.JumunInsert(jumun);
+					jumunService.jumunInsert(jumun);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
