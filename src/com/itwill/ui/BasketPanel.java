@@ -19,6 +19,9 @@ import java.awt.Font;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import javax.swing.JScrollPane;
 
 public class BasketPanel extends JPanel {
 	private JTable basketTable;
@@ -29,28 +32,34 @@ public class BasketPanel extends JPanel {
 	private JButton cancleBtn;
 	
 	JumunService jumunService;
+	private JScrollPane scrollPane;
 	/**
 	 * Create the panel.
 	 */
 	public BasketPanel() {
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				jumunListTable(10);
+			}
+		});
 		setBackground(new Color(255, 204, 51));
 		setLayout(null);
 		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(41, 208, 340, 99);
+		add(scrollPane);
+		
 		basketTable = new JTable();
+		scrollPane.setViewportView(basketTable);
 		basketTable.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
 				{null, null},
 			},
 			new String[] {
 				"\uC74C\uC2DD\uBA85", "\uC218\uB7C9"
 			}
 		));
-		basketTable.setBounds(41, 208, 340, 99);
-		add(basketTable);
 		
 		JLabel totalLb = new JLabel("총금액");
 		totalLb.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
@@ -132,12 +141,16 @@ public class BasketPanel extends JPanel {
 			jumunVector.add(food.getFood_name());
 			jumunVector.add(food.getFood_price());
 			
+			Vector jumunVectors=new Vector();
+			jumunVectors.add(jumunVector);
+			
+			
 			Vector columnNames=new Vector();
 			columnNames.add("음식명");
 			columnNames.add("가격");
 			
 			DefaultTableModel defaultTableModel =
-					new DefaultTableModel(jumunVector, columnNames);
+					new DefaultTableModel(jumunVectors, columnNames);
 			basketTable.setModel(defaultTableModel);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

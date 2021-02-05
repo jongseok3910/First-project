@@ -22,6 +22,8 @@ import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class Bob4JoMainFrame extends JFrame {
 
@@ -39,6 +41,7 @@ public class Bob4JoMainFrame extends JFrame {
 	private BasketPanel basketPanel;
 	private PaymentListPanel paymentListPanel;
 	private MemberInfoPanel memberInfoPanel;
+	private JTabbedPane tabbedPane;
 	/*
 	 * Launch the application.
 	 */
@@ -133,7 +136,7 @@ public class Bob4JoMainFrame extends JFrame {
 		baseCardLayoutPanel.add(mainUsePanel, "mainUsePanel");
 		mainUsePanel.setLayout(new BorderLayout(0, 0));
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		mainUsePanel.add(tabbedPane, BorderLayout.CENTER);
 		
 		foodSelectPanel = new FoodSelectPanel();
@@ -147,6 +150,13 @@ public class Bob4JoMainFrame extends JFrame {
 		
 		memberInfoPanel = new MemberInfoPanel();
 		tabbedPane.addTab("회원정보", null, memberInfoPanel, null);
+		/**************************************/
+		foodSelectPanel.setBob4JoMainFrame(this);
+		/**************************************/
+		
+		
+		
+		
 	}//MainFrame
 	public void loginProcess(MemberInfo loginMember) {
 		/*
@@ -172,4 +182,8 @@ public class Bob4JoMainFrame extends JFrame {
 		CardLayout cl=(CardLayout)baseCardLayoutPanel.getLayout();
 		cl.show(baseCardLayoutPanel,"mainPanel");
 	}
+	public void changePanel(int tab_no) {
+		tabbedPane.setSelectedIndex(tab_no);
+	}
+	
 }

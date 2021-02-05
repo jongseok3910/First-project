@@ -57,5 +57,7 @@ public class JumunService {
 		return jumunDao.selectByJumunNo(jumun_no);
 	}
 	//주문정보 업데이트
-	//public Jumun Up
+	public int UpdateByJumunNo(Jumun jumun) throws Exception {
+		return jumunDao.updateByNo(jumun);
+	}
 }
