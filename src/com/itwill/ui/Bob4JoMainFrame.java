@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.itwill.vo.Jumun;
 import com.itwill.vo.MemberInfo;
 
 import javax.swing.JMenuBar;
@@ -188,8 +189,8 @@ public class Bob4JoMainFrame extends JFrame {
 	public void changePanel(int tab_no) {
 		tabbedPane.setSelectedIndex(tab_no);
 	}
-	public int jumunNo() {
-		return foodSelectPanel.selectedJumun.getJumun_no();
+	public Jumun selectedJumun() {
+		return foodSelectPanel.selectedJumun;
 	}
 	
 }

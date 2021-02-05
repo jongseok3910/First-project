@@ -22,6 +22,8 @@ import javax.swing.ImageIcon;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BasketPanel extends JPanel {
 	private JTable basketTable;
@@ -43,7 +45,7 @@ public class BasketPanel extends JPanel {
 			@Override
 			public void componentShown(ComponentEvent e) {
 				//int jumun_no = bob4JoMainFrame.jumunNo();
-				jumunListTable(10);
+				jumunListTable();
 			}
 		});
 		setBackground(new Color(255, 204, 51));
@@ -106,6 +108,11 @@ public class BasketPanel extends JPanel {
 		add(paymentCB);
 		
 		paymentBtn = new JButton("결제하기");
+		paymentBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		paymentBtn.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
 		paymentBtn.setBounds(35, 556, 132, 23);
 		add(paymentBtn);
@@ -132,12 +139,12 @@ public class BasketPanel extends JPanel {
 		jumunService = new JumunService();
 
 	}//바스켓 패널
-	private void jumunListTable(int jumun_No) {
+	private void jumunListTable() {
 		try {
 			if(jumunService==null) {
 				return;
 			}
-			Jumun jumun=jumunService.selectByJumunNo(jumun_No);
+			Jumun jumun=bob4JoMainFrame.selectedJumun();
 			Food food=jumunService.selectByFoodNo(jumun.getFood_no());
 			
 			Vector jumunVector = new Vector();
