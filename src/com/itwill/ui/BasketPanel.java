@@ -129,6 +129,10 @@ public class BasketPanel extends JPanel {
 														   selectedJumun.getMember_no(),
 														   selectedJumun.getFood_no(),
 														   selectedJumun.getStore_no()));
+						CardPasswordCheckDialog cardPasswordCheckDialog = new CardPasswordCheckDialog();
+						cardPasswordCheckDialog.setBasketPanel(BasketPanel.this);
+						cardPasswordCheckDialog.setModal(true);
+						cardPasswordCheckDialog.setVisible(true);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

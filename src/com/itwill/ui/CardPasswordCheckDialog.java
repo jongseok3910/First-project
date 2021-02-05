@@ -15,29 +15,19 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JPasswordField;
 
-public class CardPasswordChechDialog extends JDialog {
+public class CardPasswordCheckDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JPasswordField passwordField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			CardPasswordChechDialog dialog = new CardPasswordChechDialog();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
+	Bob4JoMainFrame bob4JoMainFrame;
+	BasketPanel basketPanel;
 
 	/**
 	 * Create the dialog.
 	 */
-	public CardPasswordChechDialog() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(CardPasswordChechDialog.class.getResource("/com/itwill/ui/창아이콘.png")));
+	public CardPasswordCheckDialog() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CardPasswordCheckDialog.class.getResource("/com/itwill/ui/창아이콘.png")));
 		setBounds(100, 100, 291, 212);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
@@ -77,5 +67,15 @@ public class CardPasswordChechDialog extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+
+	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
+		this.bob4JoMainFrame=bob4JoMainFrame;
+		
+	}
+
+	public void setBasketPanel(BasketPanel basketPanel) {
+		this.basketPanel=basketPanel;
+		
 	}
 }
