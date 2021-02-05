@@ -38,6 +38,7 @@ public class BasketPanel extends JPanel {
 	Bob4JoMainFrame bob4JoMainFrame;
 	private JScrollPane scrollPane;
 	FoodSelectPanel foodSelectPanel;
+	int jumun_no;
 	/**
 	 * Create the panel.
 	 */
@@ -47,13 +48,6 @@ public class BasketPanel extends JPanel {
 			public void componentShown(ComponentEvent e) {
 				//입력안하고 열었을 때 널포인터익셉션 생김
 				jumunListTable();
-				int jumun_no=0;
-				try {
-					jumun_no = jumunService.selectJumunSeqNo();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 				Jumun jumun=null;
 				try {
 					jumun = jumunService.selectByJumunNo(jumun_no);
@@ -132,13 +126,6 @@ public class BasketPanel extends JPanel {
 		});
 		paymentBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int jumun_no=0;
-				try {
-					jumun_no = jumunService.selectJumunSeqNo();
-				} catch (Exception e3) {
-					// TODO Auto-generated catch block
-					e3.printStackTrace();
-				}
 				Jumun jumun=null;
 				try {
 					jumun = jumunService.selectByJumunNo(jumun_no);
@@ -225,7 +212,8 @@ public class BasketPanel extends JPanel {
 			if(jumunService==null) {
 				return;
 			}
-			int jumun_no=jumunService.selectJumunSeqNo();
+			jumun_no=0;
+			jumun_no=jumunService.selectJumunSeqNo();
 			Jumun jumun=null;
 			try {
 				jumun = jumunService.selectByJumunNo(jumun_no);
