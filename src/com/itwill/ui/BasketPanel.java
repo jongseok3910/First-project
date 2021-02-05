@@ -28,7 +28,7 @@ import java.awt.event.ActionEvent;
 public class BasketPanel extends JPanel {
 	private JTable basketTable;
 	private JTextField totalTF;
-	private JTextField textField;
+	private JTextField requestTF;
 	private JComboBox paymentCB;
 	private JButton paymentBtn;
 	private JButton cancleBtn;
@@ -44,8 +44,9 @@ public class BasketPanel extends JPanel {
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
-				//int jumun_no = bob4JoMainFrame.jumunNo();
 				jumunListTable();
+				Jumun selectedJumun = bob4JoMainFrame.selectedJumun();
+				totalTF.setText(selectedJumun.getJumun_sum()+"");
 			}
 		});
 		setBackground(new Color(255, 204, 51));
@@ -90,10 +91,10 @@ public class BasketPanel extends JPanel {
 		requestLb.setBounds(35, 412, 57, 15);
 		add(requestLb);
 		
-		textField = new JTextField();
-		textField.setBounds(118, 409, 251, 21);
-		add(textField);
-		textField.setColumns(10);
+		requestTF = new JTextField();
+		requestTF.setBounds(118, 409, 251, 21);
+		add(requestTF);
+		requestTF.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("결제수단");
 		lblNewLabel.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
@@ -110,6 +111,8 @@ public class BasketPanel extends JPanel {
 		paymentBtn = new JButton("결제하기");
 		paymentBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Jumun selectedJumun = bob4JoMainFrame.selectedJumun();
+				String jumun_request = requestTF.getText();
 				
 			}
 		});

@@ -16,10 +16,9 @@ public class JumunDao {
 	pstmt.setInt(2,jumun.getJumun_sum());
 	pstmt.setString(3,jumun.getJumun_request());
 	pstmt.setString(4,jumun.getJumun_paymentType());
-	pstmt.setString(5,jumun.getJumun_paymentTime());
-	pstmt.setString(6,jumun.getMember_no());
-	pstmt.setInt(7,jumun.getFood_no());
-	pstmt.setInt(8,jumun.getStore_no());
+	pstmt.setString(5,jumun.getMember_no());
+	pstmt.setInt(6,jumun.getFood_no());
+	pstmt.setInt(7,jumun.getStore_no());
 	int rowCount=pstmt.executeUpdate();
 	pstmt.close();
 	ConnectionFactory.releaseConnection(con);
