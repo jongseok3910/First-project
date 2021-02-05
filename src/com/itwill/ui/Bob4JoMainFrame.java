@@ -189,5 +189,8 @@ public class Bob4JoMainFrame extends JFrame {
 	public void changePanel(int tab_no) {
 		tabbedPane.setSelectedIndex(tab_no);
 	}
+	public Jumun selectedJumun() {
+		return foodSelectPanel.selectedJumun;
+	}
 	
 }
