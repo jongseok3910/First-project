@@ -223,11 +223,13 @@ public class BasketPanel extends JPanel {
 				Vector foodVector=new Vector();
 				foodVector.add(food.getFood_name());
 				foodVector.add(food.getFood_price());
+				foodVector.add(jumun.getJumun_quantity());
 				jumunListVector.add(foodVector);
 			}
 			Vector columnNames=new Vector();
 			columnNames.add("음식명");
 			columnNames.add("가격");
+			columnNames.add("수량");
 			
 			DefaultTableModel defaultTableModel =
 					new DefaultTableModel(jumunListVector, columnNames);
