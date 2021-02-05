@@ -82,7 +82,7 @@ public class JumunService {
 		return jumunDao.selectByMemberNo(member_no);
 	}
 	//결제안된 목록리스트
-	public List<Jumun> selectByJumunTypeIsNull() throws Exception {
-		return jumunDao.selectByTypeIsNull();
+	public List<Jumun> selectByJumunTypeIsNull(String member_no) throws Exception {
+		return jumunDao.selectByTypeIsNull(member_no);
 	}
 }
