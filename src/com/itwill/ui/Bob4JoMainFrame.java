@@ -152,6 +152,9 @@ public class Bob4JoMainFrame extends JFrame {
 		tabbedPane.addTab("회원정보", null, memberInfoPanel, null);
 		/**************************************/
 		foodSelectPanel.setBob4JoMainFrame(this);
+		basketPanel.setBob4JoMainFrame(this);
+		paymentListPanel.setBob4JoMainFrame(this);
+		memberInfoPanel.setBob4JoMainFrame(this);
 		/**************************************/
 		
 		

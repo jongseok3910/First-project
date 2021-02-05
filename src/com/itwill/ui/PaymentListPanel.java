@@ -23,6 +23,8 @@ public class PaymentListPanel extends JPanel {
 	private JTextField quantityTF;
 	private JTextField sumTF;
 	private JList showPaymentDateList;
+	
+	Bob4JoMainFrame bob4JoMainFrame;
 
 	/**
 	 * Create the panel.
@@ -108,5 +110,9 @@ public class PaymentListPanel extends JPanel {
 		wonLb.setBounds(324, 541, 26, 15);
 		add(wonLb);
 
+	}
+
+	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
+		this.bob4JoMainFrame=bob4JoMainFrame;		
 	}
 }

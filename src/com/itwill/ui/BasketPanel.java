@@ -32,6 +32,7 @@ public class BasketPanel extends JPanel {
 	private JButton cancleBtn;
 	
 	JumunService jumunService;
+	Bob4JoMainFrame bob4JoMainFrame;
 	private JScrollPane scrollPane;
 	/**
 	 * Create the panel.
@@ -157,4 +158,7 @@ public class BasketPanel extends JPanel {
 			e.printStackTrace();
 		}
 	}//주문리스트테이블
+	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
+		this.bob4JoMainFrame=bob4JoMainFrame;		
+	}
 }

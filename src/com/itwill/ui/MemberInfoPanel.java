@@ -17,6 +17,8 @@ public class MemberInfoPanel extends JPanel {
 	private JButton nameChangeBtn;
 	private JButton passwordChangeBtn;
 	private JButton addressBtn;
+	
+	Bob4JoMainFrame bob4JoMainFrame;
 
 	/**
 	 * Create the panel.
@@ -90,5 +92,9 @@ public class MemberInfoPanel extends JPanel {
 		withdrawBtn.setBounds(281, 568, 108, 23);
 		add(withdrawBtn);
 
+	}
+
+	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
+		this.bob4JoMainFrame=bob4JoMainFrame;		
 	}
 }
