@@ -11,10 +11,14 @@ public class JumunDaoTestMain {
 				   10000,
 				   "많이주세요",
 				   "카드결제",
-				   "202102047",
+				   "2021020410",
 				   120,
 				   6);
+		/*
 		jumunDao.create(jumun);
+		*/
+		int no=jumunDao.create(jumun);
+		System.out.println(no);
 	}
 
 }

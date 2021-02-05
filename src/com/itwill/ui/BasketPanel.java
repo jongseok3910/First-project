@@ -17,6 +17,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -47,8 +48,18 @@ public class BasketPanel extends JPanel {
 			public void componentShown(ComponentEvent e) {
 				//입력안하고 열었을 때 널포인터익셉션 생김
 				jumunListTable();
-				Jumun selectedJumun = bob4JoMainFrame.selectedJumun();
-				totalTF.setText(selectedJumun.getJumun_sum()+"");
+				List<Jumun> jumunList=null;
+				try {
+					jumunList = jumunService.selectByJumunTypeIsNull();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				int sum = 0;
+				for (Jumun jumun : jumunList) {
+					sum+=jumun.getJumun_sum();
+				}
+				totalTF.setText(sum+"");
 			}
 		});
 		setBackground(new Color(255, 204, 51));
@@ -119,19 +130,25 @@ public class BasketPanel extends JPanel {
 		});
 		paymentBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Jumun selectedJumun = bob4JoMainFrame.selectedJumun();
+				Jumun jumun=null;
+				try {
+					jumun = jumunService.selectByJumunNo(jumun_no);
+				} catch (Exception e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
 				String jumun_request = requestTF.getText();
 				int paymentTypeIndex = paymentCB.getSelectedIndex();
 				if(paymentTypeIndex==0) {
 					//카드결제
 					try {
-						jumunService.jumunInsert(new Jumun(selectedJumun.getJumun_quantity(),
-														   selectedJumun.getJumun_sum(),
+						jumunService.jumunInsert(new Jumun(jumun.getJumun_quantity(),
+														   jumun.getJumun_sum(),
 														   jumun_request,
 														   "카드결제",
-														   selectedJumun.getMember_no(),
-														   selectedJumun.getFood_no(),
-														   selectedJumun.getStore_no()));
+														   jumun.getMember_no(),
+														   jumun.getFood_no(),
+														   jumun.getStore_no()));
 						CardPasswordCheckDialog cardPasswordCheckDialog = new CardPasswordCheckDialog();
 						cardPasswordCheckDialog.setBasketPanel(BasketPanel.this);
 						cardPasswordCheckDialog.setModal(true);
@@ -143,13 +160,13 @@ public class BasketPanel extends JPanel {
 				}else if(paymentTypeIndex==1) {
 					//현장결제
 					try {
-						jumunService.jumunInsert(new Jumun(selectedJumun.getJumun_quantity(),
-														   selectedJumun.getJumun_sum(),
+						jumunService.jumunInsert(new Jumun(jumun.getJumun_quantity(),
+														   jumun.getJumun_sum(),
 														   jumun_request,
 														   "현장결제",
-														   selectedJumun.getMember_no(),
-														   selectedJumun.getFood_no(),
-														   selectedJumun.getStore_no()));
+														   jumun.getMember_no(),
+														   jumun.getFood_no(),
+														   jumun.getStore_no()));
 						JOptionPane.showMessageDialog(null, "주문이 완료되었습니다");
 						//주문목록
 						bob4JoMainFrame.changePanel(2);
@@ -199,23 +216,21 @@ public class BasketPanel extends JPanel {
 			if(jumunService==null) {
 				return;
 			}
-			Jumun jumun=bob4JoMainFrame.selectedJumun();
-			Food food=jumunService.selectByFoodNo(jumun.getFood_no());
-			
-			Vector jumunVector = new Vector();
-			jumunVector.add(food.getFood_name());
-			jumunVector.add(food.getFood_price());
-			
-			Vector jumunVectors=new Vector();
-			jumunVectors.add(jumunVector);
-			
-			
+			List<Jumun> jumunList = jumunService.selectByJumunTypeIsNull();
+			Vector jumunListVector = new Vector();
+			for (Jumun jumun : jumunList) {
+				Food food=jumunService.selectByFoodNo(jumun.getFood_no());
+				Vector foodVector=new Vector();
+				foodVector.add(food.getFood_name());
+				foodVector.add(food.getFood_price());
+				jumunListVector.add(foodVector);
+			}
 			Vector columnNames=new Vector();
 			columnNames.add("음식명");
 			columnNames.add("가격");
 			
 			DefaultTableModel defaultTableModel =
-					new DefaultTableModel(jumunVectors, columnNames);
+					new DefaultTableModel(jumunListVector, columnNames);
 			basketTable.setModel(defaultTableModel);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
