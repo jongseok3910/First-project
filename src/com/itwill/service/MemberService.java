@@ -94,7 +94,7 @@ public class MemberService {
 	}
 	
 	public int memberUpdate(MemberInfo memberInfo) throws Exception{
-		return 0;
+		return memberInfoDao.updateById(memberInfo);
 	}
 		
 	

@@ -21,6 +21,8 @@ public class Bob4JoCardDialog extends JDialog {
 	private JTextField textField_2;
 	private JTextField textField_4;
 	private JPasswordField passwordField;
+	
+	MemberInfoPanel memberInfoPanel;
 
 	/**
 	 * Launch the application.
@@ -128,5 +130,9 @@ public class Bob4JoCardDialog extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+
+	public void setMemberInfoPanel(MemberInfoPanel memberInfoPanel) {
+		this.memberInfoPanel = memberInfoPanel;
 	}
 }
