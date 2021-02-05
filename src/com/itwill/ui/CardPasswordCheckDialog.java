@@ -7,13 +7,20 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.itwill.vo.Jumun;
+import com.itwill.vo.MemberInfo;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Toolkit;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CardPasswordCheckDialog extends JDialog {
 
@@ -53,6 +60,26 @@ public class CardPasswordCheckDialog extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					MemberInfo member = bob4JoMainFrame.loginMember;
+					String member_no = member.getMember_no();
+				//	Card card = jumunService.select 
+					try {
+						//jumunService.cardPasswordCheck
+						if (result == 0) {
+						//	Jumun card = jumunService.select(card_noStr);
+						//	bob4JoMainFrame.jumunService(cardpassword);
+						}else (result == 1){
+							JOptionPane.showMessageDialog(null,"카드 비밀번호가 일치하지 않습니다.")
+							
+						}
+						catch (Exception e1) {
+							e1.printStackTrace();
+						}
+					}
+					}
+				});
 				okButton.setBackground(Color.GREEN);
 				okButton.setForeground(Color.WHITE);
 				okButton.setActionCommand("OK");
