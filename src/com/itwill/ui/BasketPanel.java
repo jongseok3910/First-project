@@ -9,6 +9,7 @@ import com.itwill.vo.Food;
 import com.itwill.vo.Jumun;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -142,6 +143,10 @@ public class BasketPanel extends JPanel {
 														   selectedJumun.getMember_no(),
 														   selectedJumun.getFood_no(),
 														   selectedJumun.getStore_no()));
+						JOptionPane.showMessageDialog(null, "주문이 완료되었습니다");
+						//주문목록
+						bob4JoMainFrame.changePanel(2);
+						
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
