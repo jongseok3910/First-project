@@ -135,7 +135,7 @@ public class BasketPanel extends JPanel {
 				 * 수정해야함★★★★★★★★★★★★★★★★★★★★★
 				 
 				try {
-					jumun = jumunService.selectByJumunNo(jumun_no);
+					jumun = jumunService.selectByJumunNo(1);
 				} catch (Exception e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
