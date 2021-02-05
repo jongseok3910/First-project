@@ -14,6 +14,8 @@ import java.awt.Toolkit;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CardPasswordCheckDialog extends JDialog {
 
@@ -53,6 +55,11 @@ public class CardPasswordCheckDialog extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+					}
+				});
 				okButton.setBackground(Color.GREEN);
 				okButton.setForeground(Color.WHITE);
 				okButton.setActionCommand("OK");
@@ -61,6 +68,11 @@ public class CardPasswordCheckDialog extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setBackground(Color.GREEN);
 				cancelButton.setForeground(Color.WHITE);
 				cancelButton.setActionCommand("Cancel");
