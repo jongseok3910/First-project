@@ -58,6 +58,7 @@ public class FoodSelectPanel extends JPanel {
 	MemberService memberService;
 	JumunService jumunService;
 	Bob4JoMainFrame bob4JoMainFrame;
+	Jumun selectedJumun;
 
 	/**
 	 * Create the panel.

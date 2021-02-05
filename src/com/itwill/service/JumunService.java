@@ -75,7 +75,7 @@ public class JumunService {
 		return jumunDao.updateByNo(jumun);
 	}
 
-	// memberID로 Card찾기 
+	// memberNO로 Card찾기 
 	public Card selectByMemberNo(String member_no) throws Exception{
 		return cardDao.selectByMemberNo(member_no);
 		
