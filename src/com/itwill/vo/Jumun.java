@@ -30,13 +30,12 @@ public class Jumun {
 	}
 	
 	public Jumun(int jumun_quantity, int jumun_sum, String jumun_request, String jumun_paymentType,
-			String jumun_paymentTime, String member_no, int food_no, int store_no) {
+			String member_no, int food_no, int store_no) {
 		super();
 		this.jumun_quantity = jumun_quantity;
 		this.jumun_sum = jumun_sum;
 		this.jumun_request = jumun_request;
 		this.jumun_paymentType = jumun_paymentType;
-		this.jumun_paymentTime = jumun_paymentTime;
 		this.member_no = member_no;
 		this.food_no = food_no;
 		this.store_no = store_no;

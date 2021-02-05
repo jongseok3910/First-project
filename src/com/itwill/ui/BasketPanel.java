@@ -111,9 +111,42 @@ public class BasketPanel extends JPanel {
 		paymentBtn = new JButton("결제하기");
 		paymentBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		paymentBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				Jumun selectedJumun = bob4JoMainFrame.selectedJumun();
 				String jumun_request = requestTF.getText();
-				
+				int paymentTypeIndex = paymentCB.getSelectedIndex();
+				if(paymentTypeIndex==0) {
+					//카드결제
+					try {
+						jumunService.jumunInsert(new Jumun(selectedJumun.getJumun_quantity(),
+														   selectedJumun.getJumun_sum(),
+														   jumun_request,
+														   "카드결제",
+														   selectedJumun.getMember_no(),
+														   selectedJumun.getFood_no(),
+														   selectedJumun.getStore_no()));
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}else if(paymentTypeIndex==1) {
+					//현장결제
+					try {
+						jumunService.jumunInsert(new Jumun(selectedJumun.getJumun_quantity(),
+														   selectedJumun.getJumun_sum(),
+														   jumun_request,
+														   "현장결제",
+														   selectedJumun.getMember_no(),
+														   selectedJumun.getFood_no(),
+														   selectedJumun.getStore_no()));
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
 			}
 		});
 		paymentBtn.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
