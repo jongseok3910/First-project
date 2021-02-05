@@ -32,7 +32,7 @@ public class BasketPanel extends JPanel {
 	private JTextField requestTF;
 	private JComboBox paymentCB;
 	private JButton paymentBtn;
-	private JButton cancleBtn;
+	private JButton returnBtn;
 	
 	JumunService jumunService;
 	Bob4JoMainFrame bob4JoMainFrame;
@@ -162,17 +162,17 @@ public class BasketPanel extends JPanel {
 		paymentBtn.setBounds(35, 556, 132, 23);
 		add(paymentBtn);
 		
-		cancleBtn = new JButton("취소");
+		returnBtn = new JButton("돌아가기");
 		
-		cancleBtn.addActionListener(new ActionListener() {
+		returnBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				bob4JoMainFrame.changePanel(0);
 			}
 		});
 		
-		cancleBtn.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
-		cancleBtn.setBounds(237, 556, 132, 23);
-		add(cancleBtn);
+		returnBtn.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
+		returnBtn.setBounds(237, 556, 132, 23);
+		add(returnBtn);
 		
 		JLabel listLb = new JLabel("장바구니 목록");
 		listLb.setForeground(new Color(0, 0, 0));
