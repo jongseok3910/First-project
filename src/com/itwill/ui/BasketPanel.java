@@ -17,6 +17,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -38,7 +39,6 @@ public class BasketPanel extends JPanel {
 	Bob4JoMainFrame bob4JoMainFrame;
 	private JScrollPane scrollPane;
 	FoodSelectPanel foodSelectPanel;
-	int jumun_no;
 	/**
 	 * Create the panel.
 	 */
@@ -48,14 +48,18 @@ public class BasketPanel extends JPanel {
 			public void componentShown(ComponentEvent e) {
 				//입력안하고 열었을 때 널포인터익셉션 생김
 				jumunListTable();
-				Jumun jumun=null;
+				List<Jumun> jumunList=null;
 				try {
-					jumun = jumunService.selectByJumunNo(jumun_no);
-				} catch (Exception e2) {
+					jumunList = jumunService.selectByJumunTypeIsNull();
+				} catch (Exception e1) {
 					// TODO Auto-generated catch block
-					e2.printStackTrace();
+					e1.printStackTrace();
 				}
-				totalTF.setText(jumun.getJumun_sum()+"");
+				int sum = 0;
+				for (Jumun jumun : jumunList) {
+					sum+=jumun.getJumun_sum();
+				}
+				totalTF.setText(sum+"");
 			}
 		});
 		setBackground(new Color(255, 204, 51));
@@ -212,31 +216,21 @@ public class BasketPanel extends JPanel {
 			if(jumunService==null) {
 				return;
 			}
-			jumun_no=0;
-			jumun_no=jumunService.selectJumunSeqNo();
-			Jumun jumun=null;
-			try {
-				jumun = jumunService.selectByJumunNo(jumun_no);
-			} catch (Exception e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
+			List<Jumun> jumunList = jumunService.selectByJumunTypeIsNull();
+			Vector jumunListVector = new Vector();
+			for (Jumun jumun : jumunList) {
+				Food food=jumunService.selectByFoodNo(jumun.getFood_no());
+				Vector foodVector=new Vector();
+				foodVector.add(food.getFood_name());
+				foodVector.add(food.getFood_price());
+				jumunListVector.add(foodVector);
 			}
-			Food food=jumunService.selectByFoodNo(jumun.getFood_no());
-			
-			Vector jumunVector = new Vector();
-			jumunVector.add(food.getFood_name());
-			jumunVector.add(food.getFood_price());
-			
-			Vector jumunVectors=new Vector();
-			jumunVectors.add(jumunVector);
-			
-			
 			Vector columnNames=new Vector();
 			columnNames.add("음식명");
 			columnNames.add("가격");
 			
 			DefaultTableModel defaultTableModel =
-					new DefaultTableModel(jumunVectors, columnNames);
+					new DefaultTableModel(jumunListVector, columnNames);
 			basketTable.setModel(defaultTableModel);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

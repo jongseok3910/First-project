@@ -14,17 +14,19 @@ STORE_NO                   NUMBER
  */
 public class JumunSQL {
 	public static final String JUMUN_SELECT_JUMUN_SEQ_NO=
-			"select JUMUN_SEQ1.CURRVAL as jumun_no from dual";
-public static final String JUMUN_INSERT=
-"insert into jumun values(JUMUN_SEQ1.NEXTVAL,?,?,?,?,sysdate,?,?,?)";
-public static final String JUMUN_SELECT_BY_MEMBER_NO=
-"select * from jumun where member_no=? order by jumun_paymenttime desc";
-public static final String JUMUN_SELECT_BY_JUMUN_NO=
-"select * from jumun where jumun_no=?";
-public static final String JUMUN_SELECT_ALL=
-"select * from jumun";
-public static final String JUMUN_UPDATE_BY_JUMUN_NO=
-"update jumun set jumun_quantity=?, jumun_sum=?,jumun_request=?,jumun_paymentType=?,jumun_paymentTime=?,member_no=?,food_no=?,store_no=? where jumun_no=?";
-public static final String JUMUN_DELETE_BY_JUMUN_NO=
-"delete jumun where jumun_no=?";
+			"select JUMUN_SEQ1.CURRVAL as j_no from dual";
+	public static final String JUMUN_INSERT=
+			"insert into jumun values(JUMUN_SEQ1.NEXTVAL,?,?,?,?,sysdate,?,?,?)";
+	public static final String JUMUN_SELECT_BY_MEMBER_NO=
+			"select * from jumun where member_no=? order by jumun_paymenttime desc";
+	public static final String JUMUN_SELECT_BY_JUMUN_NO=
+			"select * from jumun where jumun_no=?";
+	public static final String JUMUN_SELECT_BY_PAYMENTTYPE_IS_NULL=
+			"select * from jumun where JUMUN_PAYMENTTYPE is null";
+	public static final String JUMUN_SELECT_ALL=
+			"select * from jumun";
+	public static final String JUMUN_UPDATE_BY_JUMUN_NO=
+			"update jumun set jumun_quantity=?, jumun_sum=?,jumun_request=?,jumun_paymentType=?,jumun_paymentTime=?,member_no=?,food_no=?,store_no=? where jumun_no=?";
+	public static final String JUMUN_DELETE_BY_JUMUN_NO=
+			"delete jumun where jumun_no=?";
 }
