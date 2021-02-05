@@ -34,6 +34,7 @@ public class BasketPanel extends JPanel {
 	JumunService jumunService;
 	Bob4JoMainFrame bob4JoMainFrame;
 	private JScrollPane scrollPane;
+	FoodSelectPanel foodSelectPanel;
 	/**
 	 * Create the panel.
 	 */
@@ -41,6 +42,7 @@ public class BasketPanel extends JPanel {
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
+				//int jumun_no = bob4JoMainFrame.jumunNo();
 				jumunListTable(10);
 			}
 		});

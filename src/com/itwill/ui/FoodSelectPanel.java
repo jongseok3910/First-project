@@ -57,6 +57,7 @@ public class FoodSelectPanel extends JPanel {
 	MemberService memberService;
 	JumunService jumunService;
 	Bob4JoMainFrame bob4JoMainFrame;
+	Jumun selectedJumun;
 
 
 	/**
@@ -93,26 +94,6 @@ public class FoodSelectPanel extends JPanel {
 		sandwichTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
 			},
 			new String[] {
 				"\uC74C\uC2DD\uBA85", "\uAC00\uACA9"
@@ -135,10 +116,6 @@ public class FoodSelectPanel extends JPanel {
 		labTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
 			},
 			new String[] {
 				"\uC74C\uC2DD\uBA85", "\uAC00\uACA9"
@@ -151,6 +128,14 @@ public class FoodSelectPanel extends JPanel {
 		saladPanel.setLayout(new BorderLayout(0, 0));
 		
 		saladTable = new JTable();
+		saladTable.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null},
+			},
+			new String[] {
+				"New column", "New column"
+			}
+		));
 		saladTable.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -175,10 +160,6 @@ public class FoodSelectPanel extends JPanel {
 		sidemenuTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
 			},
 			new String[] {
 				"\uC74C\uC2DD\uBA85", "\uAC00\uACA9"
@@ -201,12 +182,6 @@ public class FoodSelectPanel extends JPanel {
 		cookieTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
 			},
 			new String[] {
 				"\uC74C\uC2DD\uBA85", "\uAC00\uACA9"
@@ -228,11 +203,6 @@ public class FoodSelectPanel extends JPanel {
 		});
 		drinkTable.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
 				{null, null},
 			},
 			new String[] {
