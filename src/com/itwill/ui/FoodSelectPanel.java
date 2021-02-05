@@ -58,7 +58,6 @@ public class FoodSelectPanel extends JPanel {
 	MemberService memberService;
 	JumunService jumunService;
 	Bob4JoMainFrame bob4JoMainFrame;
-	Jumun selectedJumun;
 
 
 	/**
@@ -253,7 +252,8 @@ public class FoodSelectPanel extends JPanel {
 					/*
 					 *로그인 한 멤버넘버 받아오기
 					 */
-					selectedJumun = new Jumun(jumun_quantity, jumun_sum, "", "", bob4JoMainFrame.loginMember.getMember_no(), food_no, Store_no);
+					Jumun jumun = new Jumun(jumun_quantity, jumun_sum, "", "", bob4JoMainFrame.loginMember.getMember_no(), food_no, Store_no);
+					jumunService.jumunInsert(jumun);
 					/*
 					 * 장바구니 패널(탭)으로 넘어가기
 					 */

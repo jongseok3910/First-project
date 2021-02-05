@@ -13,6 +13,8 @@ FOOD_NO                    NUMBER
 STORE_NO                   NUMBER  
  */
 public class JumunSQL {
+	public static final String JUMUN_SELECT_JUMUN_SEQ_NO=
+			"select JUMUN_SEQ1.CURRVAL as jumun_no from dual";
 public static final String JUMUN_INSERT=
 "insert into jumun values(JUMUN_SEQ1.NEXTVAL,?,?,?,?,sysdate,?,?,?)";
 public static final String JUMUN_SELECT_BY_MEMBER_NO=

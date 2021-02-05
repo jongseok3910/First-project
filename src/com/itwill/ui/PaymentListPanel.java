@@ -27,6 +27,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PaymentListPanel extends JPanel {
 	private JTextField storeNameTF;
@@ -56,6 +58,21 @@ public class PaymentListPanel extends JPanel {
 		add(scrollPane);
 		
 		showPaymentDateList = new JList();
+		showPaymentDateList.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					int selectedIndex = showPaymentDateList.getSelectedIndex();
+					MemberInfo member = bob4JoMainFrame.loginMember;
+					String member_no=member.getMember_no();
+					List<Jumun> jumunList = jumunService.selectByJumunMemberNo(member_no);
+					jumunList.get(selectedIndex);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		scrollPane.setViewportView(showPaymentDateList);
 		
 		JLabel manImageLb = new JLabel("");

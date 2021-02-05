@@ -14,7 +14,11 @@ public class JumunDaoTestMain {
 				   "202102047",
 				   120,
 				   6);
+		/*
 		jumunDao.create(jumun);
+		*/
+		int no=jumunDao.selectJumunSeqNo();
+		System.out.println(no);
 	}
 
 }

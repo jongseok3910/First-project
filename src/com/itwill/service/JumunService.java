@@ -47,10 +47,25 @@ public class JumunService {
 	public Food selectByFoodNo(int food_no) throws Exception {
 		return foodDao.selectByNo(food_no);
 	}
+	/*
 	//주문정보 입력
 	public int jumunInsert(Jumun jumun) throws Exception {
-		int rowCount = jumunDao.create(jumun);
-		return rowCount;
+		jumunDao.create(jumun);
+		return jumunDao.selectJumunSeqNo();
+		
+	}
+	//주문정보 찾기
+	public Jumun selectByJumunNo(int jumun_no) throws Exception {
+		return jumunDao.selectByJumunNo(jumun_no);
+	}
+	*/
+	//주문정보 입력
+	public int jumunInsert(Jumun jumun) throws Exception {
+		return jumunDao.create(jumun);
+	}
+	//주문번호 찾기
+	public int selectJumunSeqNo() throws Exception {
+		return jumunDao.selectJumunSeqNo();
 	}
 	//주문정보 찾기
 	public Jumun selectByJumunNo(int jumun_no) throws Exception {

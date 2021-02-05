@@ -21,6 +21,10 @@ public class JumunDao {
 	pstmt.setInt(7,jumun.getStore_no());
 	int rowCount=pstmt.executeUpdate();
 	pstmt.close();
+	
+	
+	
+	
 	ConnectionFactory.releaseConnection(con);
 	return rowCount;
 	}
@@ -45,6 +49,18 @@ public class JumunDao {
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);
 		return jumunList;
+	}
+	public int selectJumunSeqNo() throws Exception {
+		Connection con=ConnectionFactory.getConnection();
+		PreparedStatement pstmt=con.prepareStatement(JumunSQL.JUMUN_SELECT_JUMUN_SEQ_NO);
+		ResultSet rs = pstmt.executeQuery();
+		int j_no=-9999;
+		if (rs.next()) {
+			j_no=rs.getInt("j_no");
+		}
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
+		return j_no;
 	}
 	public Jumun selectByJumunNo(int jumun_no) throws Exception {
 		Jumun jumun=new Jumun();

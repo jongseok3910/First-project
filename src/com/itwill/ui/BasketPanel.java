@@ -47,8 +47,21 @@ public class BasketPanel extends JPanel {
 			public void componentShown(ComponentEvent e) {
 				//입력안하고 열었을 때 널포인터익셉션 생김
 				jumunListTable();
-				Jumun selectedJumun = bob4JoMainFrame.selectedJumun();
-				totalTF.setText(selectedJumun.getJumun_sum()+"");
+				int jumun_no=0;
+				try {
+					jumun_no = jumunService.selectJumunSeqNo();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				Jumun jumun=null;
+				try {
+					jumun = jumunService.selectByJumunNo(jumun_no);
+				} catch (Exception e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				totalTF.setText(jumun.getJumun_sum()+"");
 			}
 		});
 		setBackground(new Color(255, 204, 51));
@@ -117,19 +130,32 @@ public class BasketPanel extends JPanel {
 		});
 		paymentBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Jumun selectedJumun = bob4JoMainFrame.selectedJumun();
+				int jumun_no=0;
+				try {
+					jumun_no = jumunService.selectJumunSeqNo();
+				} catch (Exception e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
+				}
+				Jumun jumun=null;
+				try {
+					jumun = jumunService.selectByJumunNo(jumun_no);
+				} catch (Exception e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
 				String jumun_request = requestTF.getText();
 				int paymentTypeIndex = paymentCB.getSelectedIndex();
 				if(paymentTypeIndex==0) {
 					//카드결제
 					try {
-						jumunService.jumunInsert(new Jumun(selectedJumun.getJumun_quantity(),
-														   selectedJumun.getJumun_sum(),
+						jumunService.jumunInsert(new Jumun(jumun.getJumun_quantity(),
+														   jumun.getJumun_sum(),
 														   jumun_request,
 														   "카드결제",
-														   selectedJumun.getMember_no(),
-														   selectedJumun.getFood_no(),
-														   selectedJumun.getStore_no()));
+														   jumun.getMember_no(),
+														   jumun.getFood_no(),
+														   jumun.getStore_no()));
 						CardPasswordCheckDialog cardPasswordCheckDialog = new CardPasswordCheckDialog();
 						cardPasswordCheckDialog.setBasketPanel(BasketPanel.this);
 						cardPasswordCheckDialog.setModal(true);
@@ -141,13 +167,13 @@ public class BasketPanel extends JPanel {
 				}else if(paymentTypeIndex==1) {
 					//현장결제
 					try {
-						jumunService.jumunInsert(new Jumun(selectedJumun.getJumun_quantity(),
-														   selectedJumun.getJumun_sum(),
+						jumunService.jumunInsert(new Jumun(jumun.getJumun_quantity(),
+														   jumun.getJumun_sum(),
 														   jumun_request,
 														   "현장결제",
-														   selectedJumun.getMember_no(),
-														   selectedJumun.getFood_no(),
-														   selectedJumun.getStore_no()));
+														   jumun.getMember_no(),
+														   jumun.getFood_no(),
+														   jumun.getStore_no()));
 						JOptionPane.showMessageDialog(null, "주문이 완료되었습니다");
 						//주문목록
 						bob4JoMainFrame.changePanel(2);
@@ -197,7 +223,14 @@ public class BasketPanel extends JPanel {
 			if(jumunService==null) {
 				return;
 			}
-			Jumun jumun=bob4JoMainFrame.selectedJumun();
+			int jumun_no=jumunService.selectJumunSeqNo();
+			Jumun jumun=null;
+			try {
+				jumun = jumunService.selectByJumunNo(jumun_no);
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 			Food food=jumunService.selectByFoodNo(jumun.getFood_no());
 			
 			Vector jumunVector = new Vector();
