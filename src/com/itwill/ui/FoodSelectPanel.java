@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTabbedPane;
 import java.awt.Color;
@@ -234,28 +235,32 @@ public class FoodSelectPanel extends JPanel {
 		basketBtn = new JButton("장바구니");
 		basketBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int Store_no = storeListCB.getSelectedIndex()+1;
-				int jumun_quantity = quantityCB.getSelectedIndex()+1;
-				int index=foodTabbedPane.getSelectedIndex();
-				int category_No=(index+1)*10;
-				String food_name=selectedFoodName;
-				Food findFood=null;
 				try {
-					findFood=jumunService.selectByFoodName(food_name);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					int Store_no = storeListCB.getSelectedIndex()+1;
+					int jumun_quantity = quantityCB.getSelectedIndex()+1;
+					int index=foodTabbedPane.getSelectedIndex();
+					int category_No=(index+1)*10;
+					String food_name=selectedFoodName;
+					Food findFood=null;
+					try {
+						findFood=jumunService.selectByFoodName(food_name);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					int food_no=findFood.getFood_no();
+					int jumun_sum=findFood.getFood_price()*jumun_quantity;
+					/*
+					 *로그인 한 멤버넘버 받아오기
+					 */
+					selectedJumun = new Jumun(jumun_quantity, jumun_sum, "", "", bob4JoMainFrame.loginMember.getMember_no(), food_no, Store_no);
+					/*
+					 * 장바구니 패널(탭)으로 넘어가기
+					 */
+					bob4JoMainFrame.changePanel(1);
+				}catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "지점과 메뉴를 선택하세요");
 				}
-				int food_no=findFood.getFood_no();
-				int jumun_sum=findFood.getFood_price()*jumun_quantity;
-				/*
-				 *로그인 한 멤버넘버 받아오기
-				 */
-				selectedJumun = new Jumun(jumun_quantity, jumun_sum, "", "", bob4JoMainFrame.loginMember.getMember_no(), food_no, Store_no);
-				/*
-				 * 장바구니 패널(탭)으로 넘어가기
-				 */
-				bob4JoMainFrame.changePanel(1);
 			}
 		});
 		basketBtn.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
