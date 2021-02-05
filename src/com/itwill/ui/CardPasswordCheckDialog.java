@@ -62,24 +62,25 @@ public class CardPasswordCheckDialog extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-					MemberInfo member = bob4JoMainFrame.loginMember;
-					String member_no = member.getMember_no();
-				//	Card card = jumunService.select 
-					try {
-						//jumunService.cardPasswordCheck
-						if (result == 0) {
-						//	Jumun card = jumunService.select(card_noStr);
-						//	bob4JoMainFrame.jumunService(cardpassword);
-						}else (result == 1){
-							JOptionPane.showMessageDialog(null,"카드 비밀번호가 일치하지 않습니다.")
-							
-						}
-						catch (Exception e1) {
-							e1.printStackTrace();
-						}
-					}
-					}
-				});
+
+//					MemberInfo member = bob4JoMainFrame.loginMember;
+//					String member_no = member.getMember_no();
+//				//	Card card = jumunService.select 
+//					try {
+//						//jumunService.cardPasswordCheck
+//						if (result == 0) {
+//						//	Jumun card = jumunService.select(card_noStr);
+//						//	bob4JoMainFrame.jumunService(cardpassword);
+//						}else (result == 1){
+//							JOptionPane.showMessageDialog(null,"카드 비밀번호가 일치하지 않습니다.");
+//							
+//						}
+//						catch (Exception e1) {
+//							e1.printStackTrace();
+//						}
+//					}
+//					}
+//				});
 				okButton.setBackground(Color.GREEN);
 				okButton.setForeground(Color.WHITE);
 				okButton.setActionCommand("OK");
@@ -88,6 +89,11 @@ public class CardPasswordCheckDialog extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setBackground(Color.GREEN);
 				cancelButton.setForeground(Color.WHITE);
 				cancelButton.setActionCommand("Cancel");
