@@ -279,7 +279,7 @@ public class FoodSelectPanel extends JPanel {
 				int food_no=findFood.getFood_no();
 				int jumun_sum=findFood.getFood_price()*jumun_quantity;
 				/*
-				 *로그인 한 멤버넘버 받아오기★★★★★★★★★★★★★★★★
+				 *로그인 한 멤버넘버 받아오기
 				 */
 				Jumun jumun = new Jumun(0, jumun_quantity, jumun_sum, "", "", "", bob4JoMainFrame.loginMember.getMember_no(), food_no, Store_no);
 				try {
