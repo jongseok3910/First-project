@@ -95,6 +95,6 @@ public class MemberInfoPanel extends JPanel {
 	}
 
 	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
-		this.bob4JoMainFrame=bob4JoMainFrame;		
+		this.bob4JoMainFrame=bob4JoMainFrame;
 	}
 }

@@ -163,6 +163,13 @@ public class BasketPanel extends JPanel {
 		add(paymentBtn);
 		
 		cancleBtn = new JButton("취소");
+		
+		cancleBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bob4JoMainFrame.changePanel(0);
+			}
+		});
+		
 		cancleBtn.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
 		cancleBtn.setBounds(237, 556, 132, 23);
 		add(cancleBtn);
