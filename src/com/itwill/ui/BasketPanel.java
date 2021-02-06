@@ -46,7 +46,6 @@ public class BasketPanel extends JPanel {
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
-				//입력안하고 열었을 때 널포인터익셉션 생김
 				jumunListTable();
 				List<Jumun> jumunList=null;
 				try {
@@ -130,32 +129,17 @@ public class BasketPanel extends JPanel {
 		});
 		paymentBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Jumun jumun=null;
-				/*
-				 * 수정해야함★★★★★★★★★★★★★★★★★★★★★
-				 
-				try {
-					jumun = jumunService.selectByJumunNo(1);
-				} catch (Exception e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
+				String member_no = bob4JoMainFrame.loginMember.getMember_no();
 				String jumun_request = requestTF.getText();
 				int paymentTypeIndex = paymentCB.getSelectedIndex();
 				if(paymentTypeIndex==0) {
 					//카드결제
 					try {
-						jumunService.jumunInsert(new Jumun(jumun.getJumun_quantity(),
-														   jumun.getJumun_sum(),
-														   jumun_request,
-														   "카드결제",
-														   jumun.getMember_no(),
-														   jumun.getFood_no(),
-														   jumun.getStore_no()));
 						CardPasswordCheckDialog cardPasswordCheckDialog = new CardPasswordCheckDialog();
 						cardPasswordCheckDialog.setBasketPanel(BasketPanel.this);
 						cardPasswordCheckDialog.setModal(true);
 						cardPasswordCheckDialog.setVisible(true);
+						//jumunService.updateByJumunTypeIsNull(jumun_request,"카드결제",member_no);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -163,13 +147,7 @@ public class BasketPanel extends JPanel {
 				}else if(paymentTypeIndex==1) {
 					//현장결제
 					try {
-						jumunService.jumunInsert(new Jumun(jumun.getJumun_quantity(),
-														   jumun.getJumun_sum(),
-														   jumun_request,
-														   "현장결제",
-														   jumun.getMember_no(),
-														   jumun.getFood_no(),
-														   jumun.getStore_no()));
+						jumunService.updateByJumunTypeIsNull(jumun_request,"현장결제",member_no);
 						JOptionPane.showMessageDialog(null, "주문이 완료되었습니다");
 						//주문목록
 						bob4JoMainFrame.changePanel(2);
@@ -179,7 +157,7 @@ public class BasketPanel extends JPanel {
 						e1.printStackTrace();
 					}
 				}
-				*/
+				
 			}
 		});
 		paymentBtn.setFont(new Font("함초롬돋움", Font.PLAIN, 12));

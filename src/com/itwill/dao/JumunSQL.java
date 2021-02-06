@@ -29,6 +29,8 @@ public class JumunSQL {
 			"select * from jumun";
 	public static final String JUMUN_UPDATE_BY_JUMUN_NO=
 			"update jumun set jumun_quantity=?, jumun_sum=?,jumun_request=?,jumun_paymentType=?,jumun_paymentTime=?,member_no=?,food_no=?,store_no=? where jumun_no=?";
+	public static final String JUMUN_UPDATE_BY_MEMBER_NO_TYPE_IS_NULL=
+			"update jumun set JUMUN_REQUEST=?,JUMUN_PAYMENTTYPE=?,JUMUN_PAYMENTTIME=sysdate where JUMUN_PAYMENTTYPE is null and MEMBER_NO=?";
 	public static final String JUMUN_DELETE_BY_JUMUN_NO=
 			"delete jumun where jumun_no=?";
 }

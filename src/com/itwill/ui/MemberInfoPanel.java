@@ -40,7 +40,7 @@ public class MemberInfoPanel extends JPanel {
 	public MemberInfoPanel() {
 		setLayout(null);
 		
-		JLabel nameLb = new JLabel("닉네임");
+		JLabel nameLb = new JLabel("이름");
 		nameLb.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLb.setBounds(32, 260, 57, 15);
 		add(nameLb);
