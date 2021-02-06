@@ -148,7 +148,8 @@ public class BasketPanel extends JPanel {
 							JOptionPane.showMessageDialog(null, "등록된 카드가 없습니다");
 							return;
 						}
-						//jumunService.updateByJumunTypeIsNull(jumun_request,"카드결제",member_no);
+						jumunService.updateByJumunTypeIsNull(jumun_request,"카드결제",member_no);
+						bob4JoMainFrame.changePanel(2);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

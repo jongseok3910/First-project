@@ -131,23 +131,17 @@ public class JumunDao {
 		ConnectionFactory.releaseConnection(con);
 		return rowCount;
 	}
-	public List<Jumun> updateByTypeIsNull(String request, String paymentType, String member_no) throws Exception {
+	public int updateByTypeIsNull(String request, String paymentType, String member_no) throws Exception {
 		ArrayList<Jumun> jumunList = new ArrayList<Jumun>();
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(JumunSQL.JUMUN_UPDATE_BY_MEMBER_NO_TYPE_IS_NULL);
 		pstmt.setString(1, request);
 		pstmt.setString(2, paymentType);
 		pstmt.setString(3, member_no);
-		ResultSet rs = pstmt.executeQuery();
-		while (rs.next()) {
-			jumunList.add(new Jumun(rs.getInt("jumun_no"), rs.getInt("jumun_quantity"), rs.getInt("jumun_sum"),
-					rs.getString("jumun_request"), rs.getString("jumun_paymentType"), rs.getString("jumun_paymentTime"),
-					rs.getString("member_no"), rs.getInt("food_no"), rs.getInt("store_no")));
-		}
-		rs.close();
+		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);
-		return jumunList;
+		return rowCount;
 	}
 
 	public int deleteByNo(int jumun_no) throws Exception {

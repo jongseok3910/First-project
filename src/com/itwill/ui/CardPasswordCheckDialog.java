@@ -76,7 +76,6 @@ public class CardPasswordCheckDialog extends JDialog {
 						 String passwordStr = new String(passChars);
 						 if(passwordStr.equals(card.getCard_password()+"")) {
 							 JOptionPane.showMessageDialog(null, "결제가 완료되었습니다.");
-							 bob4JoMainFrame.changePanel(2);
 							 dispose();
 						 }else if(passwordStr.trim().equals("")) {
 							 JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요.");
