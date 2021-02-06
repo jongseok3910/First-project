@@ -98,7 +98,7 @@ public class JumunService {
 		return jumunDao.selectByTypeIsNull(member_no);
 	}
 	//결제하기
-	public List<Jumun> updateByJumunTypeIsNull(String request, String paymentType, String member_no) throws Exception {
+	public int updateByJumunTypeIsNull(String request, String paymentType, String member_no) throws Exception {
 		return jumunDao.updateByTypeIsNull(request, paymentType, member_no);
 	}
 }
