@@ -21,6 +21,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class MemberInfoPanel extends JPanel {
 	private JTextField nameTF;
@@ -253,6 +255,16 @@ public class MemberInfoPanel extends JPanel {
 		add(PhoneNumberLb);
 		
 		phoneNumberTF = new JTextField();
+		phoneNumberTF.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c)) {
+					e.consume();
+					return;
+				}
+			}
+		});
 		phoneNumberTF.setColumns(10);
 		phoneNumberTF.setBounds(102, 308, 207, 21);
 		add(phoneNumberTF);

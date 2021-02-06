@@ -23,6 +23,8 @@ import java.awt.Color;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class CardPasswordCheckDialog extends JDialog {
 
@@ -56,6 +58,16 @@ public class CardPasswordCheckDialog extends JDialog {
 		contentPanel.add(lblNewLabel);
 		
 		passwordCheckTF = new JPasswordField();
+		passwordCheckTF.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c)) {
+					e.consume();
+					return;
+				}
+			}
+		});
 		passwordCheckTF.setBounds(12, 68, 251, 21);
 		contentPanel.add(passwordCheckTF);
 		{
