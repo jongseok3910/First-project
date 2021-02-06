@@ -19,13 +19,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class MemberInfoPanel extends JPanel {
-	private JTextField nameField;
+	private JTextField nameTF;
 	private JPasswordField passwordTF;
 	private JTextField addressTF;
 	private JButton withdrawBtn;
 	private JButton nameChangeBtn;
 	private JButton passwordChangeBtn;
-	private JButton addressBtn;
+	private JButton addressChangeBtn;
 	
 	Bob4JoMainFrame bob4JoMainFrame;
 	
@@ -45,10 +45,10 @@ public class MemberInfoPanel extends JPanel {
 		nameLb.setBounds(32, 260, 57, 15);
 		add(nameLb);
 		
-		nameField = new JTextField();
-		nameField.setBounds(101, 256, 207, 22);
-		add(nameField);
-		nameField.setColumns(10);
+		nameTF = new JTextField();
+		nameTF.setBounds(101, 256, 207, 22);
+		add(nameTF);
+		nameTF.setColumns(10);
 		
 		nameChangeBtn = new JButton("변경");
 		nameChangeBtn.addActionListener(new ActionListener() {
@@ -56,18 +56,19 @@ public class MemberInfoPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try {
 //					이름 변경칸 공백이면 이름을 입력해주세요 출력
-					if(nameField.getText().trim().equals("")) {
-						nameField.setText("");
+					if(nameTF.getText().trim().equals("")) {
+						nameTF.setText("");
+						nameTF.requestFocus();
 						JOptionPane.showMessageDialog(null, "변경할 이름을 입력해주세요.");
 						return;
 					}else {
 					memberInfo = bob4JoMainFrame.loginMember;
-					String nameStr = nameField.getText();
+					String nameStr = nameTF.getText();
 					memberInfo.setMember_name(nameStr);
 //					System.out.println(memberInfo);
 					memberService.memberUpdate(memberInfo);
 					JOptionPane.showMessageDialog(null, "이름이 변경되었습니다.");
-					nameField.setText("");
+					nameTF.setText("");
 					// 타이틀변경
 					bob4JoMainFrame.setTitle(memberInfo.getMember_name()+"님 로그인");
 					}
@@ -98,6 +99,7 @@ public class MemberInfoPanel extends JPanel {
 //					비밀번호 변경칸 공백이면 비밀번호를 입력해주세요 출력
 					if(passwordTF.getText().trim().equals("")) {
 						passwordTF.setText("");
+						passwordTF.requestFocus();
 						JOptionPane.showMessageDialog(null, "변경할 비밀번호를 입력해주세요.");
 						return;
 					}else {
@@ -123,14 +125,15 @@ public class MemberInfoPanel extends JPanel {
 		add(addressTF);
 		addressTF.setColumns(10);
 		
-		addressBtn = new JButton("변경");
-		addressBtn.addActionListener(new ActionListener() {
+		addressChangeBtn = new JButton("변경");
+		addressChangeBtn.addActionListener(new ActionListener() {
 //			변경버튼 클릭시 주소변경
 			public void actionPerformed(ActionEvent e) {
 				try {
 //					비밀번호 변경칸 공백이면 비밀번호를 입력해주세요 출력
 					if(addressTF.getText().trim().equals("")) {
 						addressTF.setText("");
+						addressTF.requestFocus();
 						JOptionPane.showMessageDialog(null, "변경할 주소를 입력해주세요.");
 						return;
 					}else {
@@ -146,8 +149,8 @@ public class MemberInfoPanel extends JPanel {
 				}
 			}
 		});
-		addressBtn.setBounds(312, 350, 71, 23);
-		add(addressBtn);
+		addressChangeBtn.setBounds(312, 350, 71, 23);
+		add(addressChangeBtn);
 		
 		JLabel lblNewLabel_3 = new JLabel("주소");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);

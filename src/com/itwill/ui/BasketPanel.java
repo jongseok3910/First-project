@@ -134,7 +134,9 @@ public class BasketPanel extends JPanel {
 				String jumun_request = requestTF.getText();
 				int paymentTypeIndex = paymentCB.getSelectedIndex();
 				if(paymentTypeIndex==0) {
-					//카드결제
+					/*
+					 * 카드결제 완성안됨
+					 */
 					try {
 						Card card = jumunService.selectByCardMemberNo(member_no);
 						if(card!=null) {
