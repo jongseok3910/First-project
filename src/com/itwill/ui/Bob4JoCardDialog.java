@@ -19,6 +19,8 @@ import java.awt.Color;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Bob4JoCardDialog extends JDialog {
 
@@ -56,6 +58,16 @@ public class Bob4JoCardDialog extends JDialog {
 		}
 		
 		cardNoTF = new JTextField();
+		cardNoTF.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c)) {
+					e.consume();
+					return;
+				}
+			}
+		});
 		cardNoTF.setBounds(180, 324, 215, 21);
 		contentPanel.add(cardNoTF);
 		cardNoTF.setColumns(10);
@@ -73,11 +85,31 @@ public class Bob4JoCardDialog extends JDialog {
 		contentPanel.add(lblNewLabel_4);
 		
 		cvcTF = new JTextField();
+		cvcTF.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c)) {
+					e.consume();
+					return;
+				}
+			}
+		});
 		cvcTF.setBounds(180, 424, 50, 21);
 		contentPanel.add(cvcTF);
 		cvcTF.setColumns(10);
 		
 		validityMTF = new JTextField();
+		validityMTF.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c)) {
+					e.consume();
+					return;
+				}
+			}
+		});
 		validityMTF.setBounds(180, 373, 50, 21);
 		contentPanel.add(validityMTF);
 		validityMTF.setColumns(10);
@@ -88,6 +120,16 @@ public class Bob4JoCardDialog extends JDialog {
 		contentPanel.add(lblNewLabel_5);
 		
 		validityYTF = new JTextField();
+		validityYTF.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c)) {
+					e.consume();
+					return;
+				}
+			}
+		});
 		validityYTF.setColumns(10);
 		validityYTF.setBounds(290, 373, 50, 21);
 		contentPanel.add(validityYTF);
@@ -103,6 +145,16 @@ public class Bob4JoCardDialog extends JDialog {
 		contentPanel.add(lblNewLabel_7);
 		
 		passwordTF = new JPasswordField();
+		passwordTF.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c)) {
+					e.consume();
+					return;
+				}
+			}
+		});
 		passwordTF.setBounds(180, 468, 95, 21);
 		contentPanel.add(passwordTF);
 		{
