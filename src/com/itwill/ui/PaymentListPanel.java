@@ -15,8 +15,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.itwill.service.JumunService;
+import com.itwill.vo.Food;
 import com.itwill.vo.Jumun;
 import com.itwill.vo.MemberInfo;
+import com.itwill.vo.Store;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -32,7 +34,7 @@ import java.awt.event.MouseEvent;
 
 public class PaymentListPanel extends JPanel {
 	private JTextField storeNameTF;
-	private JTextField menuTF;
+	private JTextField foodNameTF;
 	private JTextField quantityTF;
 	private JTextField sumTF;
 	private JList showPaymentDateList;
@@ -69,7 +71,17 @@ public class PaymentListPanel extends JPanel {
 					MemberInfo member = bob4JoMainFrame.loginMember;
 					String member_no=member.getMember_no();
 					List<Jumun> jumunList = jumunService.selectByJumunMemberNoTypeIsNotNull(member_no);
-					jumunList.get(selectedIndex);
+					Jumun jumun = jumunList.get(selectedIndex);
+					int store_no=jumun.getStore_no();
+					Store store = jumunService.selectByStoreNo(store_no);
+					String store_name=store.getStore_name();
+					int food_no=jumun.getFood_no();
+					Food food=jumunService.selectByFoodNo(food_no);
+					String food_name=food.getFood_name();
+					storeNameTF.setText(store_name);
+					foodNameTF.setText(food_name);
+					quantityTF.setText(jumun.getJumun_quantity()+"");
+					sumTF.setText(jumun.getJumun_sum()+"");
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -122,12 +134,12 @@ public class PaymentListPanel extends JPanel {
 		add(storeNameTF);
 		storeNameTF.setColumns(10);
 		
-		menuTF = new JTextField();
-		menuTF.setEditable(false);
-		menuTF.setColumns(10);
-		menuTF.setBackground(new Color(255, 239, 213));
-		menuTF.setBounds(113, 457, 237, 21);
-		add(menuTF);
+		foodNameTF = new JTextField();
+		foodNameTF.setEditable(false);
+		foodNameTF.setColumns(10);
+		foodNameTF.setBackground(new Color(255, 239, 213));
+		foodNameTF.setBounds(113, 457, 237, 21);
+		add(foodNameTF);
 		
 		quantityTF = new JTextField();
 		quantityTF.setEditable(false);
