@@ -207,7 +207,7 @@ public class MemberInfoPanel extends JPanel {
 
 		//service객체 생성
 		memberService = new MemberService();
-	}
+	}//멤버인포패널
 	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
 		this.bob4JoMainFrame=bob4JoMainFrame;		
 	}

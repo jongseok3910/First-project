@@ -7,35 +7,31 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.itwill.service.JumunService;
+import com.itwill.vo.Card;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Bob4JoCardDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_4;
-	private JPasswordField passwordField;
+	private JTextField cardNoTF;
+	private JTextField cvcTF;
+	private JTextField validityMTF;
+	private JTextField validityYTF;
+	private JPasswordField passwordTF;
 	
+	Bob4JoMainFrame bob4JoMainFrame;
 	MemberInfoPanel memberInfoPanel;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			Bob4JoCardDialog dialog = new Bob4JoCardDialog();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	JumunService jumunService;
 
 	/**
 	 * Create the dialog.
@@ -59,10 +55,10 @@ public class Bob4JoCardDialog extends JDialog {
 			contentPanel.add(lblNewLabel_1);
 		}
 		
-		textField = new JTextField();
-		textField.setBounds(180, 324, 215, 21);
-		contentPanel.add(textField);
-		textField.setColumns(10);
+		cardNoTF = new JTextField();
+		cardNoTF.setBounds(180, 324, 215, 21);
+		contentPanel.add(cardNoTF);
+		cardNoTF.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("유효기간");
 		lblNewLabel_2.setBounds(64, 373, 75, 15);
@@ -76,25 +72,25 @@ public class Bob4JoCardDialog extends JDialog {
 		lblNewLabel_4.setBounds(64, 471, 104, 15);
 		contentPanel.add(lblNewLabel_4);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(180, 424, 50, 21);
-		contentPanel.add(textField_1);
-		textField_1.setColumns(10);
+		cvcTF = new JTextField();
+		cvcTF.setBounds(180, 424, 50, 21);
+		contentPanel.add(cvcTF);
+		cvcTF.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(180, 373, 50, 21);
-		contentPanel.add(textField_2);
-		textField_2.setColumns(10);
+		validityMTF = new JTextField();
+		validityMTF.setBounds(180, 373, 50, 21);
+		contentPanel.add(validityMTF);
+		validityMTF.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("월(2자리)/");
 		lblNewLabel_5.setForeground(Color.LIGHT_GRAY);
 		lblNewLabel_5.setBounds(231, 376, 81, 15);
 		contentPanel.add(lblNewLabel_5);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(290, 373, 50, 21);
-		contentPanel.add(textField_4);
+		validityYTF = new JTextField();
+		validityYTF.setColumns(10);
+		validityYTF.setBounds(290, 373, 50, 21);
+		contentPanel.add(validityYTF);
 		
 		JLabel lblNewLabel_6 = new JLabel("년(2자리)");
 		lblNewLabel_6.setForeground(Color.LIGHT_GRAY);
@@ -106,9 +102,9 @@ public class Bob4JoCardDialog extends JDialog {
 		lblNewLabel_7.setBounds(231, 427, 245, 15);
 		contentPanel.add(lblNewLabel_7);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(180, 468, 95, 21);
-		contentPanel.add(passwordField);
+		passwordTF = new JPasswordField();
+		passwordTF.setBounds(180, 468, 95, 21);
+		contentPanel.add(passwordTF);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(Color.WHITE);
@@ -116,6 +112,27 @@ public class Bob4JoCardDialog extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						String card_no=cardNoTF.getText();
+						String validityM = validityMTF.getText();
+						String validityY = validityYTF.getText();
+						String card_validity = validityM+"/"+validityY;
+						int card_cvc = Integer.parseInt(cvcTF.getText());
+						int card_password = Integer.parseInt(passwordTF.getText());
+						String member_no=bob4JoMainFrame.loginMember.getMember_no();
+						Card card = new Card(card_no,card_validity,card_cvc,card_password,member_no);
+						try {
+							jumunService.CardInsert(card);
+							JOptionPane.showMessageDialog(null, "카드등록이 완료되었습니다.");
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						
+					}
+				});
 				okButton.setForeground(new Color(255, 255, 255));
 				okButton.setBackground(new Color(51, 255, 0));
 				okButton.setActionCommand("OK");
@@ -124,15 +141,27 @@ public class Bob4JoCardDialog extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setForeground(new Color(255, 255, 255));
 				cancelButton.setBackground(new Color(51, 255, 0));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
-	}
+		//service객체 생성
+		jumunService = new JumunService();
+		
+	}//카드다이얼로그
 
+	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
+		this.bob4JoMainFrame = bob4JoMainFrame;
+	}
 	public void setMemberInfoPanel(MemberInfoPanel memberInfoPanel) {
 		this.memberInfoPanel = memberInfoPanel;
 	}
+
 }
