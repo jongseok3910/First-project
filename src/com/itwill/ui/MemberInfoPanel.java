@@ -180,7 +180,7 @@ public class MemberInfoPanel extends JPanel {
 				}
 			}
 		});
-		addressChangeBtn.setBounds(313, 307, 71, 23);
+		addressChangeBtn.setBounds(313, 352, 71, 23);
 		add(addressChangeBtn);
 		
 		JLabel addressLb = new JLabel("주소");
@@ -296,7 +296,7 @@ public class MemberInfoPanel extends JPanel {
 				}
 			}
 		});
-		phoneNumberBtn.setBounds(313, 352, 71, 23);
+		phoneNumberBtn.setBounds(313, 307, 71, 23);
 		add(phoneNumberBtn);
 
 		//service객체 생성
