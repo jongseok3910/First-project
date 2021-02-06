@@ -23,7 +23,7 @@ public class CardDao {
 		return rowCount;
 	}
 
-	public int deleteByNo(String card_no) throws Exception {
+	public int deleteByCardNo(String card_no) throws Exception {
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(CardSQL.CARD_DELETE);
 		pstmt.setString(1, card_no);
@@ -34,7 +34,7 @@ public class CardDao {
 	}
 	
 	
-	public int updateByNo(Card card) throws Exception {
+	public int updateByMemberNo(Card card) throws Exception {
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(CardSQL.CARD_UPDATE_BY_MEMBER_NO);
 		pstmt.setString(1, card.getCard_no());

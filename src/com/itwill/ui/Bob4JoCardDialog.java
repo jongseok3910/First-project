@@ -114,23 +114,40 @@ public class Bob4JoCardDialog extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						String card_no=cardNoTF.getText();
-						String validityM = validityMTF.getText();
-						String validityY = validityYTF.getText();
-						String card_validity = validityM+"/"+validityY;
-						int card_cvc = Integer.parseInt(cvcTF.getText());
-						int card_password = Integer.parseInt(passwordTF.getText());
-						String member_no=bob4JoMainFrame.loginMember.getMember_no();
-						Card card = new Card(card_no,card_validity,card_cvc,card_password,member_no);
-						try {
-							jumunService.CardInsert(card);
-							JOptionPane.showMessageDialog(null, "카드등록이 완료되었습니다.");
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+						if(cardNoTF.getText().trim().equals("")||
+								validityMTF.getText().trim().equals("")||
+								validityYTF.getText().trim().equals("")||
+								cvcTF.getText().trim().equals("")||
+								passwordTF.getText().trim().equals("")
+								) {
+							JOptionPane.showMessageDialog(null, "카드정보를 정확히 입력해주세요.");
+							return;
 						}
-						
-						
+						try {
+							String card_no=cardNoTF.getText();
+							int validityM = Integer.parseInt(validityMTF.getText());
+							int validityY = Integer.parseInt(validityYTF.getText());
+							String card_validity = validityM+"/"+validityY;
+							int card_cvc = Integer.parseInt(cvcTF.getText());
+							int card_password = Integer.parseInt(passwordTF.getText());
+							/*
+							 * 로그인멤버를 못불러옴
+							 * "2021/02/0616"
+							 */
+							//String member_no=memberInfoPanel.memberInfo.getMember_no();
+							Card card = new Card(card_no,card_validity,card_cvc,card_password,"2021/02/0616");
+							if(memberInfoPanel.registeredCard==null) {
+								jumunService.cardInsert(card);
+							}else {
+								jumunService.updateByCardMemberNo(card);
+							}
+							memberInfoPanel.creditCardRegistLb.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드이미지.png")));
+							JOptionPane.showMessageDialog(null, "카드등록이 완료되었습니다.");
+							dispose();
+						} catch (Exception e1) {
+							JOptionPane.showMessageDialog(null, "카드정보를 정확히 입력해주세요.");
+							return;
+						}
 					}
 				});
 				okButton.setForeground(new Color(255, 255, 255));

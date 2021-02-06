@@ -6,7 +6,9 @@ import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
+import com.itwill.service.JumunService;
 import com.itwill.service.MemberService;
+import com.itwill.vo.Card;
 import com.itwill.vo.MemberInfo;
 
 import javax.swing.JTextField;
@@ -17,6 +19,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class MemberInfoPanel extends JPanel {
 	private JTextField nameTF;
@@ -28,16 +32,37 @@ public class MemberInfoPanel extends JPanel {
 	private JButton addressChangeBtn;
 	
 	Bob4JoMainFrame bob4JoMainFrame;
-	
 	FoodSelectPanel foodSelectPanel;
-	
-	MemberInfo memberInfo; 
+	MemberInfo memberInfo;
 	MemberService memberService;
+	JLabel creditCardRegistLb;
+	JumunService jumunService;
+	Card registeredCard;
+	ImageIcon cardUnRegistered;
+	ImageIcon cardRegistered;
 
 	/**
 	 * Create the panel.
 	 */
 	public MemberInfoPanel() {
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				//회원정보패널을 눌렀을 때
+				try {
+					String member_no=bob4JoMainFrame.loginMember.getMember_no();
+					registeredCard = jumunService.selectByCardMemberNo(member_no);
+					if(registeredCard==null) {
+						creditCardRegistLb.setIcon(cardUnRegistered);			
+					} else {
+						creditCardRegistLb.setIcon(cardRegistered);
+					}
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		setLayout(null);
 		
 		JLabel nameLb = new JLabel("이름");
@@ -157,7 +182,7 @@ public class MemberInfoPanel extends JPanel {
 		lblNewLabel_3.setBounds(32, 354, 57, 15);
 		add(lblNewLabel_3);
 		
-		JLabel creditCardRegistLb = new JLabel("");
+		creditCardRegistLb = new JLabel("");
 		creditCardRegistLb.addMouseListener(new MouseAdapter() {
 //			카드등록 그림 클릭시 카드 다이알로그 연결
 			@Override
@@ -168,8 +193,11 @@ public class MemberInfoPanel extends JPanel {
 				bob4joCardDialog.setVisible(true);
 			}
 		});
+		cardUnRegistered = new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드등록.jpg"));
+		cardRegistered = new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드이미지.png"));
+		
 		creditCardRegistLb.setHorizontalAlignment(SwingConstants.CENTER);
-		creditCardRegistLb.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드등록.jpg")));
+		creditCardRegistLb.setIcon(cardUnRegistered);			
 		creditCardRegistLb.setBounds(39, 428, 350, 130);
 		add(creditCardRegistLb);
 		
@@ -207,6 +235,7 @@ public class MemberInfoPanel extends JPanel {
 
 		//service객체 생성
 		memberService = new MemberService();
+		jumunService = new JumunService();
 	}//멤버인포패널
 	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
 		this.bob4JoMainFrame=bob4JoMainFrame;		

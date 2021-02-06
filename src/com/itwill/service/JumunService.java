@@ -75,13 +75,16 @@ public class JumunService {
 		return jumunDao.updateByNo(jumun);
 	}
 	//Card 등록
-	public int CardInsert(Card card) throws Exception {
+	public int cardInsert(Card card) throws Exception {
 		return cardDao.create(card);
+	}
+	//Card 수정
+	public int updateByCardMemberNo(Card card) throws Exception {
+		return cardDao.updateByMemberNo(card);
 	}
 	// memberNo로 Card찾기 
 	public Card selectByCardMemberNo(String member_no) throws Exception{
 		return cardDao.selectByMemberNo(member_no);
-		
 	}
 	//주문목록 리스트
 	public List<Jumun> selectByJumunMemberNo(String member_no) throws Exception {

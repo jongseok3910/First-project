@@ -43,7 +43,6 @@ public class Bob4JoMainFrame extends JFrame {
 	private PaymentListPanel paymentListPanel;
 	private MemberInfoPanel memberInfoPanel;
 	private JTabbedPane tabbedPane;
-	private Bob4JoCardDialog bob4JoCardDialog;
 	/*
 	 * Launch the application.
 	 */
@@ -157,7 +156,6 @@ public class Bob4JoMainFrame extends JFrame {
 		basketPanel.setBob4JoMainFrame(this);
 		paymentListPanel.setBob4JoMainFrame(this);
 		memberInfoPanel.setBob4JoMainFrame(this);
-		bob4JoCardDialog.setBob4JoMainFrame(this);
 		/**************************************/
 		
 		
