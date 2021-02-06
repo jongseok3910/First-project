@@ -40,6 +40,8 @@ public class MemberInfoPanel extends JPanel {
 	Card registeredCard;
 	ImageIcon cardUnRegistered;
 	ImageIcon cardRegistered;
+	private JButton phoneNumberBtn;
+	private JTextField phoneNumberTF;
 
 	/**
 	 * Create the panel.
@@ -53,10 +55,10 @@ public class MemberInfoPanel extends JPanel {
 					String member_no=bob4JoMainFrame.loginMember.getMember_no();
 					registeredCard = jumunService.selectByCardMemberNo(member_no);
 					if(registeredCard==null) {
-//						카드 등록안됐을때
+//						카드등록 안됐을때
 						creditCardRegistLb.setIcon(cardUnRegistered);			
 					} else {
-//						카드 등록됐을때
+//						카드등록 됐을때
 						creditCardRegistLb.setIcon(cardRegistered);
 					}
 				} catch (Exception e1) {
@@ -69,11 +71,11 @@ public class MemberInfoPanel extends JPanel {
 		
 		JLabel nameLb = new JLabel("이름");
 		nameLb.setHorizontalAlignment(SwingConstants.CENTER);
-		nameLb.setBounds(32, 260, 57, 15);
+		nameLb.setBounds(33, 217, 57, 15);
 		add(nameLb);
 		
 		nameTF = new JTextField();
-		nameTF.setBounds(101, 256, 207, 22);
+		nameTF.setBounds(102, 213, 207, 22);
 		add(nameTF);
 		nameTF.setColumns(10);
 		
@@ -106,16 +108,16 @@ public class MemberInfoPanel extends JPanel {
 				
 			}
 		});
-		nameChangeBtn.setBounds(312, 256, 71, 23);
+		nameChangeBtn.setBounds(313, 213, 71, 23);
 		add(nameChangeBtn);
 		
 		JLabel passLb = new JLabel("비밀번호");
 		passLb.setHorizontalAlignment(SwingConstants.CENTER);
-		passLb.setBounds(32, 305, 57, 15);
+		passLb.setBounds(33, 262, 57, 15);
 		add(passLb);
 		
 		passwordTF = new JPasswordField();
-		passwordTF.setBounds(101, 301, 207, 23);
+		passwordTF.setBounds(102, 258, 207, 23);
 		add(passwordTF);
 		
 		passwordChangeBtn = new JButton("변경");
@@ -144,11 +146,11 @@ public class MemberInfoPanel extends JPanel {
 				}
 			}
 		});
-		passwordChangeBtn.setBounds(312, 301, 71, 23);
+		passwordChangeBtn.setBounds(313, 258, 71, 23);
 		add(passwordChangeBtn);
 		
 		addressTF = new JTextField();
-		addressTF.setBounds(101, 351, 207, 21);
+		addressTF.setBounds(102, 308, 207, 21);
 		add(addressTF);
 		addressTF.setColumns(10);
 		
@@ -176,12 +178,12 @@ public class MemberInfoPanel extends JPanel {
 				}
 			}
 		});
-		addressChangeBtn.setBounds(312, 350, 71, 23);
+		addressChangeBtn.setBounds(313, 307, 71, 23);
 		add(addressChangeBtn);
 		
 		JLabel lblNewLabel_3 = new JLabel("주소");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(32, 354, 57, 15);
+		lblNewLabel_3.setBounds(33, 311, 57, 15);
 		add(lblNewLabel_3);
 		
 		creditCardRegistLb = new JLabel("");
@@ -195,7 +197,9 @@ public class MemberInfoPanel extends JPanel {
 				bob4joCardDialog.setVisible(true);
 			}
 		});
+//		카드 미등록시 보이는 이미지
 		cardUnRegistered = new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드등록.jpg"));
+//		카드등록시 보이는 이미지
 		cardRegistered = new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드등록시보이는카드.png"));
 		
 		creditCardRegistLb.setHorizontalAlignment(SwingConstants.CENTER);
@@ -209,13 +213,13 @@ public class MemberInfoPanel extends JPanel {
 		add(문구Lb);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(33, 224, 350, 2);
+		separator.setBounds(33, 189, 350, 2);
 		add(separator);
 		
 		JLabel profileLb = new JLabel("");
 		profileLb.setHorizontalAlignment(SwingConstants.CENTER);
 		profileLb.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/회원사진.png")));
-		profileLb.setBounds(32, 27, 351, 181);
+		profileLb.setBounds(32, 10, 351, 181);
 		add(profileLb);
 		
 		withdrawBtn = new JButton("탈퇴하기");
@@ -234,6 +238,43 @@ public class MemberInfoPanel extends JPanel {
 		});
 		withdrawBtn.setBounds(281, 568, 108, 23);
 		add(withdrawBtn);
+		
+		JLabel PhoneNumberLb = new JLabel("전화번호");
+		PhoneNumberLb.setHorizontalAlignment(SwingConstants.CENTER);
+		PhoneNumberLb.setBounds(33, 356, 57, 15);
+		add(PhoneNumberLb);
+		
+		phoneNumberTF = new JTextField();
+		phoneNumberTF.setColumns(10);
+		phoneNumberTF.setBounds(102, 353, 207, 21);
+		add(phoneNumberTF);
+		
+		phoneNumberBtn = new JButton("변경");
+		phoneNumberBtn.addActionListener(new ActionListener() {
+//			변경버튼누르면 전화번호 변경
+			public void actionPerformed(ActionEvent e) {
+				try {
+//					전화번호 변경칸 공백이면 전화번호를 입력해주세요 출력
+					if(phoneNumberTF.getText().trim().equals("")) {
+						phoneNumberTF.setText("");
+						phoneNumberTF.requestFocus();
+						JOptionPane.showMessageDialog(null, "변경할 전화번호를 입력해주세요.");
+						return;
+					} else {
+						memberInfo = bob4JoMainFrame.loginMember;
+						String phoneStr = phoneNumberTF.getText();
+						memberInfo.setMember_phone(phoneStr);
+						memberService.memberUpdate(memberInfo);
+						JOptionPane.showMessageDialog(null, "전화번호가 변경되었습니다.");
+						phoneNumberTF.setText("");
+					}
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
+		});
+		phoneNumberBtn.setBounds(313, 352, 71, 23);
+		add(phoneNumberBtn);
 
 		//service객체 생성
 		memberService = new MemberService();
