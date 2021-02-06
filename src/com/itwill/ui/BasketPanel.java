@@ -40,6 +40,7 @@ public class BasketPanel extends JPanel {
 	Bob4JoMainFrame bob4JoMainFrame;
 	private JScrollPane scrollPane;
 	FoodSelectPanel foodSelectPanel;
+	private JButton deleteBtn;
 	/**
 	 * Create the panel.
 	 */
@@ -83,25 +84,25 @@ public class BasketPanel extends JPanel {
 		JLabel totalLb = new JLabel("총금액");
 		totalLb.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
 		totalLb.setHorizontalAlignment(SwingConstants.CENTER);
-		totalLb.setBounds(36, 337, 62, 21);
+		totalLb.setBounds(38, 363, 62, 21);
 		add(totalLb);
 		
 		totalTF = new JTextField();
 		totalTF.setEditable(false);
-		totalTF.setBounds(118, 337, 205, 21);
+		totalTF.setBounds(121, 363, 205, 21);
 		add(totalTF);
 		totalTF.setColumns(10);
 		
 		JLabel wonLb = new JLabel("원");
 		wonLb.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
 		wonLb.setHorizontalAlignment(SwingConstants.CENTER);
-		wonLb.setBounds(335, 340, 31, 15);
+		wonLb.setBounds(338, 366, 31, 15);
 		add(wonLb);
 		
 		JLabel requestLb = new JLabel("요청사항");
 		requestLb.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
 		requestLb.setHorizontalAlignment(SwingConstants.CENTER);
-		requestLb.setBounds(35, 412, 57, 15);
+		requestLb.setBounds(41, 412, 57, 15);
 		add(requestLb);
 		
 		requestTF = new JTextField();
@@ -112,13 +113,13 @@ public class BasketPanel extends JPanel {
 		JLabel lblNewLabel = new JLabel("결제수단");
 		lblNewLabel.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(40, 488, 57, 15);
+		lblNewLabel.setBounds(41, 455, 57, 15);
 		add(lblNewLabel);
 		
 		paymentCB = new JComboBox();
 		paymentCB.setFont(new Font("함초롬돋움", Font.PLAIN, 12));
 		paymentCB.setModel(new DefaultComboBoxModel(new String[] {"카드결제", "현장결제"}));
-		paymentCB.setBounds(118, 480, 251, 23);
+		paymentCB.setBounds(119, 451, 251, 23);
 		add(paymentCB);
 		
 		paymentBtn = new JButton("결제하기");
@@ -198,6 +199,11 @@ public class BasketPanel extends JPanel {
 		lblNewLabel_1.setIcon(new ImageIcon(BasketPanel.class.getResource("/com/itwill/ui/장바구니.png")));
 		lblNewLabel_1.setBounds(110, 49, 193, 140);
 		add(lblNewLabel_1);
+		
+		deleteBtn = new JButton("삭제");
+		deleteBtn.setBackground(Color.RED);
+		deleteBtn.setBounds(319, 317, 62, 23);
+		add(deleteBtn);
 		
 		//service객체 생성
 		jumunService = new JumunService();
