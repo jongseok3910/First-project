@@ -76,7 +76,7 @@ public class JumunService {
 	}
 
 	// memberNo로 Card찾기 
-	public Card selectByMemberNo(String member_no) throws Exception{
+	public Card selectByCardMemberNo(String member_no) throws Exception{
 		return cardDao.selectByMemberNo(member_no);
 		
 	}

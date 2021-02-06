@@ -63,6 +63,9 @@ public class PaymentListPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					int selectedIndex = showPaymentDateList.getSelectedIndex();
+					if (selectedIndex==-1) {
+						return;
+					}
 					MemberInfo member = bob4JoMainFrame.loginMember;
 					String member_no=member.getMember_no();
 					List<Jumun> jumunList = jumunService.selectByJumunMemberNoTypeIsNotNull(member_no);

@@ -5,6 +5,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.itwill.service.JumunService;
+import com.itwill.vo.Card;
 import com.itwill.vo.Food;
 import com.itwill.vo.Jumun;
 
@@ -135,10 +136,16 @@ public class BasketPanel extends JPanel {
 				if(paymentTypeIndex==0) {
 					//카드결제
 					try {
+						Card card = jumunService.selectByCardMemberNo(member_no);
+						if(card!=null) {
 						CardPasswordCheckDialog cardPasswordCheckDialog = new CardPasswordCheckDialog();
 						cardPasswordCheckDialog.setBasketPanel(BasketPanel.this);
 						cardPasswordCheckDialog.setModal(true);
 						cardPasswordCheckDialog.setVisible(true);
+						} else {
+							JOptionPane.showMessageDialog(null, "등록된 카드가 없습니다");
+							return;
+						}
 						//jumunService.updateByJumunTypeIsNull(jumun_request,"카드결제",member_no);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block

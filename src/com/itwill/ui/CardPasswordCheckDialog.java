@@ -71,7 +71,7 @@ public class CardPasswordCheckDialog extends JDialog {
 
 					try {
 						 MemberInfo member = bob4JoMainFrame.loginMember;
-						 Card card = jumunService.selectByMemberNo(member.getMember_no());
+						 Card card = jumunService.selectByCardMemberNo(member.getMember_no());
 //						 일치하면 확인되었습니다.
 						 char[] passChars = passwordField.getPassword();
 						 String passwordStr = new String(passChars);
