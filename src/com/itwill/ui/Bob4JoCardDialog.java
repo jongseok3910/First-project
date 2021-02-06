@@ -132,7 +132,6 @@ public class Bob4JoCardDialog extends JDialog {
 							int card_password = Integer.parseInt(passwordTF.getText());
 							/*
 							 * 로그인멤버를 못불러옴
-							 * "2021/02/0616"
 							 */
 							//String member_no=memberInfoPanel.memberInfo.getMember_no();
 							Card card = new Card(card_no,card_validity,card_cvc,card_password,"2021/02/0616");

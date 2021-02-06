@@ -69,6 +69,9 @@ public class CardPasswordCheckDialog extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 					try {
+						/*
+						 * 로그인멤버가 안불러와짐
+						 */
 						 //MemberInfo member = bob4JoMainFrame.loginMember;
 						 Card card = jumunService.selectByCardMemberNo("2021/02/0616");
 //						 일치하면 확인되었습니다.
