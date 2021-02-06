@@ -228,9 +228,17 @@ public class MemberInfoPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					memberInfo = bob4JoMainFrame.loginMember;
-					memberService.memberUnRegister(memberInfo.getMember_id());
-					JOptionPane.showMessageDialog(null, "탈퇴가 완료되었습니다.");
-					bob4JoMainFrame.logoutProcess();
+					int reception = JOptionPane.showConfirmDialog(null, "회원탈퇴를 하시겠습니까?","Confirm",JOptionPane.YES_NO_OPTION);
+					if(reception==JOptionPane.CLOSED_OPTION) {
+						//우측 상단 X를 눌렀을 때
+					}else if(reception==JOptionPane.YES_OPTION) {
+						//예를 눌렀을 때 회원탈퇴
+						memberService.memberUnRegister(memberInfo.getMember_id());
+						JOptionPane.showMessageDialog(null, "탈퇴가 완료되었습니다.");
+						bob4JoMainFrame.logoutProcess();
+					}else {
+						//아니오를 눌렀을 때
+					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
