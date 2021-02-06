@@ -138,11 +138,12 @@ public class Bob4JoCardDialog extends JDialog {
 							Card card = new Card(card_no,card_validity,card_cvc,card_password,"2021/02/0616");
 							if(memberInfoPanel.registeredCard==null) {
 								jumunService.cardInsert(card);
+								JOptionPane.showMessageDialog(null, "카드등록이 완료되었습니다.");
 							}else {
 								jumunService.updateByCardMemberNo(card);
+								JOptionPane.showMessageDialog(null, "카드수정이 완료되었습니다.");
 							}
 							memberInfoPanel.creditCardRegistLb.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드이미지.png")));
-							JOptionPane.showMessageDialog(null, "카드등록이 완료되었습니다.");
 							dispose();
 						} catch (Exception e1) {
 							JOptionPane.showMessageDialog(null, "카드정보를 정확히 입력해주세요.");
