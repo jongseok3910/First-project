@@ -66,6 +66,9 @@ public class CardPasswordCheckDialog extends JDialog {
 					e.consume();
 					return;
 				}
+				if(passwordCheckTF.getText().length()>=4) {
+					e.consume();
+				}
 			}
 		});
 		passwordCheckTF.setBounds(12, 68, 251, 21);

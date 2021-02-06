@@ -66,6 +66,9 @@ public class Bob4JoCardDialog extends JDialog {
 					e.consume();
 					return;
 				}
+				if(cardNoTF.getText().length()>=16) {
+					e.consume();
+				}
 			}
 		});
 		cardNoTF.setBounds(180, 324, 215, 21);
@@ -93,6 +96,9 @@ public class Bob4JoCardDialog extends JDialog {
 					e.consume();
 					return;
 				}
+				if(cvcTF.getText().length()>=3) {
+					e.consume();
+				}
 			}
 		});
 		cvcTF.setBounds(180, 424, 50, 21);
@@ -107,6 +113,9 @@ public class Bob4JoCardDialog extends JDialog {
 				if(!Character.isDigit(c)) {
 					e.consume();
 					return;
+				}
+				if(validityMTF.getText().length()>=2) {
+					e.consume();
 				}
 			}
 		});
@@ -127,6 +136,9 @@ public class Bob4JoCardDialog extends JDialog {
 				if(!Character.isDigit(c)) {
 					e.consume();
 					return;
+				}
+				if(validityYTF.getText().length()>=2) {
+					e.consume();
 				}
 			}
 		});
@@ -152,6 +164,9 @@ public class Bob4JoCardDialog extends JDialog {
 				if(!Character.isDigit(c)) {
 					e.consume();
 					return;
+				}
+				if(passwordTF.getText().length()>=4) {
+					e.consume();
 				}
 			}
 		});

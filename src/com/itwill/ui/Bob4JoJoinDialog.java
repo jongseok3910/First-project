@@ -98,6 +98,9 @@ public class Bob4JoJoinDialog extends JDialog {
 						e.consume();
 						return;
 					}
+					if(phoneTF.getText().length()>=11) {
+						e.consume();
+					}
 				}
 			});
 			phoneTF.setBounds(139, 280, 96, 21);

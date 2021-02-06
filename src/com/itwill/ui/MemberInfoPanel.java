@@ -263,6 +263,9 @@ public class MemberInfoPanel extends JPanel {
 					e.consume();
 					return;
 				}
+				if(phoneNumberTF.getText().length()>=11) {
+					e.consume();
+				}
 			}
 		});
 		phoneNumberTF.setColumns(10);
