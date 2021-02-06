@@ -27,7 +27,7 @@ import java.awt.event.ActionEvent;
 public class CardPasswordCheckDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JPasswordField passwordField;
+	private JPasswordField passwordCheckTF;
 	
 	Bob4JoMainFrame bob4JoMainFrame;
 	BasketPanel basketPanel;
@@ -55,9 +55,9 @@ public class CardPasswordCheckDialog extends JDialog {
 		lblNewLabel.setBounds(12, 42, 248, 15);
 		contentPanel.add(lblNewLabel);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(12, 68, 251, 21);
-		contentPanel.add(passwordField);
+		passwordCheckTF = new JPasswordField();
+		passwordCheckTF.setBounds(12, 68, 251, 21);
+		contentPanel.add(passwordCheckTF);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setForeground(Color.DARK_GRAY);
@@ -68,27 +68,26 @@ public class CardPasswordCheckDialog extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-
 					try {
-						 MemberInfo member = bob4JoMainFrame.loginMember;
-						 Card card = jumunService.selectByCardMemberNo(member.getMember_no());
+						 //MemberInfo member = bob4JoMainFrame.loginMember;
+						 Card card = jumunService.selectByCardMemberNo("2021/02/0616");
 //						 일치하면 확인되었습니다.
-						 char[] passChars = passwordField.getPassword();
+						 char[] passChars = passwordCheckTF.getPassword();
 						 String passwordStr = new String(passChars);
 						 if(passwordStr.equals(card.getCard_password()+"")) {
-							 JOptionPane.showMessageDialog(null, "확인되었습니다.");
+							 JOptionPane.showMessageDialog(null, "결제가 완료되었습니다.");
+							 bob4JoMainFrame.changePanel(2);
+							 dispose();
 						 }else if(passwordStr.trim().equals("")) {
 							 JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요.");
 						 }else {
 							 JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.");
 						 }
 //						 일치하지 않으면 비밀번호가 일치하지 않습니다.
-					}
-						catch (Exception e1) {
+					}catch (Exception e1) {
 							e1.printStackTrace();
-						}
-					
 					}
+					}//액션퍼폼드
 				});
 				okButton.setBackground(new Color(240, 240, 240));
 				okButton.setForeground(new Color(0, 0, 0));
@@ -109,8 +108,8 @@ public class CardPasswordCheckDialog extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-	}
-	// 다이어로그
+		jumunService = new JumunService();
+	}// 다이어로그
 	public void setBob4JoCardDialog(Bob4JoCardDialog bob4JoCardDialog) {
 		this.bob4JoCardDialog = bob4JoCardDialog;
 	}
