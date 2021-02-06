@@ -197,6 +197,7 @@ public class MemberInfoPanel extends JPanel {
 				bob4joCardDialog.setMemberInfoPanel(MemberInfoPanel.this);
 				bob4joCardDialog.setModal(true);
 				bob4joCardDialog.setVisible(true);
+				creditCardRegistLb.setIcon(cardRegistered);
 			}
 		});
 //		카드 미등록시 보이는 이미지
