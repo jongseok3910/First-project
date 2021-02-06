@@ -53,8 +53,10 @@ public class MemberInfoPanel extends JPanel {
 					String member_no=bob4JoMainFrame.loginMember.getMember_no();
 					registeredCard = jumunService.selectByCardMemberNo(member_no);
 					if(registeredCard==null) {
+//						카드 등록안됐을때
 						creditCardRegistLb.setIcon(cardUnRegistered);			
 					} else {
+//						카드 등록됐을때
 						creditCardRegistLb.setIcon(cardRegistered);
 					}
 				} catch (Exception e1) {
@@ -194,7 +196,7 @@ public class MemberInfoPanel extends JPanel {
 			}
 		});
 		cardUnRegistered = new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드등록.jpg"));
-		cardRegistered = new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드이미지.png"));
+		cardRegistered = new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드등록시보이는카드.png"));
 		
 		creditCardRegistLb.setHorizontalAlignment(SwingConstants.CENTER);
 		creditCardRegistLb.setIcon(cardUnRegistered);			
