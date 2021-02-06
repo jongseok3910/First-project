@@ -150,7 +150,7 @@ public class MemberInfoPanel extends JPanel {
 		add(passwordChangeBtn);
 		
 		addressTF = new JTextField();
-		addressTF.setBounds(102, 308, 207, 21);
+		addressTF.setBounds(102, 353, 207, 21);
 		add(addressTF);
 		addressTF.setColumns(10);
 		
@@ -181,10 +181,10 @@ public class MemberInfoPanel extends JPanel {
 		addressChangeBtn.setBounds(313, 307, 71, 23);
 		add(addressChangeBtn);
 		
-		JLabel lblNewLabel_3 = new JLabel("주소");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(33, 311, 57, 15);
-		add(lblNewLabel_3);
+		JLabel addressLb = new JLabel("주소");
+		addressLb.setHorizontalAlignment(SwingConstants.CENTER);
+		addressLb.setBounds(33, 356, 57, 15);
+		add(addressLb);
 		
 		creditCardRegistLb = new JLabel("");
 		creditCardRegistLb.addMouseListener(new MouseAdapter() {
@@ -249,12 +249,12 @@ public class MemberInfoPanel extends JPanel {
 		
 		JLabel PhoneNumberLb = new JLabel("전화번호");
 		PhoneNumberLb.setHorizontalAlignment(SwingConstants.CENTER);
-		PhoneNumberLb.setBounds(33, 356, 57, 15);
+		PhoneNumberLb.setBounds(33, 311, 57, 15);
 		add(PhoneNumberLb);
 		
 		phoneNumberTF = new JTextField();
 		phoneNumberTF.setColumns(10);
-		phoneNumberTF.setBounds(102, 353, 207, 21);
+		phoneNumberTF.setBounds(102, 308, 207, 21);
 		add(phoneNumberTF);
 		
 		phoneNumberBtn = new JButton("변경");
