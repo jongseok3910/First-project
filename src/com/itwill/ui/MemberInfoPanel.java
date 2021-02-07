@@ -35,7 +35,6 @@ public class MemberInfoPanel extends JPanel {
 	
 	Bob4JoMainFrame bob4JoMainFrame;
 	FoodSelectPanel foodSelectPanel;
-	MemberInfo memberInfo;
 	MemberService memberService;
 	JLabel creditCardRegistLb;
 	JumunService jumunService;
@@ -93,15 +92,15 @@ public class MemberInfoPanel extends JPanel {
 						JOptionPane.showMessageDialog(null, "변경할 이름을 입력해주세요.");
 						return;
 					}else {
-					memberInfo = bob4JoMainFrame.loginMember;
+					MemberInfo member = bob4JoMainFrame.loginMember;
 					String nameStr = nameTF.getText();
-					memberInfo.setMember_name(nameStr);
+					member.setMember_name(nameStr);
 //					System.out.println(memberInfo);
-					memberService.memberUpdate(memberInfo);
+					memberService.memberUpdate(member);
 					JOptionPane.showMessageDialog(null, "이름이 변경되었습니다.");
 					nameTF.setText("");
 					// 타이틀변경
-					bob4JoMainFrame.setTitle(memberInfo.getMember_name()+"님 로그인");
+					bob4JoMainFrame.setTitle(member.getMember_name()+"님 로그인");
 					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -134,12 +133,12 @@ public class MemberInfoPanel extends JPanel {
 						JOptionPane.showMessageDialog(null, "변경할 비밀번호를 입력해주세요.");
 						return;
 					}else {
-					memberInfo = bob4JoMainFrame.loginMember;
+					MemberInfo member = bob4JoMainFrame.loginMember;
 					char[] passChars = passwordTF.getPassword();
 					String passwordStr = new String(passChars);
-					memberInfo.setMember_password(passwordStr);
-					System.out.println(memberInfo);
-					memberService.memberUpdate(memberInfo);
+					member.setMember_password(passwordStr);
+					System.out.println(member);
+					memberService.memberUpdate(member);
 					JOptionPane.showMessageDialog(null, "비밀번호가 변경되었습니다.");
 					passwordTF.setText("");
 					}
@@ -168,10 +167,10 @@ public class MemberInfoPanel extends JPanel {
 						JOptionPane.showMessageDialog(null, "변경할 주소를 입력해주세요.");
 						return;
 					}else {
-					memberInfo = bob4JoMainFrame.loginMember;
+					MemberInfo member = bob4JoMainFrame.loginMember;
 					String addressStr = addressTF.getText();
-					memberInfo.setMember_address(addressStr);
-					memberService.memberUpdate(memberInfo);
+					member.setMember_address(addressStr);
+					memberService.memberUpdate(member);
 					JOptionPane.showMessageDialog(null, "주소가 변경되었습니다.");
 					addressTF.setText("");
 					}
@@ -230,13 +229,13 @@ public class MemberInfoPanel extends JPanel {
 //			탈퇴하기 누르면 회원삭제
 			public void actionPerformed(ActionEvent e) {
 				try {
-					memberInfo = bob4JoMainFrame.loginMember;
+					MemberInfo member = bob4JoMainFrame.loginMember;
 					int reception = JOptionPane.showConfirmDialog(null, "회원탈퇴를 하시겠습니까?","Confirm",JOptionPane.YES_NO_OPTION);
 					if(reception==JOptionPane.CLOSED_OPTION) {
 						//우측 상단 X를 눌렀을 때
 					}else if(reception==JOptionPane.YES_OPTION) {
 						//예를 눌렀을 때 회원탈퇴
-						memberService.memberUnRegister(memberInfo.getMember_id());
+						memberService.memberUnRegister(member.getMember_id());
 						JOptionPane.showMessageDialog(null, "탈퇴가 완료되었습니다.");
 						bob4JoMainFrame.logoutProcess();
 					}else {
@@ -285,10 +284,10 @@ public class MemberInfoPanel extends JPanel {
 						JOptionPane.showMessageDialog(null, "변경할 전화번호를 입력해주세요.");
 						return;
 					} else {
-						memberInfo = bob4JoMainFrame.loginMember;
+						MemberInfo member = bob4JoMainFrame.loginMember;
 						String phoneStr = phoneNumberTF.getText();
-						memberInfo.setMember_phone(phoneStr);
-						memberService.memberUpdate(memberInfo);
+						member.setMember_phone(phoneStr);
+						memberService.memberUpdate(member);
 						JOptionPane.showMessageDialog(null, "전화번호가 변경되었습니다.");
 						phoneNumberTF.setText("");
 					}
