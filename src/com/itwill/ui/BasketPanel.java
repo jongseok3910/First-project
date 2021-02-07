@@ -74,10 +74,10 @@ public class BasketPanel extends JPanel {
 		scrollPane.setViewportView(basketTable);
 		basketTable.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null},
+				{null, null, null},
 			},
 			new String[] {
-				"\uC74C\uC2DD\uBA85", "\uC218\uB7C9"
+				"\uC74C\uC2DD\uBA85", "\uC218\uB7C9", "\uAC00\uACA9"
 			}
 		));
 		
@@ -203,6 +203,10 @@ public class BasketPanel extends JPanel {
 		add(lblNewLabel_1);
 		
 		deleteBtn = new JButton("삭제");
+		deleteBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		deleteBtn.setBackground(Color.RED);
 		deleteBtn.setBounds(319, 317, 62, 23);
 		add(deleteBtn);
