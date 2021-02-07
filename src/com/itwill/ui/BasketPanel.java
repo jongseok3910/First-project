@@ -150,6 +150,7 @@ public class BasketPanel extends JPanel {
 							return;
 						}
 						jumunService.updateByJumunTypeIsNull(jumun_request,"카드결제",member_no);
+						requestTF.setText("");
 						bob4JoMainFrame.changePanel(2);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
@@ -160,6 +161,7 @@ public class BasketPanel extends JPanel {
 					try {
 						jumunService.updateByJumunTypeIsNull(jumun_request,"현장결제",member_no);
 						JOptionPane.showMessageDialog(null, "주문이 완료되었습니다");
+						requestTF.setText("");
 						//주문목록
 						bob4JoMainFrame.changePanel(2);
 						
