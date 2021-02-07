@@ -50,18 +50,6 @@ public class JumunService {
 	public Food selectByFoodNo(int food_no) throws Exception {
 		return foodDao.selectByNo(food_no);
 	}
-	/*
-	//주문정보 입력
-	public int jumunInsert(Jumun jumun) throws Exception {
-		jumunDao.create(jumun);
-		return jumunDao.selectJumunSeqNo();
-		
-	}
-	//주문정보 찾기
-	public Jumun selectByJumunNo(int jumun_no) throws Exception {
-		return jumunDao.selectByJumunNo(jumun_no);
-	}
-	*/
 	//주문정보 입력 및 찾기
 	public int jumunInsert(Jumun jumun) throws Exception {
 		return jumunDao.create(jumun);
@@ -96,6 +84,10 @@ public class JumunService {
 	//결제안된 목록리스트
 	public List<Jumun> selectByJumunTypeIsNull(String member_no) throws Exception {
 		return jumunDao.selectByTypeIsNull(member_no);
+	}
+	//주문삭제
+	public int deleteByJumunNo(int jumun_no) throws Exception {
+		return jumunDao.deleteByNo(jumun_no);
 	}
 	//결제하기
 	public int updateByJumunTypeIsNull(String request, String paymentType, String member_no) throws Exception {

@@ -8,6 +8,7 @@ import com.itwill.service.JumunService;
 import com.itwill.vo.Card;
 import com.itwill.vo.Food;
 import com.itwill.vo.Jumun;
+import com.itwill.vo.MemberInfo;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -205,6 +206,25 @@ public class BasketPanel extends JPanel {
 		deleteBtn = new JButton("삭제");
 		deleteBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					int selectedRow = basketTable.getSelectedRow();
+					if(selectedRow==-1) {
+						return;
+					}
+					MemberInfo member = bob4JoMainFrame.loginMember;
+					String member_no=member.getMember_no();
+					List<Jumun> jumunList = jumunService.selectByJumunTypeIsNull(member_no);
+					Jumun jumun = jumunList.get(selectedRow);
+					int jumun_no=jumun.getJumun_no();
+					int rowCount = jumunService.deleteByJumunNo(jumun_no);
+					if(rowCount==1) {
+						JOptionPane.showMessageDialog(null, "주문이 삭제되었습니다.");
+						jumunListTable();
+					}
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		deleteBtn.setBackground(Color.RED);
