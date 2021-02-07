@@ -25,10 +25,10 @@ public class StoreDao {
 		ConnectionFactory.releaseConnection(con);
 		return rowCount;
 	}
-	public Store selectByName(String store_name) throws Exception {
+	public Store selectByStoreName(String store_name) throws Exception {
 		Store store = null;
 		Connection con = ConnectionFactory.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(StoreSQL.STORE_SELECT_BY_NAME);
+		PreparedStatement pstmt = con.prepareStatement(StoreSQL.STORE_SELECT_BY_STORE_NAME);
 		pstmt.setString(1, store_name);
 		ResultSet rs = pstmt.executeQuery();
 		if(rs.next()) {
@@ -41,6 +41,28 @@ public class StoreDao {
 							  rs.getString("jumun_estimatedtime"),
 							  rs.getDouble("store_rating")							  
 							  );
+		}
+		rs.close();
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
+		return store;
+	}
+	public Store selectByStoreNo(int store_no) throws Exception {
+		Store store = null;
+		Connection con = ConnectionFactory.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(StoreSQL.STORE_SELECT_BY_STORE_NO);
+		pstmt.setInt(1, store_no);
+		ResultSet rs = pstmt.executeQuery();
+		if(rs.next()) {
+			store = new Store(rs.getInt("store_no"),
+					rs.getString("store_name"),
+					rs.getString("store_businesstime"),
+					rs.getString("store_phone"),
+					rs.getString("store_address"),
+					rs.getInt("store_deliveryprice"),
+					rs.getString("jumun_estimatedtime"),
+					rs.getDouble("store_rating")							  
+					);
 		}
 		rs.close();
 		pstmt.close();

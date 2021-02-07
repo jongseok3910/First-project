@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.itwill.vo.Jumun;
 import com.itwill.vo.MemberInfo;
 
 import javax.swing.JMenuBar;
@@ -22,6 +23,8 @@ import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class Bob4JoMainFrame extends JFrame {
 
@@ -35,7 +38,11 @@ public class Bob4JoMainFrame extends JFrame {
 	private JPanel mainImagePanel;
 	private JPanel mainUsePanel;
 	private JPanel baseCardLayoutPanel;
-	private foodSelectPanel foodSelectPanel;
+	private FoodSelectPanel foodSelectPanel;
+	private BasketPanel basketPanel;
+	private PaymentListPanel paymentListPanel;
+	private MemberInfoPanel memberInfoPanel;
+	private JTabbedPane tabbedPane;
 	/*
 	 * Launch the application.
 	 */
@@ -130,14 +137,30 @@ public class Bob4JoMainFrame extends JFrame {
 		baseCardLayoutPanel.add(mainUsePanel, "mainUsePanel");
 		mainUsePanel.setLayout(new BorderLayout(0, 0));
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		mainUsePanel.add(tabbedPane, BorderLayout.CENTER);
 		
-		foodSelectPanel = new foodSelectPanel();
-		tabbedPane.addTab("New tab", null, foodSelectPanel, null);
+		foodSelectPanel = new FoodSelectPanel();
+		tabbedPane.addTab("메뉴선택", null, foodSelectPanel, null);
 		
-		basketPanel basketPanel = new basketPanel();
-		tabbedPane.addTab("New tab", null, basketPanel, null);
+		basketPanel = new BasketPanel();
+		tabbedPane.addTab("장바구니", null, basketPanel, null);
+		
+		paymentListPanel = new PaymentListPanel();
+		tabbedPane.addTab("주문목록", null, paymentListPanel, null);
+		
+		memberInfoPanel = new MemberInfoPanel();
+		tabbedPane.addTab("회원정보", null, memberInfoPanel, null);
+		/**************************************/
+		foodSelectPanel.setBob4JoMainFrame(this);
+		basketPanel.setBob4JoMainFrame(this);
+		paymentListPanel.setBob4JoMainFrame(this);
+		memberInfoPanel.setBob4JoMainFrame(this);
+		/**************************************/
+		
+		
+		
+		
 	}//MainFrame
 	public void loginProcess(MemberInfo loginMember) {
 		/*
@@ -163,4 +186,11 @@ public class Bob4JoMainFrame extends JFrame {
 		CardLayout cl=(CardLayout)baseCardLayoutPanel.getLayout();
 		cl.show(baseCardLayoutPanel,"mainPanel");
 	}
+	public void changePanel(int tab_no) {
+		tabbedPane.setSelectedIndex(tab_no);
+	}
+	public Jumun selectedJumun() {
+		return foodSelectPanel.selectedJumun;
+	}
+	
 }

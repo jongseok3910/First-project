@@ -2,85 +2,309 @@ package com.itwill.ui;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+
+import com.itwill.service.JumunService;
+import com.itwill.service.MemberService;
+import com.itwill.vo.Card;
+import com.itwill.vo.MemberInfo;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class MemberInfoPanel extends JPanel {
-	private JTextField textField;
-	private JPasswordField passwordField;
-	private JTextField textField_1;
+	private JTextField nameTF;
+	private JPasswordField passwordTF;
+	private JTextField addressTF;
+	private JButton withdrawBtn;
+	private JButton nameChangeBtn;
+	private JButton passwordChangeBtn;
+	private JButton addressChangeBtn;
+	
+	Bob4JoMainFrame bob4JoMainFrame;
+	FoodSelectPanel foodSelectPanel;
+	MemberInfo memberInfo;
+	MemberService memberService;
+	JLabel creditCardRegistLb;
+	JumunService jumunService;
+	Card registeredCard;
+	ImageIcon cardUnRegistered;
+	ImageIcon cardRegistered;
+	private JButton phoneNumberBtn;
+	private JTextField phoneNumberTF;
 
 	/**
 	 * Create the panel.
 	 */
 	public MemberInfoPanel() {
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				//회원정보패널을 눌렀을 때
+				try {
+					String member_no=bob4JoMainFrame.loginMember.getMember_no();
+					registeredCard = jumunService.selectByCardMemberNo(member_no);
+					if(registeredCard==null) {
+//						카드등록 안됐을때
+						creditCardRegistLb.setIcon(cardUnRegistered);			
+					} else {
+//						카드등록 됐을때
+						creditCardRegistLb.setIcon(cardRegistered);
+					}
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		setLayout(null);
 		
-		JLabel nameLb = new JLabel("닉네임");
+		JLabel nameLb = new JLabel("이름");
 		nameLb.setHorizontalAlignment(SwingConstants.CENTER);
-		nameLb.setBounds(31, 294, 57, 15);
+		nameLb.setBounds(33, 217, 57, 15);
 		add(nameLb);
 		
-		textField = new JTextField();
-		textField.setBounds(100, 290, 207, 22);
-		add(textField);
-		textField.setColumns(10);
+		nameTF = new JTextField();
+		nameTF.setBounds(102, 213, 207, 22);
+		add(nameTF);
+		nameTF.setColumns(10);
 		
-		JButton btnNewButton = new JButton("변경");
-		btnNewButton.setBounds(311, 290, 71, 23);
-		add(btnNewButton);
+		nameChangeBtn = new JButton("변경");
+		nameChangeBtn.addActionListener(new ActionListener() {
+//			변경 버튼 클릭시 등록된 이름변경
+			public void actionPerformed(ActionEvent e) {
+				try {
+//					이름 변경칸 공백이면 이름을 입력해주세요 출력
+					if(nameTF.getText().trim().equals("")) {
+						nameTF.setText("");
+						nameTF.requestFocus();
+						JOptionPane.showMessageDialog(null, "변경할 이름을 입력해주세요.");
+						return;
+					}else {
+					memberInfo = bob4JoMainFrame.loginMember;
+					String nameStr = nameTF.getText();
+					memberInfo.setMember_name(nameStr);
+//					System.out.println(memberInfo);
+					memberService.memberUpdate(memberInfo);
+					JOptionPane.showMessageDialog(null, "이름이 변경되었습니다.");
+					nameTF.setText("");
+					// 타이틀변경
+					bob4JoMainFrame.setTitle(memberInfo.getMember_name()+"님 로그인");
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				
+				
+			}
+		});
+		nameChangeBtn.setBounds(313, 213, 71, 23);
+		add(nameChangeBtn);
 		
-		JLabel lblNewLabel_2 = new JLabel("비밀번호");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(31, 339, 57, 15);
-		add(lblNewLabel_2);
+		JLabel passLb = new JLabel("비밀번호");
+		passLb.setHorizontalAlignment(SwingConstants.CENTER);
+		passLb.setBounds(33, 262, 57, 15);
+		add(passLb);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(100, 335, 207, 23);
-		add(passwordField);
+		passwordTF = new JPasswordField();
+		passwordTF.setBounds(102, 258, 207, 23);
+		add(passwordTF);
 		
-		JButton btnNewButton_1 = new JButton("변경");
-		btnNewButton_1.setBounds(311, 335, 71, 23);
-		add(btnNewButton_1);
+		passwordChangeBtn = new JButton("변경");
+		passwordChangeBtn.addActionListener(new ActionListener() {
+//			변경버튼 클릭시 비밀번호 변경
+			public void actionPerformed(ActionEvent e) {
+				try {
+//					비밀번호 변경칸 공백이면 비밀번호를 입력해주세요 출력
+					if(passwordTF.getText().trim().equals("")) {
+						passwordTF.setText("");
+						passwordTF.requestFocus();
+						JOptionPane.showMessageDialog(null, "변경할 비밀번호를 입력해주세요.");
+						return;
+					}else {
+					memberInfo = bob4JoMainFrame.loginMember;
+					char[] passChars = passwordTF.getPassword();
+					String passwordStr = new String(passChars);
+					memberInfo.setMember_password(passwordStr);
+					System.out.println(memberInfo);
+					memberService.memberUpdate(memberInfo);
+					JOptionPane.showMessageDialog(null, "비밀번호가 변경되었습니다.");
+					passwordTF.setText("");
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		passwordChangeBtn.setBounds(313, 258, 71, 23);
+		add(passwordChangeBtn);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(100, 385, 207, 21);
-		add(textField_1);
-		textField_1.setColumns(10);
+		addressTF = new JTextField();
+		addressTF.setBounds(102, 353, 207, 21);
+		add(addressTF);
+		addressTF.setColumns(10);
 		
-		JButton btnNewButton_2 = new JButton("변경");
-		btnNewButton_2.setBounds(311, 384, 71, 23);
-		add(btnNewButton_2);
+		addressChangeBtn = new JButton("변경");
+		addressChangeBtn.addActionListener(new ActionListener() {
+//			변경버튼 클릭시 주소변경
+			public void actionPerformed(ActionEvent e) {
+				try {
+//					비밀번호 변경칸 공백이면 비밀번호를 입력해주세요 출력
+					if(addressTF.getText().trim().equals("")) {
+						addressTF.setText("");
+						addressTF.requestFocus();
+						JOptionPane.showMessageDialog(null, "변경할 주소를 입력해주세요.");
+						return;
+					}else {
+					memberInfo = bob4JoMainFrame.loginMember;
+					String addressStr = addressTF.getText();
+					memberInfo.setMember_address(addressStr);
+					memberService.memberUpdate(memberInfo);
+					JOptionPane.showMessageDialog(null, "주소가 변경되었습니다.");
+					addressTF.setText("");
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		addressChangeBtn.setBounds(313, 352, 71, 23);
+		add(addressChangeBtn);
 		
-		JLabel lblNewLabel_3 = new JLabel("주소");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(31, 388, 57, 15);
-		add(lblNewLabel_3);
+		JLabel addressLb = new JLabel("주소");
+		addressLb.setHorizontalAlignment(SwingConstants.CENTER);
+		addressLb.setBounds(33, 356, 57, 15);
+		add(addressLb);
 		
-		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드등록.jpg")));
-		lblNewLabel_4.setBounds(38, 462, 350, 149);
-		add(lblNewLabel_4);
+		creditCardRegistLb = new JLabel("");
+		creditCardRegistLb.addMouseListener(new MouseAdapter() {
+//			카드등록 그림 클릭시 카드 다이알로그 연결
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Bob4JoCardDialog bob4joCardDialog = new Bob4JoCardDialog();
+				bob4joCardDialog.setMemberInfoPanel(MemberInfoPanel.this);
+				bob4joCardDialog.setModal(true);
+				bob4joCardDialog.setVisible(true);
+				creditCardRegistLb.setIcon(cardRegistered);
+			}
+		});
+//		카드 미등록시 보이는 이미지
+		cardUnRegistered = new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드등록.jpg"));
+//		카드등록시 보이는 이미지
+		cardRegistered = new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드등록시보이는카드.png"));
 		
-		JLabel lblNewLabel_5 = new JLabel(" 자주 사용하는 카드를 등록해주세요.");
-		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_5.setBounds(38, 433, 344, 15);
-		add(lblNewLabel_5);
+		creditCardRegistLb.setHorizontalAlignment(SwingConstants.CENTER);
+		creditCardRegistLb.setIcon(cardUnRegistered);			
+		creditCardRegistLb.setBounds(39, 428, 350, 130);
+		add(creditCardRegistLb);
+		
+		JLabel 문구Lb = new JLabel(" 자주 사용하는 카드를 등록해주세요.");
+		문구Lb.setHorizontalAlignment(SwingConstants.CENTER);
+		문구Lb.setBounds(39, 399, 344, 15);
+		add(문구Lb);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(32, 244, 350, 2);
+		separator.setBounds(33, 189, 350, 2);
 		add(separator);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/회원사진.png")));
-		lblNewLabel.setBounds(31, 46, 351, 181);
-		add(lblNewLabel);
+		JLabel profileLb = new JLabel("");
+		profileLb.setHorizontalAlignment(SwingConstants.CENTER);
+		profileLb.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/회원사진.png")));
+		profileLb.setBounds(32, 10, 351, 181);
+		add(profileLb);
+		
+		withdrawBtn = new JButton("탈퇴하기");
+		withdrawBtn.addActionListener(new ActionListener() {
+//			탈퇴하기 누르면 회원삭제
+			public void actionPerformed(ActionEvent e) {
+				try {
+					memberInfo = bob4JoMainFrame.loginMember;
+					int reception = JOptionPane.showConfirmDialog(null, "회원탈퇴를 하시겠습니까?","Confirm",JOptionPane.YES_NO_OPTION);
+					if(reception==JOptionPane.CLOSED_OPTION) {
+						//우측 상단 X를 눌렀을 때
+					}else if(reception==JOptionPane.YES_OPTION) {
+						//예를 눌렀을 때 회원탈퇴
+						memberService.memberUnRegister(memberInfo.getMember_id());
+						JOptionPane.showMessageDialog(null, "탈퇴가 완료되었습니다.");
+						bob4JoMainFrame.logoutProcess();
+					}else {
+						//아니오를 눌렀을 때
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		withdrawBtn.setBounds(281, 568, 108, 23);
+		add(withdrawBtn);
+		
+		JLabel PhoneNumberLb = new JLabel("전화번호");
+		PhoneNumberLb.setHorizontalAlignment(SwingConstants.CENTER);
+		PhoneNumberLb.setBounds(33, 311, 57, 15);
+		add(PhoneNumberLb);
+		
+		phoneNumberTF = new JTextField();
+		phoneNumberTF.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c)) {
+					e.consume();
+					return;
+				}
+				if(phoneNumberTF.getText().length()>=11) {
+					e.consume();
+				}
+			}
+		});
+		phoneNumberTF.setColumns(10);
+		phoneNumberTF.setBounds(102, 308, 207, 21);
+		add(phoneNumberTF);
+		
+		phoneNumberBtn = new JButton("변경");
+		phoneNumberBtn.addActionListener(new ActionListener() {
+//			변경버튼누르면 전화번호 변경
+			public void actionPerformed(ActionEvent e) {
+				try {
+//					전화번호 변경칸 공백이면 전화번호를 입력해주세요 출력
+					if(phoneNumberTF.getText().trim().equals("")) {
+						phoneNumberTF.setText("");
+						phoneNumberTF.requestFocus();
+						JOptionPane.showMessageDialog(null, "변경할 전화번호를 입력해주세요.");
+						return;
+					} else {
+						memberInfo = bob4JoMainFrame.loginMember;
+						String phoneStr = phoneNumberTF.getText();
+						memberInfo.setMember_phone(phoneStr);
+						memberService.memberUpdate(memberInfo);
+						JOptionPane.showMessageDialog(null, "전화번호가 변경되었습니다.");
+						phoneNumberTF.setText("");
+					}
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
+		});
+		phoneNumberBtn.setBounds(313, 307, 71, 23);
+		add(phoneNumberBtn);
 
+		//service객체 생성
+		memberService = new MemberService();
+		jumunService = new JumunService();
+	}//멤버인포패널
+	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
+		this.bob4JoMainFrame=bob4JoMainFrame;		
 	}
 }
