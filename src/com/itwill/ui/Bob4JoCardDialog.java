@@ -195,7 +195,7 @@ public class Bob4JoCardDialog extends JDialog {
 							JOptionPane.showMessageDialog(null, "카드정보를 정확히 입력해주세요.");
 							return;
 						}
-						//공백나누기 esle의 카드정보를 정확히 입력해주세요 없애도 됩니다.
+						
 						try {
 							String card_no=cardNoTF.getText();
 							int validityM = Integer.parseInt(validityMTF.getText());
