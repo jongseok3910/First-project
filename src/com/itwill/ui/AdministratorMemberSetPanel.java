@@ -218,6 +218,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 						String phoneStr=phone1+"-"+phone2+"-"+phone3;
 						member.setMember_phone(phoneStr);
 						memberService.memberUpdate(member);
+						memberPhoneTF.setText(phoneStr);
 						JOptionPane.showMessageDialog(null, "전화번호가 변경되었습니다.");
 					}
 				} catch (Exception e2) {
@@ -330,7 +331,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		lblNewLabel_1.setBounds(219, 10, 160, 120);
 		add(lblNewLabel_1);
 
-
+		//서비스객체 생성
 		memberService = new MemberService();
 
 	}//관리자멤버패널
