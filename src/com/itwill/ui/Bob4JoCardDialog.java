@@ -189,7 +189,7 @@ public class Bob4JoCardDialog extends JDialog {
 							JOptionPane.showMessageDialog(null, "카드유효기간(년)을 입력해주세요.");
 						}else if(cvcTF.getText().trim().equals("")) {
 							JOptionPane.showMessageDialog(null, "카드고유확인번호를 입력해주세요.");
-						}else if(passwordTF.getText().trim().equals("")) {
+						}else if(passwordTF.getPassword().length==0) {
 							JOptionPane.showMessageDialog(null, "카드비밀번호를 입력해주세요.");
 						}
 						try {
@@ -198,7 +198,9 @@ public class Bob4JoCardDialog extends JDialog {
 							int validityY = Integer.parseInt(validityYTF.getText());
 							String card_validity = validityM+"/"+validityY;
 							int card_cvc = Integer.parseInt(cvcTF.getText());
-							int card_password = Integer.parseInt(passwordTF.getText());
+							char[] passwordChars = passwordTF.getPassword();
+							String passwordStr = new String(passwordChars);
+							int card_password = Integer.parseInt(passwordStr);
 							/*
 							 * 로그인멤버를 못불러옴
 							 */
@@ -214,8 +216,7 @@ public class Bob4JoCardDialog extends JDialog {
 							memberInfoPanel.creditCardRegistLb.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드이미지.png")));
 							dispose();
 						} catch (Exception e1) {
-							JOptionPane.showMessageDialog(null, "카드정보를 정확히 입력해주세요.");
-							return;
+							e1.getStackTrace();
 						}
 					}
 				});
