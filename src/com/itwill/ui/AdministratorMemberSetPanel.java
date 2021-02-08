@@ -4,13 +4,15 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.Scrollbar;
-import java.awt.List;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JList;
 
 import com.itwill.service.MemberService;
+import com.itwill.vo.MemberInfo;
 
 import javax.swing.JButton;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 
@@ -20,7 +22,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-
+import java.util.List;
 
 public class AdministratorMemberSetPanel extends JPanel {
 	private JTextField memberIDtextField;
@@ -32,7 +34,11 @@ public class AdministratorMemberSetPanel extends JPanel {
 
 	Bob4JoMainFrame bob4JoMainFrame;
 	MemberService memberService;
+
 	private JTextField textField;
+
+	private JList list;
+
 	/**
 	 * Create the panel.
 	 */
@@ -68,7 +74,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		scrollPane.setBounds(29, 202, 352, 142);
 		add(scrollPane);
 		
-		List list = new List();
+		list = new JList();
 		scrollPane.setViewportView(list);
 		
 		JLabel memberAddressLabel = new JLabel("회원주소");
@@ -144,6 +150,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		memberIDChangeBtn_1.setBounds(326, 366, 55, 23);
 		add(memberIDChangeBtn_1);
 		
+
 		JLabel lblNewLabel_4 = new JLabel("총 인원수");
 		lblNewLabel_4.setBounds(216, 152, 62, 15);
 		add(lblNewLabel_4);
@@ -158,12 +165,26 @@ public class AdministratorMemberSetPanel extends JPanel {
 		lblNewLabel_1.setBounds(219, 10, 160, 120);
 		add(lblNewLabel_1);
 
+
+		memberService = new MemberService();
+
 	}//관리자멤버패널
 	private void memberListList() {
-		if(memberService==null) {
-			return;
+		try {
+			if(memberService==null) {
+				return;
+			}
+			List<MemberInfo> memberList= memberService.selectMemberAll();
+			DefaultListModel defaultListModel=new DefaultListModel();
+			for (MemberInfo member : memberList) {
+				defaultListModel.addElement(member.getMember_no());
+				defaultListModel.addElement(member.getMember_id());
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
 	}
 	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
 		this.bob4JoMainFrame=bob4JoMainFrame;		
