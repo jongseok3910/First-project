@@ -140,10 +140,8 @@ public class MemberInfoPanel extends JPanel {
 					char[] passChars = passwordTF.getPassword();
 					String passwordStr = new String(passChars);
 					member.setMember_password(passwordStr);
-					System.out.println(member);
 					memberService.memberUpdate(member);
 					JOptionPane.showMessageDialog(null, "비밀번호가 변경되었습니다.");
-					passwordTF.setText("");
 					}
 				} catch (Exception e1) {
 					e1.printStackTrace();

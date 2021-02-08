@@ -28,6 +28,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class AdministratorMemberSetPanel extends JPanel {
 	private JTextField memberIdTF;
@@ -128,6 +130,19 @@ public class AdministratorMemberSetPanel extends JPanel {
 		memberNameTF.setColumns(10);
 		
 		memberPhoneTF = new JTextField();
+		memberPhoneTF.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!Character.isDigit(c)) {
+					e.consume();
+					return;
+				}
+				if(memberPhoneTF.getText().length()>=11) {
+					e.consume();
+				}
+			}
+		});
 		memberPhoneTF.setBounds(116, 487, 195, 21);
 		add(memberPhoneTF);
 		memberPhoneTF.setColumns(10);
@@ -145,7 +160,24 @@ public class AdministratorMemberSetPanel extends JPanel {
 		JButton memberPWChangeBtn = new JButton("수정");
 		memberPWChangeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+//					비밀번호 변경칸 공백이면 비밀번호를 입력해주세요 출력
+					if(memberPWTF.getText().trim().equals("")) {
+						memberPWTF.setText("");
+						memberPWTF.requestFocus();
+						JOptionPane.showMessageDialog(null, "변경할 비밀번호를 입력해주세요.");
+						return;
+					}else {
+					String member_id = memberIdTF.getText();
+					MemberInfo member = memberService.selectById(member_id);
+					String passwordStr = memberPWTF.getText();
+					member.setMember_password(passwordStr);
+					memberService.memberUpdate(member);
+					JOptionPane.showMessageDialog(null, "비밀번호가 변경되었습니다.");
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		memberPWChangeBtn.setBounds(326, 406, 55, 23);
@@ -154,6 +186,25 @@ public class AdministratorMemberSetPanel extends JPanel {
 		JButton memberNameChangeBtn = new JButton("수정");
 		memberNameChangeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+//					이름 변경칸 공백이면 이름을 입력해주세요 출력
+					if(memberNameTF.getText().trim().equals("")) {
+						memberNameTF.setText("");
+						memberNameTF.requestFocus();
+						JOptionPane.showMessageDialog(null, "변경할 이름을 입력해주세요.");
+						return;
+					}else {
+					String member_id = memberIdTF.getText();
+					MemberInfo member = memberService.selectById(member_id);
+					String nameStr = memberNameTF.getText();
+					member.setMember_name(nameStr);
+//					System.out.println(memberInfo);
+					memberService.memberUpdate(member);
+					JOptionPane.showMessageDialog(null, "이름이 변경되었습니다.");
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		memberNameChangeBtn.setBounds(326, 446, 55, 23);
@@ -162,6 +213,28 @@ public class AdministratorMemberSetPanel extends JPanel {
 		JButton memberPhoneChangeBtn = new JButton("수정");
 		memberPhoneChangeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+//					전화번호 변경칸 공백이면 전화번호를 입력해주세요 출력
+					if(memberPhoneTF.getText().trim().equals("")) {
+						memberPhoneTF.setText("");
+						memberPhoneTF.requestFocus();
+						JOptionPane.showMessageDialog(null, "변경할 전화번호를 입력해주세요.");
+						return;
+					} else {
+						String member_id = memberIdTF.getText();
+						MemberInfo member = memberService.selectById(member_id);
+						String phoneRawStr=memberPhoneTF.getText();
+						String phone1=phoneRawStr.substring(0,3);
+						String phone2=phoneRawStr.substring(3,7);
+						String phone3=phoneRawStr.substring(7,11);
+						String phoneStr=phone1+"-"+phone2+"-"+phone3;
+						member.setMember_phone(phoneStr);
+						memberService.memberUpdate(member);
+						JOptionPane.showMessageDialog(null, "전화번호가 변경되었습니다.");
+					}
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
 			}
 		});
 		memberPhoneChangeBtn.setBounds(326, 486, 55, 23);
@@ -170,6 +243,24 @@ public class AdministratorMemberSetPanel extends JPanel {
 		JButton memberAddressChangeBtn = new JButton("수정");
 		memberAddressChangeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+//					비밀번호 변경칸 공백이면 비밀번호를 입력해주세요 출력
+					if(memberAddressTF.getText().trim().equals("")) {
+						memberAddressTF.setText("");
+						memberAddressTF.requestFocus();
+						JOptionPane.showMessageDialog(null, "변경할 주소를 입력해주세요.");
+						return;
+					}else {
+					String member_id = memberIdTF.getText();
+					MemberInfo member = memberService.selectById(member_id);
+					String addressStr = memberAddressTF.getText();
+					member.setMember_address(addressStr);
+					memberService.memberUpdate(member);
+					JOptionPane.showMessageDialog(null, "주소가 변경되었습니다.");
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		memberAddressChangeBtn.setBounds(326, 526, 55, 23);
