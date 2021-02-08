@@ -6,8 +6,7 @@ STORE_NO            NOT NULL NUMBER
 STORE_NAME                   VARCHAR2(30) 
 STORE_BUSINESSTIME           VARCHAR2(30) 
 STORE_PHONE                  VARCHAR2(13) 
-STORE_ADDRESS                VARCHAR2(50) 
-STORE_DELIVERYPRICE          NUMBER       
+STORE_ADDRESS                VARCHAR2(50)       
 JUMUN_ESTIMATEDTIME          VARCHAR2(30) 
 STORE_RATING                 NUMBER             
  */
@@ -17,7 +16,6 @@ public class Store {
 	private String store_businessTime;
 	private String store_phone;
 	private String store_address;
-	private int store_deliveryPrice;
 	private String jumun_estimatedTime;
 	private Double store_rating;
 	
@@ -26,14 +24,13 @@ public class Store {
 	}
 
 	public Store(int store_no, String store_name, String store_businessTime, String store_phone, String store_address,
-			int store_deliveryPrice, String jumun_estimatedTime, Double store_rating) {
+			String jumun_estimatedTime, Double store_rating) {
 		super();
 		this.store_no = store_no;
 		this.store_name = store_name;
 		this.store_businessTime = store_businessTime;
 		this.store_phone = store_phone;
 		this.store_address = store_address;
-		this.store_deliveryPrice = store_deliveryPrice;
 		this.jumun_estimatedTime = jumun_estimatedTime;
 		this.store_rating = store_rating;
 	}
@@ -78,14 +75,6 @@ public class Store {
 		this.store_address = store_address;
 	}
 
-	public int getStore_deliveryPrice() {
-		return store_deliveryPrice;
-	}
-
-	public void setStore_deliveryPrice(int store_deliveryPrice) {
-		this.store_deliveryPrice = store_deliveryPrice;
-	}
-
 	public String getJumun_estimatedTime() {
 		return jumun_estimatedTime;
 	}
@@ -106,8 +95,7 @@ public class Store {
 	public String toString() {
 		return "Store [store_no=" + store_no + ", store_name=" + store_name + ", store_businessTime="
 				+ store_businessTime + ", store_phone=" + store_phone + ", store_address=" + store_address
-				+ ", store_deliveryPrice=" + store_deliveryPrice + ", jumun_estimatedTime=" + jumun_estimatedTime
-				+ ", store_rating=" + store_rating + "]";
+				+ ", jumun_estimatedTime=" + jumun_estimatedTime + ", store_rating=" + store_rating + "]";
 	}
 	
 }

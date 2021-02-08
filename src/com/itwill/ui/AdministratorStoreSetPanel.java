@@ -78,7 +78,6 @@ public class AdministratorStoreSetPanel extends JPanel {
 					storeBusinessTimeTF.setText(store.getStore_businessTime());
 					storePhoneTF.setText(store.getStore_phone());
 					storeAddressTF.setText(store.getStore_address());
-					storeDeliveryTF.setText(store.getStore_deliveryPrice()+"");
 					storeEstimateTimeTF.setText(store.getJumun_estimatedTime());
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block

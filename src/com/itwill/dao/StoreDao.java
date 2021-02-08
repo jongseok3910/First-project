@@ -17,9 +17,8 @@ public class StoreDao {
 	    pstmt.setString(3, store.getStore_businessTime());
 	    pstmt.setString(4, store.getStore_phone());
 	    pstmt.setString(5, store.getStore_address());
-	    pstmt.setInt(6, store.getStore_deliveryPrice());
-	    pstmt.setString(7,store.getJumun_estimatedTime());
-	    pstmt.setDouble(8, store.getStore_rating());
+	    pstmt.setString(6,store.getJumun_estimatedTime());
+	    pstmt.setDouble(7, store.getStore_rating());
 	    int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);
@@ -37,7 +36,6 @@ public class StoreDao {
 							  rs.getString("store_businesstime"),
 							  rs.getString("store_phone"),
 							  rs.getString("store_address"),
-							  rs.getInt("store_deliveryprice"),
 							  rs.getString("jumun_estimatedtime"),
 							  rs.getDouble("store_rating")							  
 							  );
@@ -59,7 +57,6 @@ public class StoreDao {
 					rs.getString("store_businesstime"),
 					rs.getString("store_phone"),
 					rs.getString("store_address"),
-					rs.getInt("store_deliveryprice"),
 					rs.getString("jumun_estimatedtime"),
 					rs.getDouble("store_rating")							  
 					);
@@ -80,7 +77,6 @@ public class StoreDao {
 					  rs.getString("store_businesstime"),
 					  rs.getString("store_phone"),
 					  rs.getString("store_address"),
-					  rs.getInt("store_deliveryprice"),
 					  rs.getString("jumun_estimatedtime"),
 					  rs.getDouble("store_rating")
 					  ));
@@ -97,10 +93,9 @@ public class StoreDao {
 		pstmt.setString(2,store.getStore_businessTime());
 		pstmt.setString(3,store.getStore_phone());
 		pstmt.setString(4,store.getStore_address());
-		pstmt.setInt(5,store.getStore_deliveryPrice());
-		pstmt.setString(6,store.getJumun_estimatedTime());
-		pstmt.setDouble(7,store.getStore_rating());
-		pstmt.setInt(8,store.getStore_no());
+		pstmt.setString(5,store.getJumun_estimatedTime());
+		pstmt.setDouble(6,store.getStore_rating());
+		pstmt.setInt(7,store.getStore_no());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);
@@ -112,10 +107,9 @@ public class StoreDao {
 		pstmt.setString(1,store.getStore_businessTime());
 		pstmt.setString(2,store.getStore_phone());
 		pstmt.setString(3,store.getStore_address());
-		pstmt.setInt(4,store.getStore_deliveryPrice());
-		pstmt.setString(5,store.getJumun_estimatedTime());
-		pstmt.setDouble(6,store.getStore_rating());
-		pstmt.setString(7,store.getStore_name());
+		pstmt.setString(4,store.getJumun_estimatedTime());
+		pstmt.setDouble(5,store.getStore_rating());
+		pstmt.setString(6,store.getStore_name());
 		int rowCount = pstmt.executeUpdate();
 		pstmt.close();
 		ConnectionFactory.releaseConnection(con);
