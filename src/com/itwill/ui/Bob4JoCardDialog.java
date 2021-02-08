@@ -214,7 +214,6 @@ public class Bob4JoCardDialog extends JDialog {
 								jumunService.updateByCardMemberNo(card);
 								JOptionPane.showMessageDialog(null, "카드수정이 완료되었습니다.");
 							}
-							memberInfoPanel.creditCardRegistLb.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드이미지.png")));
 							dispose();
 						} catch (Exception e1) {
 							e1.getStackTrace();
