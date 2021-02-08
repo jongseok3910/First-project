@@ -1,16 +1,25 @@
 package com.itwill.ui;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.util.List;
+import java.util.Vector;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.ImageIcon;
-import java.awt.Color;
+
+import com.itwill.service.JumunService;
+import com.itwill.service.MemberService;
+import com.itwill.vo.Food;
 
 public class AdministratorFoodSetPanel extends JPanel {
 	private JTable sandwichTable;
@@ -36,7 +45,11 @@ public class AdministratorFoodSetPanel extends JPanel {
 	private JButton foodAddBtn;
 	private JButton foodDeleteBtn;
 	private JLabel pictureLabel2;
-
+	private JTabbedPane foodTabbedPane;
+//	추가
+	MemberService memberService;
+	JumunService jumunService;
+	Bob4JoMainFrame bob4JoMainFrame;
 	/**
 	 * Create the panel.
 	 */
@@ -44,13 +57,21 @@ public class AdministratorFoodSetPanel extends JPanel {
 		setBackground(new Color(220, 220, 220));
 		setLayout(null);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setSelectedIndex(0);
-		tabbedPane.setBounds(30, 62, 355, 348);
-		add(tabbedPane);
+		foodTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		foodTabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				int index = foodTabbedPane.getSelectedIndex();
+				int categoryNo = (index+1)*10;
+				foodListTable(categoryNo);
+				
+			}
+		});
+		foodTabbedPane.setSelectedIndex(0);
+		foodTabbedPane.setBounds(30, 62, 355, 348);
+		add(foodTabbedPane);
 		
 		sandwichPanel = new JPanel();
-		tabbedPane.addTab("샌드위치", null, sandwichPanel, null);
+		foodTabbedPane.addTab("샌드위치", null, sandwichPanel, null);
 		sandwichPanel.setLayout(new BorderLayout(0, 0));
 		
 		sandwichTable = new JTable();
@@ -65,7 +86,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 		sandwichPanel.add(sandwichTable, BorderLayout.CENTER);
 		
 		labPanel = new JPanel();
-		tabbedPane.addTab("랩", null, labPanel, null);
+		foodTabbedPane.addTab("랩", null, labPanel, null);
 		labPanel.setLayout(new BorderLayout(0, 0));
 		
 		labTable = new JTable();
@@ -80,7 +101,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 		labPanel.add(labTable, BorderLayout.CENTER);
 		
 		saladPanel = new JPanel();
-		tabbedPane.addTab("샐러드", null, saladPanel, null);
+		foodTabbedPane.addTab("샐러드", null, saladPanel, null);
 		saladPanel.setLayout(new BorderLayout(0, 0));
 		
 		saladTable = new JTable();
@@ -95,7 +116,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 		saladPanel.add(saladTable, BorderLayout.CENTER);
 		
 		sideMenuPanel = new JPanel();
-		tabbedPane.addTab("사이드메뉴", null, sideMenuPanel, null);
+		foodTabbedPane.addTab("사이드메뉴", null, sideMenuPanel, null);
 		sideMenuPanel.setLayout(new BorderLayout(0, 0));
 		
 		sideMenuTable = new JTable();
@@ -110,7 +131,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 		sideMenuPanel.add(sideMenuTable, BorderLayout.CENTER);
 		
 		cookiePanel = new JPanel();
-		tabbedPane.addTab("쿠키", null, cookiePanel, null);
+		foodTabbedPane.addTab("쿠키", null, cookiePanel, null);
 		cookiePanel.setLayout(new BorderLayout(0, 0));
 		
 		cookieTable = new JTable();
@@ -125,7 +146,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 		cookiePanel.add(cookieTable, BorderLayout.CENTER);
 		
 		drinkPanel = new JPanel();
-		tabbedPane.addTab("음료", null, drinkPanel, null);
+		foodTabbedPane.addTab("음료", null, drinkPanel, null);
 		drinkPanel.setLayout(new BorderLayout(0, 0));
 		
 		drinkTable = new JTable();
@@ -212,6 +233,50 @@ public class AdministratorFoodSetPanel extends JPanel {
 		pictureLabel2.setIcon(new ImageIcon(AdministratorFoodSetPanel.class.getResource("/com/itwill/ui/△▼.png")));
 		pictureLabel2.setBounds(0, 409, 415, 33);
 		add(pictureLabel2);
+		
+//		service 객체 생성
+		memberService = new MemberService();
+		jumunService = new JumunService();
 
 	}
+//		푸드셀렉트 패널
+	private void foodListTable(int categoryNo) {
+		try {
+			List<Food> foodList = jumunService.selectByCategoryNo(categoryNo);
+			
+			Vector foodListVector = new Vector();
+			for (Food food : foodList) {
+				Vector foodVector = new Vector();
+				foodVector.add(food.getFood_no());
+				foodVector.add(food.getFood_name());
+				foodVector.add(food.getFood_price());
+				foodListVector.add(foodVector);
+			}
+			
+			Vector columnNames = new Vector();
+			columnNames.add("번호");
+			columnNames.add("음식명");
+			columnNames.add("가격");
+			
+			DefaultTableModel defaultTableModel =
+						new DefaultTableModel(foodListVector, columnNames);
+			if(categoryNo == 10) {
+				sandwichTable.setModel(defaultTableModel);
+			}else if (categoryNo == 20) {
+				labTable.setModel(defaultTableModel);
+			}else if (categoryNo == 30) {
+				saladTable.setModel(defaultTableModel);
+			} else if (categoryNo == 40) {
+				sideMenuTable.setModel(defaultTableModel);
+			} else if (categoryNo == 50) {
+				cookieTable.setModel(defaultTableModel);
+			} else if (categoryNo == 60) {
+				drinkTable.setModel(defaultTableModel);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 }
