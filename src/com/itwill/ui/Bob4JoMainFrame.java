@@ -43,6 +43,9 @@ public class Bob4JoMainFrame extends JFrame {
 	private PaymentListPanel paymentListPanel;
 	private MemberInfoPanel memberInfoPanel;
 	private JTabbedPane tabbedPane;
+	private JPanel AdministratorPanel;
+	private JTabbedPane AdminTabbedPane;
+	private AdministratorStoreSetPanel administratorStoreSetPanel;
 	/*
 	 * Launch the application.
 	 */
@@ -156,6 +159,22 @@ public class Bob4JoMainFrame extends JFrame {
 		basketPanel.setBob4JoMainFrame(this);
 		paymentListPanel.setBob4JoMainFrame(this);
 		memberInfoPanel.setBob4JoMainFrame(this);
+		
+		AdministratorPanel = new JPanel();
+		baseCardLayoutPanel.add(AdministratorPanel, "name_1719816080714700");
+		AdministratorPanel.setLayout(new BorderLayout(0, 0));
+		
+		AdminTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		AdministratorPanel.add(AdminTabbedPane, BorderLayout.CENTER);
+		
+		administratorStoreSetPanel = new AdministratorStoreSetPanel();
+		AdminTabbedPane.addTab("가맹점 관리", null, administratorStoreSetPanel, null);
+		
+		AdministratorFoodSetPanel administratorFoodSetPanel = new AdministratorFoodSetPanel();
+		AdminTabbedPane.addTab("메뉴 관리", null, administratorFoodSetPanel, null);
+		
+		AdministratorMemberSetPanel administratorMemberSetPanel = new AdministratorMemberSetPanel();
+		AdminTabbedPane.addTab("회원 관리", null, administratorMemberSetPanel, null);
 		/**************************************/
 		
 		
@@ -192,5 +211,4 @@ public class Bob4JoMainFrame extends JFrame {
 	public Jumun selectedJumun() {
 		return foodSelectPanel.selectedJumun;
 	}
-	
 }
