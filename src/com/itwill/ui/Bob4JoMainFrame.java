@@ -70,7 +70,7 @@ public class Bob4JoMainFrame extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu memberMenu = new JMenu("SUBWAY");
+		JMenu memberMenu = new JMenu("Bob4Jo");
 		menuBar.add(memberMenu);
 		
 		loginMenuItem = new JMenuItem("로그인");
