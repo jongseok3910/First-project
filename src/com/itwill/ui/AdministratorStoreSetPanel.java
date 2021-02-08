@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.Font;
 
 public class AdministratorStoreSetPanel extends JPanel {
 	private JList storeList;
@@ -25,6 +26,8 @@ public class AdministratorStoreSetPanel extends JPanel {
 	private JButton storeAddressUpdateBtn;
 	private JButton storeDeliveryUpdateBtn;
 	private JButton storeEstimatedTimeUpdateBtn;
+	private JTextField StoreVolumeTF;
+	private JButton storeAddBtn;
 
 	/**
 	 * Create the panel.
@@ -137,6 +140,22 @@ public class AdministratorStoreSetPanel extends JPanel {
 		lblNewLabel.setIcon(new ImageIcon(AdministratorStoreSetPanel.class.getResource("/com/itwill/ui/가맹점정보라벨.png")));
 		lblNewLabel.setBounds(0, 113, 415, 25);
 		add(lblNewLabel);
+		
+		storeAddBtn = new JButton("추가하기");
+		storeAddBtn.setBounds(308, 47, 81, 23);
+		add(storeAddBtn);
+		
+		JLabel storeVolumeLb = new JLabel("가맹점 수");
+		storeVolumeLb.setForeground(new Color(255, 255, 255));
+		storeVolumeLb.setFont(new Font("D2Coding ligature", Font.PLAIN, 10));
+		storeVolumeLb.setHorizontalAlignment(SwingConstants.CENTER);
+		storeVolumeLb.setBounds(251, 22, 81, 15);
+		add(storeVolumeLb);
+		
+		StoreVolumeTF = new JTextField();
+		StoreVolumeTF.setBounds(329, 16, 60, 21);
+		add(StoreVolumeTF);
+		StoreVolumeTF.setColumns(10);
 
 	}
 }
