@@ -164,7 +164,11 @@ public class Bob4JoJoinDialog extends JDialog {
 						char[] passChars=passwordTF.getPassword();
 						String passwordStr=new String(passChars);
 						String nameStr=nameTF.getText();
-						String phoneStr=phoneTF.getText();
+						String phoneRawStr=phoneTF.getText();
+						String phone1=phoneRawStr.substring(0,3);
+						String phone2=phoneRawStr.substring(3,7);
+						String phone3=phoneRawStr.substring(7,11);
+						String phoneStr=phone1+"-"+phone2+"-"+phone3;
 						String addressStr=addressTF.getText();
 						//유효성체크
 						if(idStr.trim().equals("")) {
