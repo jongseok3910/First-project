@@ -52,8 +52,12 @@ public class MemberInfoPanel extends JPanel {
 			@Override
 			public void componentShown(ComponentEvent e) {
 				//회원정보패널을 눌렀을 때
+				MemberInfo member=bob4JoMainFrame.loginMember;
+				String member_no=member.getMember_no();
+				nameTF.setText(member.getMember_name());
+				phoneNumberTF.setText(member.getMember_phone());
+				addressTF.setText(member.getMember_address());
 				try {
-					String member_no=bob4JoMainFrame.loginMember.getMember_no();
 					registeredCard = jumunService.selectByCardMemberNo(member_no);
 					if(registeredCard==null) {
 //						카드등록 안됐을때
@@ -98,7 +102,6 @@ public class MemberInfoPanel extends JPanel {
 //					System.out.println(memberInfo);
 					memberService.memberUpdate(member);
 					JOptionPane.showMessageDialog(null, "이름이 변경되었습니다.");
-					nameTF.setText("");
 					// 타이틀변경
 					bob4JoMainFrame.setTitle(member.getMember_name()+"님 로그인");
 					}
@@ -172,7 +175,6 @@ public class MemberInfoPanel extends JPanel {
 					member.setMember_address(addressStr);
 					memberService.memberUpdate(member);
 					JOptionPane.showMessageDialog(null, "주소가 변경되었습니다.");
-					addressTF.setText("");
 					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -193,7 +195,8 @@ public class MemberInfoPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Bob4JoCardDialog bob4joCardDialog = new Bob4JoCardDialog();
-				bob4joCardDialog.setMemberInfoPanel(MemberInfoPanel.this);
+				bob4joCardDialog.setBob4JoMainFrame(bob4JoMainFrame);
+				//System.out.println(bob4JoMainFrame.loginMember);
 				bob4joCardDialog.setModal(true);
 				bob4joCardDialog.setVisible(true);
 				creditCardRegistLb.setIcon(cardRegistered);
@@ -285,11 +288,14 @@ public class MemberInfoPanel extends JPanel {
 						return;
 					} else {
 						MemberInfo member = bob4JoMainFrame.loginMember;
-						String phoneStr = phoneNumberTF.getText();
+						String phoneRawStr=phoneNumberTF.getText();
+						String phone1=phoneRawStr.substring(0,3);
+						String phone2=phoneRawStr.substring(3,7);
+						String phone3=phoneRawStr.substring(7,11);
+						String phoneStr=phone1+"-"+phone2+"-"+phone3;
 						member.setMember_phone(phoneStr);
 						memberService.memberUpdate(member);
 						JOptionPane.showMessageDialog(null, "전화번호가 변경되었습니다.");
-						phoneNumberTF.setText("");
 					}
 				} catch (Exception e2) {
 					// TODO: handle exception

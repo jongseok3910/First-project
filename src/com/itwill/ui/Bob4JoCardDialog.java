@@ -34,6 +34,7 @@ public class Bob4JoCardDialog extends JDialog {
 	Bob4JoMainFrame bob4JoMainFrame;
 	MemberInfoPanel memberInfoPanel;
 	JumunService jumunService;
+	Bob4JoCardDialog bob4JoCardDialog;
 
 	/**
 	 * Create the dialog.
@@ -181,6 +182,7 @@ public class Bob4JoCardDialog extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						//System.out.println(">>>>>>"+bob4JoMainFrame.loginMember);
 						if(cardNoTF.getText().trim().equals("")){
 							JOptionPane.showMessageDialog(null, "카드번호를 입력해주세요.");
 						}else if(validityMTF.getText().trim().equals("")) {
@@ -189,33 +191,37 @@ public class Bob4JoCardDialog extends JDialog {
 							JOptionPane.showMessageDialog(null, "카드유효기간(년)을 입력해주세요.");
 						}else if(cvcTF.getText().trim().equals("")) {
 							JOptionPane.showMessageDialog(null, "카드고유확인번호를 입력해주세요.");
-						}else if(passwordTF.getText().trim().equals("")) {
+						}else if(passwordTF.getPassword().length==0) {
 							JOptionPane.showMessageDialog(null, "카드비밀번호를 입력해주세요.");
 						}
 						try {
-							String card_no=cardNoTF.getText();
+							String card_rawNo=cardNoTF.getText();
+							String card_no1=card_rawNo.substring(0,4);
+							String card_no2=card_rawNo.substring(4,8);
+							String card_no3=card_rawNo.substring(8,12);
+							String card_no4=card_rawNo.substring(12,16);
+							String card_no=card_no1+"-"+card_no2+"-"+card_no3+"-"+card_no4;
 							int validityM = Integer.parseInt(validityMTF.getText());
 							int validityY = Integer.parseInt(validityYTF.getText());
 							String card_validity = validityM+"/"+validityY;
 							int card_cvc = Integer.parseInt(cvcTF.getText());
-							int card_password = Integer.parseInt(passwordTF.getText());
-							/*
-							 * 로그인멤버를 못불러옴
-							 */
+							char[] passwordChars = passwordTF.getPassword();
+							String passwordStr = new String(passwordChars);
+							int card_password = Integer.parseInt(passwordStr);
 							String member_no=bob4JoMainFrame.loginMember.getMember_no();
+							
 							Card card = new Card(card_no,card_validity,card_cvc,card_password,member_no);
-							if(memberInfoPanel.registeredCard==null) {
+							Card findCard = jumunService.selectByCardMemberNo(member_no);
+							if(findCard==null) {
 								jumunService.cardInsert(card);
 								JOptionPane.showMessageDialog(null, "카드등록이 완료되었습니다.");
 							}else {
 								jumunService.updateByCardMemberNo(card);
 								JOptionPane.showMessageDialog(null, "카드수정이 완료되었습니다.");
 							}
-							memberInfoPanel.creditCardRegistLb.setIcon(new ImageIcon(MemberInfoPanel.class.getResource("/com/itwill/ui/카드이미지.png")));
 							dispose();
 						} catch (Exception e1) {
-							JOptionPane.showMessageDialog(null, "카드정보를 정확히 입력해주세요.");
-							return;
+							e1.getStackTrace();
 						}
 					}
 				});
