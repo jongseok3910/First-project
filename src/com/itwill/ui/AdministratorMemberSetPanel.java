@@ -32,6 +32,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 
 	Bob4JoMainFrame bob4JoMainFrame;
 	MemberService memberService;
+	private JTextField textField;
 	/**
 	 * Create the panel.
 	 */
@@ -139,19 +140,23 @@ public class AdministratorMemberSetPanel extends JPanel {
 		lblNewLabel.setBounds(12, 10, 195, 194);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Bob4Jo");
-		lblNewLabel_1.setFont(new Font("D2Coding", Font.BOLD, 40));
-		lblNewLabel_1.setBounds(235, 30, 180, 60);
-		add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("Member");
-		lblNewLabel_2.setFont(new Font("D2Coding", Font.BOLD, 40));
-		lblNewLabel_2.setBounds(235, 84, 180, 60);
-		add(lblNewLabel_2);
-		
 		JButton memberIDChangeBtn_1 = new JButton("검색");
 		memberIDChangeBtn_1.setBounds(326, 366, 55, 23);
 		add(memberIDChangeBtn_1);
+		
+		JLabel lblNewLabel_4 = new JLabel("총 인원수");
+		lblNewLabel_4.setBounds(216, 152, 62, 15);
+		add(lblNewLabel_4);
+		
+		textField = new JTextField();
+		textField.setBounds(290, 146, 91, 21);
+		add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(AdministratorMemberSetPanel.class.getResource("/com/itwill/ui/관리자회원리스트Bob4Jo.png")));
+		lblNewLabel_1.setBounds(219, 10, 160, 120);
+		add(lblNewLabel_1);
 
 	}//관리자멤버패널
 	private void memberListList() {
