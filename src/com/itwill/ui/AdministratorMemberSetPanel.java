@@ -267,6 +267,29 @@ public class AdministratorMemberSetPanel extends JPanel {
 		add(memberAddressChangeBtn);
 		
 		JButton memberDeleteBtn = new JButton("삭제");
+		memberDeleteBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if(memberService==null) {
+						return;
+					}
+					String member_id = memberIdTF.getText();
+					int reception = JOptionPane.showConfirmDialog(null, "회원탈퇴를 하시겠습니까?","Confirm",JOptionPane.YES_NO_OPTION);
+					if(reception==JOptionPane.CLOSED_OPTION) {
+						//우측 상단 X를 눌렀을 때
+					}else if(reception==JOptionPane.YES_OPTION) {
+						//예를 눌렀을 때 회원탈퇴
+						memberService.memberUnRegister(member_id);
+						JOptionPane.showMessageDialog(null, "탈퇴가 완료되었습니다.");
+					}else {
+						//아니오를 눌렀을 때
+					}
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		memberDeleteBtn.setBounds(290, 169, 91, 23);
 		add(memberDeleteBtn);
 		
