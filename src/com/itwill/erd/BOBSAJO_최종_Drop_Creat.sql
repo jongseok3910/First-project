@@ -1,7 +1,6 @@
 DROP TABLE Jumun;
 DROP TABLE Food;
 DROP TABLE Category;
-DROP TABLE Board;
 DROP TABLE Store;
 DROP TABLE Card;
 DROP TABLE MemberInfo;
@@ -45,7 +44,7 @@ CREATE TABLE Store(
 		store_phone VARCHAR2(13),
 		store_address VARCHAR2(50),
 		store_deliveryPrice number,
-		jumun_estimatedTime VARCHAR2(30) DEFAULT '30분',
+		jumun_estimatedTime VARCHAR2(30) DEFAULT '30遺�',
 		store_rating number
 );
 
@@ -59,18 +58,9 @@ CREATE TABLE Jumun(
 		member_no VARCHAR2(20),
         food_no number,
         store_no number,
-        --CASCADE DELETE ROOL 추가
+        --CASCADE DELETE ROOL 異붽�
   FOREIGN KEY (member_no) REFERENCES MemberInfo (member_no) ON DELETE CASCADE,
   FOREIGN KEY (food_no) REFERENCES Food (food_no),
-  FOREIGN KEY (store_no) REFERENCES Store (store_no)
-);
-
-CREATE TABLE Board(
-		board_no number PRIMARY KEY,
-		board_date DATE DEFAULT sysdate,
-		board_content VARCHAR2(255),
-		board_rating number,
-		store_no number,
   FOREIGN KEY (store_no) REFERENCES Store (store_no)
 );
 commit;
