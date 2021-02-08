@@ -202,8 +202,8 @@ public class Bob4JoCardDialog extends JDialog {
 							/*
 							 * 로그인멤버를 못불러옴
 							 */
-							//String member_no=memberInfoPanel.memberInfo.getMember_no();
-							Card card = new Card(card_no,card_validity,card_cvc,card_password,"2021/02/0616");
+							String member_no=bob4JoMainFrame.loginMember.getMember_no();
+							Card card = new Card(card_no,card_validity,card_cvc,card_password,member_no);
 							if(memberInfoPanel.registeredCard==null) {
 								jumunService.cardInsert(card);
 								JOptionPane.showMessageDialog(null, "카드등록이 완료되었습니다.");
