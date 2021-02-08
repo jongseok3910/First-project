@@ -195,7 +195,12 @@ public class Bob4JoCardDialog extends JDialog {
 							JOptionPane.showMessageDialog(null, "카드비밀번호를 입력해주세요.");
 						}
 						try {
-							String card_no=cardNoTF.getText();
+							String card_rawNo=cardNoTF.getText();
+							String card_no1=card_rawNo.substring(0,4);
+							String card_no2=card_rawNo.substring(4,8);
+							String card_no3=card_rawNo.substring(8,12);
+							String card_no4=card_rawNo.substring(12,16);
+							String card_no=card_no1+"-"+card_no2+"-"+card_no3+"-"+card_no4;
 							int validityM = Integer.parseInt(validityMTF.getText());
 							int validityY = Integer.parseInt(validityYTF.getText());
 							String card_validity = validityM+"/"+validityY;
