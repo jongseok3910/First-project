@@ -61,6 +61,25 @@ public class AdministratorStoreSetPanel extends JPanel {
 		showStoreList.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				try {
+					int selecedIndex = showStoreList.getSelectedIndex();
+					if(selecedIndex==-1) {
+						return;
+					}
+					List<Store> storeList = jumunService.selectStoreAll();
+					Store store = storeList.get(selecedIndex);
+					//store_no 추가하면 좋을 것 같음
+					storeNameTF.setText(store.getStore_name());
+					storeBusinessTimeTF.setText(store.getStore_businessTime());
+					storePhoneTF.setText(store.getStore_phone());
+					storeAddressTF.setText(store.getStore_address());
+					storeDeliveryTF.setText(store.getStore_deliveryPrice()+"");
+					storeEstimateTimeTF.setText(store.getJumun_estimatedTime());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		scrollPane.setViewportView(showStoreList);

@@ -230,6 +230,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 						String phoneStr=phone1+"-"+phone2+"-"+phone3;
 						member.setMember_phone(phoneStr);
 						memberService.memberUpdate(member);
+						memberPhoneTF.setText(phoneStr);
 						JOptionPane.showMessageDialog(null, "전화번호가 변경되었습니다.");
 					}
 				} catch (Exception e2) {
