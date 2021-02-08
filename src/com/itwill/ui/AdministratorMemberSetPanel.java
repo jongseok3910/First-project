@@ -7,6 +7,7 @@ import java.awt.Scrollbar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 import com.itwill.service.MemberService;
 import com.itwill.vo.MemberInfo;
@@ -25,6 +26,8 @@ import java.awt.event.ComponentEvent;
 import java.util.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AdministratorMemberSetPanel extends JPanel {
 	private JTextField memberIdTF;
@@ -96,7 +99,6 @@ public class AdministratorMemberSetPanel extends JPanel {
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-					//아이디 비밀번호 이름 전화 주소 가입일
 				}
 			}
 		});
@@ -141,18 +143,35 @@ public class AdministratorMemberSetPanel extends JPanel {
 		memberJoinDateTF.setColumns(10);
 		
 		JButton memberPWChangeBtn = new JButton("수정");
+		memberPWChangeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		memberPWChangeBtn.setBounds(326, 406, 55, 23);
 		add(memberPWChangeBtn);
 		
 		JButton memberNameChangeBtn = new JButton("수정");
+		memberNameChangeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		memberNameChangeBtn.setBounds(326, 446, 55, 23);
 		add(memberNameChangeBtn);
 		
 		JButton memberPhoneChangeBtn = new JButton("수정");
+		memberPhoneChangeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		memberPhoneChangeBtn.setBounds(326, 486, 55, 23);
 		add(memberPhoneChangeBtn);
 		
 		JButton memberAddressChangeBtn = new JButton("수정");
+		memberAddressChangeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		memberAddressChangeBtn.setBounds(326, 526, 55, 23);
 		add(memberAddressChangeBtn);
 		
@@ -172,6 +191,25 @@ public class AdministratorMemberSetPanel extends JPanel {
 		add(lblNewLabel);
 		
 		JButton memberIDChangeBtn_1 = new JButton("검색");
+		memberIDChangeBtn_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String member_id = memberNameTF.getText();
+					if (memberService.isExistedId(member_id)==false) {
+						JOptionPane.showMessageDialog(null, "존재하지 않는 아이디입니다.");
+						return;
+					}
+					MemberInfo member = memberService.selectById(member_id);
+					memberPWTF.setText(member.getMember_password());
+					memberNameTF.setText(member.getMember_name());
+					memberPhoneTF.setText(member.getMember_phone());
+					memberAddressTF.setText(member.getMember_address());
+					memberJoinDateTF.setText(member.getJoinDate());
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		memberIDChangeBtn_1.setBounds(326, 366, 55, 23);
 		add(memberIDChangeBtn_1);
 		
