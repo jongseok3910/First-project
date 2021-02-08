@@ -101,4 +101,8 @@ public class JumunService {
 	public int updateByStoreNo(Store store) throws Exception {
 		return storeDao.updateByStoreNo(store);
 	}
+	//스토어 삭제
+	public int deleteByStoreNo(String store_name) throws Exception {
+		return storeDao.deleteByName(store_name);
+	}
 }

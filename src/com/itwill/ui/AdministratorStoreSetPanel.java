@@ -27,13 +27,13 @@ import java.awt.event.ActionEvent;
 
 public class AdministratorStoreSetPanel extends JPanel {
 	private JList showStoreList;
-	private JTextField storeBisinessTimeTF;
+	private JTextField storeNameTF;
 	private JButton storeNameUpdateBtn;
 	private JTextField storeBusinessTimeTF;
 	private JTextField storePhoneTF;
 	private JTextField storeAddressTF;
 	private JTextField storeEstimateTimeTF;
-	private JButton StoredeleteBtn;
+	private JButton storeDeleteBtn;
 	private JButton storeTimeUpdateBtn;
 	private JButton storePhoneUpdateBtn;
 	private JButton storeAddressUpdateBtn;
@@ -72,7 +72,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 					}
 					List<Store> storeList = jumunService.selectStoreAll();
 					Store store = storeList.get(selecedIndex);
-					storeBisinessTimeTF.setText(store.getStore_name());
+					storeNameTF.setText(store.getStore_name());
 					storeBusinessTimeTF.setText(store.getStore_businessTime());
 					storePhoneTF.setText(store.getStore_phone());
 					storeAddressTF.setText(store.getStore_address());
@@ -86,18 +86,18 @@ public class AdministratorStoreSetPanel extends JPanel {
 		});
 		scrollPane.setViewportView(showStoreList);
 		
-		storeBisinessTimeTF = new JTextField();
-		storeBisinessTimeTF.setBounds(82, 368, 229, 25);
-		add(storeBisinessTimeTF);
-		storeBisinessTimeTF.setColumns(10);
+		storeNameTF = new JTextField();
+		storeNameTF.setBounds(82, 368, 229, 25);
+		add(storeNameTF);
+		storeNameTF.setColumns(10);
 		
 		storeNameUpdateBtn = new JButton("수정");
 		storeNameUpdateBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(storeBisinessTimeTF.getText().trim().equals("")) {
-						storeBisinessTimeTF.setText("");
-						storeBisinessTimeTF.requestFocus();
+					if(storeNameTF.getText().trim().equals("")) {
+						storeNameTF.setText("");
+						storeNameTF.requestFocus();
 						JOptionPane.showMessageDialog(null, "변경할 가게명을 입력해주세요.");
 						return;
 					}else {
@@ -107,7 +107,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 						}
 						List<Store> storeList = jumunService.selectStoreAll();
 						Store store = storeList.get(selecedIndex);
-						store.setStore_name(storeBisinessTimeTF.getText());
+						store.setStore_name(storeNameTF.getText());
 						jumunService.updateByStoreNo(store);
 						JOptionPane.showMessageDialog(null, "가게명이 변경되었습니다.");
 					}
@@ -138,9 +138,9 @@ public class AdministratorStoreSetPanel extends JPanel {
 		storeTimeUpdateBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(storeBisinessTimeTF.getText().trim().equals("")) {
-						storeBisinessTimeTF.setText("");
-						storeBisinessTimeTF.requestFocus();
+					if(storeNameTF.getText().trim().equals("")) {
+						storeNameTF.setText("");
+						storeNameTF.requestFocus();
 						JOptionPane.showMessageDialog(null, "변경할 영업시간을 입력해주세요.");
 						return;
 					}else {
@@ -150,7 +150,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 						}
 						List<Store> storeList = jumunService.selectStoreAll();
 						Store store = storeList.get(selecedIndex);
-						store.setStore_businessTime(storeBisinessTimeTF.getText());
+						store.setStore_businessTime(storeNameTF.getText());
 						jumunService.updateByStoreNo(store);
 						JOptionPane.showMessageDialog(null, "영업시간이 변경되었습니다.");
 					}
@@ -249,16 +249,55 @@ public class AdministratorStoreSetPanel extends JPanel {
 		add(storeEstimateTimeTF);
 		
 		storeEstimatedTimeUpdateBtn = new JButton("수정");
+		storeEstimatedTimeUpdateBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if(storeEstimateTimeTF.getText().trim().equals("")) {
+						storeEstimateTimeTF.setText("");
+						storeEstimateTimeTF.requestFocus();
+						JOptionPane.showMessageDialog(null, "변경할 배달시간을 입력해주세요.");
+						return;
+					}else {
+						int selecedIndex = showStoreList.getSelectedIndex();
+						if(selecedIndex==-1) {
+							return;
+						}
+						List<Store> storeList = jumunService.selectStoreAll();
+						Store store = storeList.get(selecedIndex);
+						store.setJumun_estimatedTime(storeEstimateTimeTF.getText());
+						jumunService.updateByStoreNo(store);
+						JOptionPane.showMessageDialog(null, "배달시간이 변경되었습니다.");
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		storeEstimatedTimeUpdateBtn.setBounds(329, 548, 60, 25);
 		add(storeEstimatedTimeUpdateBtn);
 		
-		StoredeleteBtn = new JButton("삭제하기");
-		StoredeleteBtn.addActionListener(new ActionListener() {
+		storeDeleteBtn = new JButton("삭제하기");
+		storeDeleteBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					if(storeNameTF.getText().trim().equals("")) {
+						storeNameTF.setText("");
+						storeNameTF.requestFocus();
+						JOptionPane.showMessageDialog(null, "삭제할 가게명을 입력해주세요.");
+						return;
+					}else {
+						String store_name = storeNameTF.getText();
+						jumunService.deleteByStoreNo(store_name);
+						JOptionPane.showMessageDialog(null, "가게가 삭제되었습니다.");
+						storeListList();
+					}
+				}catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "삭제할 가게가 없습니다.");
+				}
 			}
 		});
-		StoredeleteBtn.setBounds(308, 80, 81, 23);
-		add(StoredeleteBtn);
+		storeDeleteBtn.setBounds(308, 80, 81, 23);
+		add(storeDeleteBtn);
 		
 		JLabel storeListLb = new JLabel("가맹점 정보");
 		storeListLb.setIcon(new ImageIcon(AdministratorStoreSetPanel.class.getResource("/com/itwill/ui/상점관리그림.png")));
