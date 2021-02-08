@@ -23,14 +23,16 @@ import javax.swing.SwingConstants;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.List;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AdministratorMemberSetPanel extends JPanel {
-	private JTextField memberIDtextField;
-	private JTextField memberPWtextField;
-	private JTextField memberNametextField;
-	private JTextField memberPhonetextField;
-	private JTextField memberAddresstextField;
-	private JTextField memberJoinDatetextField;
+	private JTextField memberIdTF;
+	private JTextField memberPWTF;
+	private JTextField memberNameTF;
+	private JTextField memberPhoneTF;
+	private JTextField memberAddressTF;
+	private JTextField memberJoinDateTF;
 
 	Bob4JoMainFrame bob4JoMainFrame;
 	MemberService memberService;
@@ -75,6 +77,29 @@ public class AdministratorMemberSetPanel extends JPanel {
 		add(scrollPane);
 		
 		showMemberList = new JList();
+		showMemberList.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					int selecedIndex = showMemberList.getSelectedIndex();
+					if(selecedIndex==-1) {
+						return;
+					}
+					List<MemberInfo> memberList = memberService.selectMemberAll();
+					MemberInfo member = memberList.get(selecedIndex);
+					memberIdTF.setText(member.getMember_id());
+					memberPWTF.setText(member.getMember_password());
+					memberNameTF.setText(member.getMember_name());
+					memberPhoneTF.setText(member.getMember_phone());
+					memberAddressTF.setText(member.getMember_address());
+					memberJoinDateTF.setText(member.getJoinDate());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					//아이디 비밀번호 이름 전화 주소 가입일
+				}
+			}
+		});
 		scrollPane.setViewportView(showMemberList);
 		
 		JLabel memberAddressLabel = new JLabel("회원주소");
@@ -85,35 +110,35 @@ public class AdministratorMemberSetPanel extends JPanel {
 		memberJoinDateLabel.setBounds(29, 570, 80, 15);
 		add(memberJoinDateLabel);
 		
-		memberIDtextField = new JTextField();
-		memberIDtextField.setBounds(116, 367, 195, 21);
-		add(memberIDtextField);
-		memberIDtextField.setColumns(10);
+		memberIdTF = new JTextField();
+		memberIdTF.setBounds(116, 367, 195, 21);
+		add(memberIdTF);
+		memberIdTF.setColumns(10);
 		
-		memberPWtextField = new JTextField();
-		memberPWtextField.setBounds(116, 407, 195, 21);
-		add(memberPWtextField);
-		memberPWtextField.setColumns(10);
+		memberPWTF = new JTextField();
+		memberPWTF.setBounds(116, 407, 195, 21);
+		add(memberPWTF);
+		memberPWTF.setColumns(10);
 		
-		memberNametextField = new JTextField();
-		memberNametextField.setBounds(116, 447, 195, 21);
-		add(memberNametextField);
-		memberNametextField.setColumns(10);
+		memberNameTF = new JTextField();
+		memberNameTF.setBounds(116, 447, 195, 21);
+		add(memberNameTF);
+		memberNameTF.setColumns(10);
 		
-		memberPhonetextField = new JTextField();
-		memberPhonetextField.setBounds(116, 487, 195, 21);
-		add(memberPhonetextField);
-		memberPhonetextField.setColumns(10);
+		memberPhoneTF = new JTextField();
+		memberPhoneTF.setBounds(116, 487, 195, 21);
+		add(memberPhoneTF);
+		memberPhoneTF.setColumns(10);
 		
-		memberAddresstextField = new JTextField();
-		memberAddresstextField.setBounds(116, 527, 195, 21);
-		add(memberAddresstextField);
-		memberAddresstextField.setColumns(10);
+		memberAddressTF = new JTextField();
+		memberAddressTF.setBounds(116, 527, 195, 21);
+		add(memberAddressTF);
+		memberAddressTF.setColumns(10);
 		
-		memberJoinDatetextField = new JTextField();
-		memberJoinDatetextField.setBounds(116, 567, 195, 21);
-		add(memberJoinDatetextField);
-		memberJoinDatetextField.setColumns(10);
+		memberJoinDateTF = new JTextField();
+		memberJoinDateTF.setBounds(116, 567, 195, 21);
+		add(memberJoinDateTF);
+		memberJoinDateTF.setColumns(10);
 		
 		JButton memberPWChangeBtn = new JButton("수정");
 		memberPWChangeBtn.setBounds(326, 406, 55, 23);

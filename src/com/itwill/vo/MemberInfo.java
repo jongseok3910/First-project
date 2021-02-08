@@ -20,14 +20,14 @@ public class MemberInfo {
 	private String member_name;
 	private String member_phone;
 	private String member_address;
-	private Date joinDate;
+	private String joinDate;
 	
 	public MemberInfo() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public MemberInfo(String member_no, String member_id, String member_password, String member_name,
-			String member_phone, String member_address, Date joinDate) {
+			String member_phone, String member_address, String joinDate) {
 		super();
 		this.member_no = member_no;
 		this.member_id = member_id;
@@ -86,11 +86,11 @@ public class MemberInfo {
 		this.member_address = member_address;
 	}
 
-	public Date getJoinDate() {
+	public String getJoinDate() {
 		return joinDate;
 	}
 
-	public void setJoinDate(Date joinDate) {
+	public void setJoinDate(String joinDate) {
 		this.joinDate = joinDate;
 	}
 
