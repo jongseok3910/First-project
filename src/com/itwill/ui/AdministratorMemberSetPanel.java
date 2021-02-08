@@ -36,8 +36,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 	MemberService memberService;
 
 	private JTextField textField;
-
-	private JList list;
+	private JList showMemberList;
 
 	/**
 	 * Create the panel.
@@ -49,6 +48,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
+				memberListList();
 			}
 		});
 
@@ -74,8 +74,8 @@ public class AdministratorMemberSetPanel extends JPanel {
 		scrollPane.setBounds(29, 202, 352, 142);
 		add(scrollPane);
 		
-		list = new JList();
-		scrollPane.setViewportView(list);
+		showMemberList = new JList();
+		scrollPane.setViewportView(showMemberList);
 		
 		JLabel memberAddressLabel = new JLabel("회원주소");
 		memberAddressLabel.setBounds(29, 530, 80, 15);
@@ -180,7 +180,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 				defaultListModel.addElement(member.getMember_no());
 				defaultListModel.addElement(member.getMember_id());
 			}
-			
+			showMemberList.setModel(defaultListModel);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
