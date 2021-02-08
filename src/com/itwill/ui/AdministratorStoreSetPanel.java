@@ -195,7 +195,6 @@ public class AdministratorStoreSetPanel extends JPanel {
 			int storeCount=0;
 			DefaultListModel defaultListModel=new DefaultListModel();
 			for (Store store : storeList) {
-				defaultListModel.addElement(store.getStore_no());
 				defaultListModel.addElement(store.getStore_name());
 				storeCount+=1;
 			}
