@@ -97,4 +97,8 @@ public class JumunService {
 	public Store selectByStoreNo(int store_no) throws Exception {
 		return storeDao.selectByStoreNo(store_no);
 	}
+	//스토어 업데이트
+	public int updateByStoreNo(Store store) throws Exception {
+		return storeDao.updateByStoreNo(store);
+	}
 }

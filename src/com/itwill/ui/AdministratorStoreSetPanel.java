@@ -3,6 +3,7 @@ package com.itwill.ui;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,10 +22,12 @@ import java.awt.event.ComponentEvent;
 import java.util.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AdministratorStoreSetPanel extends JPanel {
 	private JList showStoreList;
-	private JTextField storeNameTF;
+	private JTextField storeBisinessTimeTF;
 	private JButton storeNameUpdateBtn;
 	private JTextField storeBusinessTimeTF;
 	private JTextField storePhoneTF;
@@ -37,7 +40,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 	private JButton storeAddressUpdateBtn;
 	private JButton storeDeliveryUpdateBtn;
 	private JButton storeEstimatedTimeUpdateBtn;
-	private JTextField StoreVolumeTF;
+	private JTextField storeVolumeTF;
 	private JButton storeAddBtn;
 	
 	Bob4JoMainFrame bob4JoMainFrame;
@@ -71,8 +74,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 					}
 					List<Store> storeList = jumunService.selectStoreAll();
 					Store store = storeList.get(selecedIndex);
-					//store_no 추가하면 좋을 것 같음
-					storeNameTF.setText(store.getStore_name());
+					storeBisinessTimeTF.setText(store.getStore_name());
 					storeBusinessTimeTF.setText(store.getStore_businessTime());
 					storePhoneTF.setText(store.getStore_phone());
 					storeAddressTF.setText(store.getStore_address());
@@ -87,12 +89,36 @@ public class AdministratorStoreSetPanel extends JPanel {
 		});
 		scrollPane.setViewportView(showStoreList);
 		
-		storeNameTF = new JTextField();
-		storeNameTF.setBounds(83, 343, 229, 25);
-		add(storeNameTF);
-		storeNameTF.setColumns(10);
+		storeBisinessTimeTF = new JTextField();
+		storeBisinessTimeTF.setBounds(83, 343, 229, 25);
+		add(storeBisinessTimeTF);
+		storeBisinessTimeTF.setColumns(10);
 		
 		storeNameUpdateBtn = new JButton("수정");
+		storeNameUpdateBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if(storeBisinessTimeTF.getText().trim().equals("")) {
+						storeBisinessTimeTF.setText("");
+						storeBisinessTimeTF.requestFocus();
+						JOptionPane.showMessageDialog(null, "변경할 가게명을 입력해주세요.");
+						return;
+					}else {
+						int selecedIndex = showStoreList.getSelectedIndex();
+						if(selecedIndex==-1) {
+							return;
+						}
+						List<Store> storeList = jumunService.selectStoreAll();
+						Store store = storeList.get(selecedIndex);
+						store.setStore_name(storeBisinessTimeTF.getText());
+						jumunService.updateByStoreNo(store);
+						JOptionPane.showMessageDialog(null, "가게명이 변경되었습니다.");
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		storeNameUpdateBtn.setBounds(330, 343, 60, 25);
 		add(storeNameUpdateBtn);
 		
@@ -112,6 +138,30 @@ public class AdministratorStoreSetPanel extends JPanel {
 		add(storeBusinessTimeTF);
 		
 		storeTimeUpdateBtn = new JButton("수정");
+		storeTimeUpdateBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if(storeBisinessTimeTF.getText().trim().equals("")) {
+						storeBisinessTimeTF.setText("");
+						storeBisinessTimeTF.requestFocus();
+						JOptionPane.showMessageDialog(null, "변경할 영업시간을 입력해주세요.");
+						return;
+					}else {
+						int selecedIndex = showStoreList.getSelectedIndex();
+						if(selecedIndex==-1) {
+							return;
+						}
+						List<Store> storeList = jumunService.selectStoreAll();
+						Store store = storeList.get(selecedIndex);
+						store.setStore_businessTime(storeBisinessTimeTF.getText());
+						jumunService.updateByStoreNo(store);
+						JOptionPane.showMessageDialog(null, "영업시간이 변경되었습니다.");
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		storeTimeUpdateBtn.setBounds(330, 384, 60, 25);
 		add(storeTimeUpdateBtn);
 		
@@ -126,6 +176,30 @@ public class AdministratorStoreSetPanel extends JPanel {
 		add(storePhoneTF);
 		
 		storePhoneUpdateBtn = new JButton("수정");
+		storePhoneUpdateBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if(storePhoneTF.getText().trim().equals("")) {
+						storePhoneTF.setText("");
+						storePhoneTF.requestFocus();
+						JOptionPane.showMessageDialog(null, "변경할 전화번호를 입력해주세요.");
+						return;
+					}else {
+						int selecedIndex = showStoreList.getSelectedIndex();
+						if(selecedIndex==-1) {
+							return;
+						}
+						List<Store> storeList = jumunService.selectStoreAll();
+						Store store = storeList.get(selecedIndex);
+						store.setStore_phone(storePhoneTF.getText());
+						jumunService.updateByStoreNo(store);
+						JOptionPane.showMessageDialog(null, "전화번호가 변경되었습니다.");
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		storePhoneUpdateBtn.setBounds(330, 428, 60, 25);
 		add(storePhoneUpdateBtn);
 		
@@ -140,6 +214,30 @@ public class AdministratorStoreSetPanel extends JPanel {
 		add(storeAddressTF);
 		
 		storeAddressUpdateBtn = new JButton("수정");
+		storeAddressUpdateBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if(storeAddressTF.getText().trim().equals("")) {
+						storeAddressTF.setText("");
+						storeAddressTF.requestFocus();
+						JOptionPane.showMessageDialog(null, "변경할 주소를 입력해주세요.");
+						return;
+					}else {
+						int selecedIndex = showStoreList.getSelectedIndex();
+						if(selecedIndex==-1) {
+							return;
+						}
+						List<Store> storeList = jumunService.selectStoreAll();
+						Store store = storeList.get(selecedIndex);
+						store.setStore_address(storeAddressTF.getText());
+						jumunService.updateByStoreNo(store);
+						JOptionPane.showMessageDialog(null, "주소가 변경되었습니다.");
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		storeAddressUpdateBtn.setBounds(330, 476, 60, 25);
 		add(storeAddressUpdateBtn);
 		
@@ -154,6 +252,10 @@ public class AdministratorStoreSetPanel extends JPanel {
 		add(storeDeliveryTF);
 		
 		storeDeliveryUpdateBtn = new JButton("수정");
+		storeDeliveryUpdateBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		storeDeliveryUpdateBtn.setBounds(330, 516, 60, 25);
 		add(storeDeliveryUpdateBtn);
 		
@@ -172,6 +274,10 @@ public class AdministratorStoreSetPanel extends JPanel {
 		add(storeEstimatedTimeUpdateBtn);
 		
 		StoredeleteBtn = new JButton("삭제하기");
+		StoredeleteBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		StoredeleteBtn.setBounds(308, 80, 81, 23);
 		add(StoredeleteBtn);
 		
@@ -196,10 +302,10 @@ public class AdministratorStoreSetPanel extends JPanel {
 		storeVolumeLb.setBounds(251, 22, 81, 15);
 		add(storeVolumeLb);
 		
-		StoreVolumeTF = new JTextField();
-		StoreVolumeTF.setBounds(329, 16, 60, 21);
-		add(StoreVolumeTF);
-		StoreVolumeTF.setColumns(10);
+		storeVolumeTF = new JTextField();
+		storeVolumeTF.setBounds(329, 16, 60, 21);
+		add(storeVolumeTF);
+		storeVolumeTF.setColumns(10);
 		//서비스 객체생성
 		jumunService = new JumunService();
 
@@ -217,10 +323,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 				storeCount+=1;
 			}
 			showStoreList.setModel(defaultListModel);
-			/*
-			 * 추가 시 넣을 예정
-			 * totalStoreTF.setText(memberCount+"명");
-			 */
+			storeVolumeTF.setText(storeCount+"개");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

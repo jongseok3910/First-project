@@ -90,7 +90,23 @@ public class StoreDao {
 		ConnectionFactory.releaseConnection(con);
 		return storeList;
 	}
-	public int updateByName(Store store) throws Exception {
+	public int updateByStoreNo(Store store) throws Exception {
+		Connection con = ConnectionFactory.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(StoreSQL.STORE_UPDATE_BY_NO);
+		pstmt.setString(1,store.getStore_name());
+		pstmt.setString(2,store.getStore_businessTime());
+		pstmt.setString(3,store.getStore_phone());
+		pstmt.setString(4,store.getStore_address());
+		pstmt.setInt(5,store.getStore_deliveryPrice());
+		pstmt.setString(6,store.getJumun_estimatedTime());
+		pstmt.setDouble(7,store.getStore_rating());
+		pstmt.setInt(8,store.getStore_no());
+		int rowCount = pstmt.executeUpdate();
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
+		return rowCount;
+	}
+	public int updateByStoreName(Store store) throws Exception {
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(StoreSQL.STORE_UPDATE_BY_NAME);
 		pstmt.setString(1,store.getStore_businessTime());
