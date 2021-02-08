@@ -143,7 +143,7 @@ public class BasketPanel extends JPanel {
 						Card card = jumunService.selectByCardMemberNo(member_no);
 						if(card!=null) {
 						CardPasswordCheckDialog cardPasswordCheckDialog = new CardPasswordCheckDialog();
-						cardPasswordCheckDialog.setBasketPanel(BasketPanel.this);
+						cardPasswordCheckDialog.setBob4JoMainFrame(bob4JoMainFrame);
 						cardPasswordCheckDialog.setModal(true);
 						cardPasswordCheckDialog.setVisible(true);
 						} else {

@@ -34,6 +34,7 @@ public class Bob4JoCardDialog extends JDialog {
 	Bob4JoMainFrame bob4JoMainFrame;
 	MemberInfoPanel memberInfoPanel;
 	JumunService jumunService;
+	Bob4JoCardDialog bob4JoCardDialog;
 
 	/**
 	 * Create the dialog.
@@ -181,6 +182,7 @@ public class Bob4JoCardDialog extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						//System.out.println(">>>>>>"+bob4JoMainFrame.loginMember);
 						if(cardNoTF.getText().trim().equals("")){
 							JOptionPane.showMessageDialog(null, "카드번호를 입력해주세요.");
 						}else if(validityMTF.getText().trim().equals("")) {
@@ -201,12 +203,11 @@ public class Bob4JoCardDialog extends JDialog {
 							char[] passwordChars = passwordTF.getPassword();
 							String passwordStr = new String(passwordChars);
 							int card_password = Integer.parseInt(passwordStr);
-							/*
-							 * 로그인멤버를 못불러옴
-							 */
 							String member_no=bob4JoMainFrame.loginMember.getMember_no();
+							
 							Card card = new Card(card_no,card_validity,card_cvc,card_password,member_no);
-							if(memberInfoPanel.registeredCard==null) {
+							Card findCard = jumunService.selectByCardMemberNo(member_no);
+							if(findCard==null) {
 								jumunService.cardInsert(card);
 								JOptionPane.showMessageDialog(null, "카드등록이 완료되었습니다.");
 							}else {

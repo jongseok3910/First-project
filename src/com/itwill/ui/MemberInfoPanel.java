@@ -193,7 +193,8 @@ public class MemberInfoPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Bob4JoCardDialog bob4joCardDialog = new Bob4JoCardDialog();
-				bob4joCardDialog.setMemberInfoPanel(MemberInfoPanel.this);
+				bob4joCardDialog.setBob4JoMainFrame(bob4JoMainFrame);
+				//System.out.println(bob4JoMainFrame.loginMember);
 				bob4joCardDialog.setModal(true);
 				bob4joCardDialog.setVisible(true);
 				creditCardRegistLb.setIcon(cardRegistered);
