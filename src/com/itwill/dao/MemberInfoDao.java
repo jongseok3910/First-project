@@ -35,7 +35,7 @@ public class MemberInfoDao {
 										rs.getString("member_name"),
 										rs.getString("member_phone"),
 										rs.getString("member_address"),
-										rs.getDate("member_joinDate")
+										rs.getString("member_joinDate")
 										);
 		}
 		rs.close();
@@ -56,7 +56,7 @@ public class MemberInfoDao {
 										rs.getString("member_name"),
 										rs.getString("member_phone"),
 										rs.getString("member_address"),
-										rs.getDate("member_joinDate")
+										rs.getString("member_joinDate")
 										);
 		}
 		rs.close();
@@ -76,7 +76,7 @@ public class MemberInfoDao {
 											  rs.getString("member_name"),
 											  rs.getString("member_phone"),
 											  rs.getString("member_address"),
-											  rs.getDate("member_joinDate")
+											  rs.getString("member_joinDate")
 											  ));
 		}
 		rs.close();

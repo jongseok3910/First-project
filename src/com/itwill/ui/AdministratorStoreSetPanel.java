@@ -7,12 +7,23 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import com.itwill.service.JumunService;
+import com.itwill.vo.MemberInfo;
+import com.itwill.vo.Store;
+
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.util.List;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AdministratorStoreSetPanel extends JPanel {
-	private JList storeList;
+	private JList showStoreList;
 	private JTextField storeNameTF;
 	private JButton storeNameUpdateBtn;
 	private JTextField storeBusinessTimeTF;
@@ -28,11 +39,20 @@ public class AdministratorStoreSetPanel extends JPanel {
 	private JButton storeEstimatedTimeUpdateBtn;
 	private JTextField StoreVolumeTF;
 	private JButton storeAddBtn;
+	
+	Bob4JoMainFrame bob4JoMainFrame;
+	JumunService jumunService;
 
 	/**
 	 * Create the panel.
 	 */
 	public AdministratorStoreSetPanel() {
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				storeListList();
+			}
+		});
 		setBackground(new Color(211, 211, 211));
 		setLayout(null);
 		
@@ -40,8 +60,32 @@ public class AdministratorStoreSetPanel extends JPanel {
 		scrollPane.setBounds(15, 145, 374, 184);
 		add(scrollPane);
 		
-		storeList = new JList();
-		scrollPane.setViewportView(storeList);
+		showStoreList = new JList();
+		showStoreList.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					int selecedIndex = showStoreList.getSelectedIndex();
+					if(selecedIndex==-1) {
+						return;
+					}
+					List<Store> storeList = jumunService.selectStoreAll();
+					Store store = storeList.get(selecedIndex);
+					//store_no 추가하면 좋을 것 같음
+					storeNameTF.setText(store.getStore_name());
+					storeBusinessTimeTF.setText(store.getStore_businessTime());
+					storePhoneTF.setText(store.getStore_phone());
+					storeAddressTF.setText(store.getStore_address());
+					storeDeliveryTF.setText(store.getStore_deliveryPrice()+"");
+					storeEstimateTimeTF.setText(store.getJumun_estimatedTime());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		scrollPane.setViewportView(showStoreList);
 		
 		storeNameTF = new JTextField();
 		storeNameTF.setBounds(83, 343, 229, 25);
@@ -156,6 +200,34 @@ public class AdministratorStoreSetPanel extends JPanel {
 		StoreVolumeTF.setBounds(329, 16, 60, 21);
 		add(StoreVolumeTF);
 		StoreVolumeTF.setColumns(10);
+		//서비스 객체생성
+		jumunService = new JumunService();
 
+	}//패널
+	private void storeListList() {
+		try {
+			if(jumunService==null) {
+				return;
+			}
+			List<Store> storeList= jumunService.selectStoreAll();
+			int storeCount=0;
+			DefaultListModel defaultListModel=new DefaultListModel();
+			for (Store store : storeList) {
+				defaultListModel.addElement(store.getStore_name());
+				storeCount+=1;
+			}
+			showStoreList.setModel(defaultListModel);
+			/*
+			 * 추가 시 넣을 예정
+			 * totalStoreTF.setText(memberCount+"명");
+			 */
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
+		this.bob4JoMainFrame=bob4JoMainFrame;		
 	}
 }
