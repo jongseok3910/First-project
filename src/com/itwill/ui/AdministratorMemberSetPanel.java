@@ -30,6 +30,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class AdministratorMemberSetPanel extends JPanel {
 	private JTextField memberIdTF;
@@ -43,7 +45,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 	MemberService memberService;
 
 	private JTextField totalMemberTF;
-	private JList showMemberList;
+	private JTable showMemberTable;
 
 	/**
 	 * Create the panel.
@@ -81,30 +83,16 @@ public class AdministratorMemberSetPanel extends JPanel {
 		scrollPane.setBounds(29, 202, 352, 142);
 		add(scrollPane);
 		
-		showMemberList = new JList();
-		showMemberList.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				try {
-					int selecedIndex = showMemberList.getSelectedIndex();
-					if(selecedIndex==-1) {
-						return;
-					}
-					List<MemberInfo> memberList = memberService.selectMemberAll();
-					MemberInfo member = memberList.get(selecedIndex);
-					memberIdTF.setText(member.getMember_id());
-					memberPWTF.setText(member.getMember_password());
-					memberNameTF.setText(member.getMember_name());
-					memberPhoneTF.setText(member.getMember_phone());
-					memberAddressTF.setText(member.getMember_address());
-					memberJoinDateTF.setText(member.getJoinDate());
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+		showMemberTable = new JTable();
+		showMemberTable.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null},
+			},
+			new String[] {
+				"\uD68C\uC6D0\uBC88\uD638", "\uD68C\uC6D0\uC544\uC774\uB514"
 			}
-		});
-		scrollPane.setViewportView(showMemberList);
+		));
+		scrollPane.setViewportView(showMemberTable);
 		
 		JLabel memberAddressLabel = new JLabel("회원주소");
 		memberAddressLabel.setBounds(29, 530, 80, 15);
