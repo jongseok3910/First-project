@@ -1,5 +1,7 @@
 package com.itwill.service;
 
+import java.util.List;
+
 import com.itwill.dao.MemberInfoDao;
 import com.itwill.vo.MemberInfo;
 
@@ -75,15 +77,6 @@ public class MemberService {
 		}
 		return result;
 	}
-		
-	
-	//4.로그아웃
-	/*
-	 * 	로그아웃
-	 */
-	public void logout() {
-			
-	}
 	//5.회원정보보기&수정
 	/*
 	 * 회원아이디로 1명정보 검색(select by id사용)
@@ -92,12 +85,14 @@ public class MemberService {
 	public MemberInfo selectById(String idStr) throws Exception {
 		return memberInfoDao.selectById(idStr);
 	}
+	//전체멤버 보기
+	public List<MemberInfo> selectMemberAll() throws Exception {
+		return memberInfoDao.selectAll();
+	}
 	
 	public int memberUpdate(MemberInfo memberInfo) throws Exception{
 		return memberInfoDao.updateById(memberInfo);
 	}
-		
-	
 	public boolean isExistedId(String id)  throws Exception{
 		boolean isExisted=false;
 		MemberInfo memberInfo = memberInfoDao.selectById(id);

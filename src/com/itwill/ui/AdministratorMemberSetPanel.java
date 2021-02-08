@@ -7,12 +7,20 @@ import java.awt.Scrollbar;
 import java.awt.List;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+
+import com.itwill.service.MemberService;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+
 import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
+
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+
 
 public class AdministratorMemberSetPanel extends JPanel {
 	private JTextField memberIDtextField;
@@ -22,11 +30,21 @@ public class AdministratorMemberSetPanel extends JPanel {
 	private JTextField memberAddresstextField;
 	private JTextField memberJoinDatetextField;
 
+	Bob4JoMainFrame bob4JoMainFrame;
+	MemberService memberService;
 	/**
 	 * Create the panel.
 	 */
 	public AdministratorMemberSetPanel() {
+
 		setBackground(new Color(211, 211, 211));
+
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+			}
+		});
+
 		setLayout(null);
 		
 		JLabel memberIDLabel = new JLabel("회원아이디");
@@ -135,5 +153,14 @@ public class AdministratorMemberSetPanel extends JPanel {
 		memberIDChangeBtn_1.setBounds(326, 366, 55, 23);
 		add(memberIDChangeBtn_1);
 
+	}//관리자멤버패널
+	private void memberListList() {
+		if(memberService==null) {
+			return;
+		}
+		
+	}
+	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
+		this.bob4JoMainFrame=bob4JoMainFrame;		
 	}
 }
