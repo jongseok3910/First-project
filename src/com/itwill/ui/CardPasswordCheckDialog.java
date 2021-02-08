@@ -33,10 +33,8 @@ public class CardPasswordCheckDialog extends JDialog {
 	
 	Bob4JoMainFrame bob4JoMainFrame;
 	BasketPanel basketPanel;
-	JumunService jumunService;
-	
 	Bob4JoCardDialog bob4JoCardDialog;
-//	private CardPasswordCheckDialog cardPasswordCheckDialog;
+	JumunService jumunService;
 
 	/**
 	 * Create the dialog.
@@ -89,7 +87,7 @@ public class CardPasswordCheckDialog extends JDialog {
 						 */
 						 String member_no=bob4JoMainFrame.loginMember.getMember_no();
 						 Card card = jumunService.selectByCardMemberNo(member_no);
-//						 일치하면 확인되었습니다.
+						 //일치하면 확인되었습니다.
 						 char[] passChars = passwordCheckTF.getPassword();
 						 String passwordStr = new String(passChars);
 						 if(passwordStr.equals(card.getCard_password()+"")) {
@@ -100,7 +98,7 @@ public class CardPasswordCheckDialog extends JDialog {
 						 }else {
 							 JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.");
 						 }
-//						 일치하지 않으면 비밀번호가 일치하지 않습니다.
+						 //일치하지 않으면 비밀번호가 일치하지 않습니다.
 					}catch (Exception e1) {
 							e1.printStackTrace();
 					}
@@ -126,7 +124,7 @@ public class CardPasswordCheckDialog extends JDialog {
 			}
 		}
 		jumunService = new JumunService();
-	}// 다이어로그
+	}// 다이얼로그
 	public void setBob4JoCardDialog(Bob4JoCardDialog bob4JoCardDialog) {
 		this.bob4JoCardDialog = bob4JoCardDialog;
 	}
