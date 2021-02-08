@@ -2,7 +2,7 @@ package com.itwill.dao;
 
 public class MemberInfoSQL {
 	public static final String MEMBERINFO_INSERT=
-			"insert into memberinfo values(to_char(sysdate,'YYYY/MM/DD')||member_seq1.nextval,?,?,?,?,?,sysdate)";
+			"insert into memberinfo values(to_char(sysdate,'YYYYMMDD')||member_seq1.nextval,?,?,?,?,?,sysdate)";
 	public static final String MEMBERINFO_SELECT_BY_ID=
 			"select * from memberinfo where member_id=?";
 	public static final String MEMBERINFO_SELECT_BY_CARD_NO=
