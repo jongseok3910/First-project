@@ -4,17 +4,20 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.Scrollbar;
-import java.awt.List;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.JList;
 
 import com.itwill.service.MemberService;
+import com.itwill.vo.MemberInfo;
 
 import javax.swing.JButton;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.List;
 
 public class AdministratorMemberSetPanel extends JPanel {
 	private JTextField memberIDtextField;
@@ -140,13 +143,27 @@ public class AdministratorMemberSetPanel extends JPanel {
 		JButton memberIDChangeBtn_1 = new JButton("검색");
 		memberIDChangeBtn_1.setBounds(326, 366, 55, 23);
 		add(memberIDChangeBtn_1);
-
+		
+		memberService = new MemberService();
 	}//관리자멤버패널
 	private void memberListList() {
-		if(memberService==null) {
-			return;
+		/*
+		try {
+			if(memberService==null) {
+				return;
+			}
+			List<MemberInfo> memberList= memberService.selectMemberAll();
+			DefaultListModel defaultListModel=new DefaultListModel();
+			for (MemberInfo member : memberList) {
+				defaultListModel.addElement(member.getMember_no());
+				defaultListModel.addElement(member.getMember_id());
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
+		*/
 	}
 	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
 		this.bob4JoMainFrame=bob4JoMainFrame;		
