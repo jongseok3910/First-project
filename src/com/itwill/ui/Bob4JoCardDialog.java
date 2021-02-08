@@ -182,20 +182,16 @@ public class Bob4JoCardDialog extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(cardNoTF.getText().trim().equals("")){
-							JOptionPane.showMessageDialog(null, "카드번호를 정확히 입력해주세요.");
+							JOptionPane.showMessageDialog(null, "카드번호를 입력해주세요.");
 						}else if(validityMTF.getText().trim().equals("")) {
-							JOptionPane.showMessageDialog(null, "카드유효기간(월) 정확히 입력해주세요.");
+							JOptionPane.showMessageDialog(null, "카드유효기간(월)을 입력해주세요.");
 						}else if(validityYTF.getText().trim().equals("")) {
-							JOptionPane.showMessageDialog(null, "카드유효기간(년) 정확히 입력해주세요.");
+							JOptionPane.showMessageDialog(null, "카드유효기간(년)을 입력해주세요.");
 						}else if(cvcTF.getText().trim().equals("")) {
-							JOptionPane.showMessageDialog(null, "카드고유확인번호를 정확히 입력해주세요.");
+							JOptionPane.showMessageDialog(null, "카드고유확인번호를 입력해주세요.");
 						}else if(passwordTF.getText().trim().equals("")) {
-							JOptionPane.showMessageDialog(null, "카드비밀번호를 정확히 입력해주세요.");
-						}else {
-							JOptionPane.showMessageDialog(null, "카드정보를 정확히 입력해주세요.");
-							return;
+							JOptionPane.showMessageDialog(null, "카드비밀번호를 입력해주세요.");
 						}
-						
 						try {
 							String card_no=cardNoTF.getText();
 							int validityM = Integer.parseInt(validityMTF.getText());
