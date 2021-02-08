@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 import com.itwill.service.JumunService;
 import com.itwill.service.MemberService;
 import com.itwill.vo.Food;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class AdministratorFoodSetPanel extends JPanel {
 	private JTable sandwichTable;
@@ -63,7 +65,6 @@ public class AdministratorFoodSetPanel extends JPanel {
 				int index = foodTabbedPane.getSelectedIndex();
 				int categoryNo = (index+1)*10;
 				foodListTable(categoryNo);
-				
 			}
 		});
 		foodTabbedPane.setSelectedIndex(0);
@@ -234,12 +235,18 @@ public class AdministratorFoodSetPanel extends JPanel {
 		pictureLabel2.setBounds(0, 409, 415, 33);
 		add(pictureLabel2);
 		
-//		service 객체 생성
+		//service 객체 생성
 		memberService = new MemberService();
 		jumunService = new JumunService();
+		
+		/**************************************/
+		foodTabbedPane.setSelectedIndex(0);
+		int index=foodTabbedPane.getSelectedIndex();
+		int categoryNo=(index+1)*10;
+		foodListTable(categoryNo);
+		/**************************************/
 
-	}
-//		푸드셀렉트 패널
+	}//푸드셀렉트 패널
 	private void foodListTable(int categoryNo) {
 		try {
 			List<Food> foodList = jumunService.selectByCategoryNo(categoryNo);
@@ -276,7 +283,10 @@ public class AdministratorFoodSetPanel extends JPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+	}
+	
+	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
+		this.bob4JoMainFrame=bob4JoMainFrame;
 	}
 	
 }
