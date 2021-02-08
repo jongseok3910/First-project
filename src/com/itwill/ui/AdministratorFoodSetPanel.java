@@ -51,7 +51,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 	private JButton foodAddBtn;
 	private JButton foodDeleteBtn;
 	private JLabel pictureLabel2;
-	private JTabbedPane foodTabbedPane;
+	private JTabbedPane AdminfoodTabbedPane;
 //	추가
 	MemberService memberService;
 	JumunService jumunService;
@@ -63,20 +63,20 @@ public class AdministratorFoodSetPanel extends JPanel {
 		setBackground(new Color(220, 220, 220));
 		setLayout(null);
 		
-		foodTabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		foodTabbedPane.addChangeListener(new ChangeListener() {
+		AdminfoodTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		AdminfoodTabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				int index = foodTabbedPane.getSelectedIndex();
+				int index = AdminfoodTabbedPane.getSelectedIndex();
 				int categoryNo = (index+1)*10;
 				foodListTable(categoryNo);
 			}
 		});
-		foodTabbedPane.setSelectedIndex(0);
-		foodTabbedPane.setBounds(30, 62, 355, 348);
-		add(foodTabbedPane);
+		AdminfoodTabbedPane.setSelectedIndex(0);
+		AdminfoodTabbedPane.setBounds(30, 62, 355, 348);
+		add(AdminfoodTabbedPane);
 		
 		sandwichPanel = new JPanel();
-		foodTabbedPane.addTab("샌드위치", null, sandwichPanel, null);
+		AdminfoodTabbedPane.addTab("샌드위치", null, sandwichPanel, null);
 		sandwichPanel.setLayout(new BorderLayout(0, 0));
 		
 		sandwichTable = new JTable();
@@ -96,7 +96,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 		sandwichPanel.add(sandwichTable, BorderLayout.CENTER);
 		
 		labPanel = new JPanel();
-		foodTabbedPane.addTab("랩", null, labPanel, null);
+		AdminfoodTabbedPane.addTab("랩", null, labPanel, null);
 		labPanel.setLayout(new BorderLayout(0, 0));
 		
 		labTable = new JTable();
@@ -111,7 +111,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 		labPanel.add(labTable, BorderLayout.CENTER);
 		
 		saladPanel = new JPanel();
-		foodTabbedPane.addTab("샐러드", null, saladPanel, null);
+		AdminfoodTabbedPane.addTab("샐러드", null, saladPanel, null);
 		saladPanel.setLayout(new BorderLayout(0, 0));
 		
 		saladTable = new JTable();
@@ -126,7 +126,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 		saladPanel.add(saladTable, BorderLayout.CENTER);
 		
 		sideMenuPanel = new JPanel();
-		foodTabbedPane.addTab("사이드메뉴", null, sideMenuPanel, null);
+		AdminfoodTabbedPane.addTab("사이드메뉴", null, sideMenuPanel, null);
 		sideMenuPanel.setLayout(new BorderLayout(0, 0));
 		
 		sideMenuTable = new JTable();
@@ -141,7 +141,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 		sideMenuPanel.add(sideMenuTable, BorderLayout.CENTER);
 		
 		cookiePanel = new JPanel();
-		foodTabbedPane.addTab("쿠키", null, cookiePanel, null);
+		AdminfoodTabbedPane.addTab("쿠키", null, cookiePanel, null);
 		cookiePanel.setLayout(new BorderLayout(0, 0));
 		
 		cookieTable = new JTable();
@@ -156,7 +156,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 		cookiePanel.add(cookieTable, BorderLayout.CENTER);
 		
 		drinkPanel = new JPanel();
-		foodTabbedPane.addTab("음료", null, drinkPanel, null);
+		AdminfoodTabbedPane.addTab("음료", null, drinkPanel, null);
 		drinkPanel.setLayout(new BorderLayout(0, 0));
 		
 		drinkTable = new JTable();
@@ -273,8 +273,8 @@ public class AdministratorFoodSetPanel extends JPanel {
 		jumunService = new JumunService();
 		
 		/**************************************/
-		foodTabbedPane.setSelectedIndex(0);
-		int index=foodTabbedPane.getSelectedIndex();
+		AdminfoodTabbedPane.setSelectedIndex(0);
+		int index=AdminfoodTabbedPane.getSelectedIndex();
 		int categoryNo=(index+1)*10;
 		foodListTable(categoryNo);
 		/**************************************/
