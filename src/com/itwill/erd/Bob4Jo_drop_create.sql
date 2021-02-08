@@ -1,7 +1,6 @@
 DROP TABLE Jumun;
 DROP TABLE Food;
 DROP TABLE Category;
-DROP TABLE Board;
 DROP TABLE Store;
 DROP TABLE Card;
 DROP TABLE MemberInfo;
@@ -60,15 +59,6 @@ CREATE TABLE Jumun(
         store_no number,
   FOREIGN KEY (member_no) REFERENCES MemberInfo (member_no),
   FOREIGN KEY (food_no) REFERENCES Food (food_no),
-  FOREIGN KEY (store_no) REFERENCES Store (store_no)
-);
-
-CREATE TABLE Board(
-		board_no number PRIMARY KEY,
-		board_date DATE DEFAULT sysdate,
-		board_content VARCHAR2(255),
-		board_rating number,
-		store_no number,
   FOREIGN KEY (store_no) REFERENCES Store (store_no)
 );
 commit;
