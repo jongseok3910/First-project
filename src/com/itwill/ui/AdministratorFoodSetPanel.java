@@ -68,7 +68,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 			public void stateChanged(ChangeEvent e) {
 				int index = AdminfoodTabbedPane.getSelectedIndex();
 				int categoryNo = (index+1)*10;
-				adminFoodListTable(categoryNo);
+				foodListTable(categoryNo);
 			}
 		});
 		AdminfoodTabbedPane.setSelectedIndex(0);
@@ -276,11 +276,11 @@ public class AdministratorFoodSetPanel extends JPanel {
 		AdminfoodTabbedPane.setSelectedIndex(0);
 		int index=AdminfoodTabbedPane.getSelectedIndex();
 		int categoryNo=(index+1)*10;
-		adminFoodListTable(categoryNo);
+		foodListTable(categoryNo);
 		/**************************************/
 
 	}//푸드셀렉트 패널
-	private void adminFoodListTable(int categoryNo) {
+	private void foodListTable(int categoryNo) {
 		try {
 			List<Food> foodList = jumunService.selectByCategoryNo(categoryNo);
 			
