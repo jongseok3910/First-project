@@ -7,11 +7,22 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import com.itwill.service.JumunService;
+import com.itwill.vo.MemberInfo;
+import com.itwill.vo.Store;
+
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.util.List;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AdministratorStoreSetPanel extends JPanel {
-	private JList storeList;
+	private JList showStoreList;
 	private JTextField storeNameTF;
 	private JButton storeNameUpdateBtn;
 	private JTextField storeBusinessTimeTF;
@@ -25,11 +36,20 @@ public class AdministratorStoreSetPanel extends JPanel {
 	private JButton storeAddressUpdateBtn;
 	private JButton storeDeliveryUpdateBtn;
 	private JButton storeEstimatedTimeUpdateBtn;
+	
+	Bob4JoMainFrame bob4JoMainFrame;
+	JumunService jumunService;
 
 	/**
 	 * Create the panel.
 	 */
 	public AdministratorStoreSetPanel() {
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				storeListList();
+			}
+		});
 		setBackground(new Color(211, 211, 211));
 		setLayout(null);
 		
@@ -37,8 +57,13 @@ public class AdministratorStoreSetPanel extends JPanel {
 		scrollPane.setBounds(15, 145, 374, 184);
 		add(scrollPane);
 		
-		storeList = new JList();
-		scrollPane.setViewportView(storeList);
+		showStoreList = new JList();
+		showStoreList.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		scrollPane.setViewportView(showStoreList);
 		
 		storeNameTF = new JTextField();
 		storeNameTF.setBounds(83, 343, 229, 25);
@@ -137,6 +162,36 @@ public class AdministratorStoreSetPanel extends JPanel {
 		lblNewLabel.setIcon(new ImageIcon(AdministratorStoreSetPanel.class.getResource("/com/itwill/ui/가맹점정보라벨.png")));
 		lblNewLabel.setBounds(0, 113, 415, 25);
 		add(lblNewLabel);
+		
+		//서비스 객체생성
+		jumunService = new JumunService();
 
+	}//패널
+	private void storeListList() {
+		try {
+			if(jumunService==null) {
+				return;
+			}
+			List<Store> storeList= jumunService.selectStoreAll();
+			int storeCount=0;
+			DefaultListModel defaultListModel=new DefaultListModel();
+			for (Store store : storeList) {
+				defaultListModel.addElement(store.getStore_no());
+				defaultListModel.addElement(store.getStore_name());
+				storeCount+=1;
+			}
+			showStoreList.setModel(defaultListModel);
+			/*
+			 * 추가 시 넣을 예정
+			 * totalStoreTF.setText(memberCount+"명");
+			 */
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
+		this.bob4JoMainFrame=bob4JoMainFrame;		
 	}
 }

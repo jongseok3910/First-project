@@ -342,7 +342,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		lblNewLabel_1.setBounds(219, 10, 160, 120);
 		add(lblNewLabel_1);
 
-
+		//서비스객체 생성
 		memberService = new MemberService();
 
 	}//관리자멤버패널
