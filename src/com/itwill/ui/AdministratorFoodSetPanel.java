@@ -22,6 +22,10 @@ import com.itwill.service.MemberService;
 import com.itwill.vo.Food;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AdministratorFoodSetPanel extends JPanel {
 	private JTable sandwichTable;
@@ -76,6 +80,11 @@ public class AdministratorFoodSetPanel extends JPanel {
 		sandwichPanel.setLayout(new BorderLayout(0, 0));
 		
 		sandwichTable = new JTable();
+		sandwichTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		sandwichTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
@@ -202,26 +211,50 @@ public class AdministratorFoodSetPanel extends JPanel {
 		add(foodCategoryTF);
 		
 		foodNoBtn = new JButton("수정");
+		foodNoBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		foodNoBtn.setBounds(325, 448, 62, 23);
 		add(foodNoBtn);
 		
 		foodNameBtn = new JButton("수정");
+		foodNameBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		foodNameBtn.setBounds(325, 481, 62, 23);
 		add(foodNameBtn);
 		
 		foodPriceBtn = new JButton("수정");
+		foodPriceBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		foodPriceBtn.setBounds(325, 512, 62, 23);
 		add(foodPriceBtn);
 		
 		foodCategoryBtn = new JButton("수정");
+		foodCategoryBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		foodCategoryBtn.setBounds(325, 545, 62, 23);
 		add(foodCategoryBtn);
 		
 		foodAddBtn = new JButton("추가");
+		foodAddBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		foodAddBtn.setBounds(103, 576, 97, 23);
 		add(foodAddBtn);
 		
 		foodDeleteBtn = new JButton("삭제");
+		foodDeleteBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		foodDeleteBtn.setBounds(223, 576, 97, 23);
 		add(foodDeleteBtn);
 		
