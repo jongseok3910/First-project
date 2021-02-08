@@ -52,8 +52,12 @@ public class MemberInfoPanel extends JPanel {
 			@Override
 			public void componentShown(ComponentEvent e) {
 				//회원정보패널을 눌렀을 때
+				MemberInfo member=bob4JoMainFrame.loginMember;
+				String member_no=member.getMember_no();
+				nameTF.setText(member.getMember_name());
+				phoneNumberTF.setText(member.getMember_phone());
+				addressTF.setText(member.getMember_address());
 				try {
-					String member_no=bob4JoMainFrame.loginMember.getMember_no();
 					registeredCard = jumunService.selectByCardMemberNo(member_no);
 					if(registeredCard==null) {
 //						카드등록 안됐을때
