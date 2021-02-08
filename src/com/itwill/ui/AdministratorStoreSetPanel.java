@@ -32,13 +32,11 @@ public class AdministratorStoreSetPanel extends JPanel {
 	private JTextField storeBusinessTimeTF;
 	private JTextField storePhoneTF;
 	private JTextField storeAddressTF;
-	private JTextField storeDeliveryTF;
 	private JTextField storeEstimateTimeTF;
 	private JButton StoredeleteBtn;
 	private JButton storeTimeUpdateBtn;
 	private JButton storePhoneUpdateBtn;
 	private JButton storeAddressUpdateBtn;
-	private JButton storeDeliveryUpdateBtn;
 	private JButton storeEstimatedTimeUpdateBtn;
 	private JTextField storeVolumeTF;
 	private JButton storeAddBtn;
@@ -60,7 +58,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(15, 145, 374, 184);
+		scrollPane.setBounds(15, 145, 373, 201);
 		add(scrollPane);
 		
 		showStoreList = new JList();
@@ -89,7 +87,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 		scrollPane.setViewportView(showStoreList);
 		
 		storeBisinessTimeTF = new JTextField();
-		storeBisinessTimeTF.setBounds(83, 343, 229, 25);
+		storeBisinessTimeTF.setBounds(82, 368, 229, 25);
 		add(storeBisinessTimeTF);
 		storeBisinessTimeTF.setColumns(10);
 		
@@ -118,22 +116,22 @@ public class AdministratorStoreSetPanel extends JPanel {
 				}
 			}
 		});
-		storeNameUpdateBtn.setBounds(330, 343, 60, 25);
+		storeNameUpdateBtn.setBounds(329, 368, 60, 25);
 		add(storeNameUpdateBtn);
 		
 		JLabel storeLb = new JLabel("가게명");
 		storeLb.setHorizontalAlignment(SwingConstants.CENTER);
-		storeLb.setBounds(15, 342, 67, 27);
+		storeLb.setBounds(14, 367, 67, 27);
 		add(storeLb);
 		
 		JLabel storeBusinessTimeLb = new JLabel("영업시간");
 		storeBusinessTimeLb.setHorizontalAlignment(SwingConstants.CENTER);
-		storeBusinessTimeLb.setBounds(15, 383, 67, 27);
+		storeBusinessTimeLb.setBounds(14, 408, 67, 27);
 		add(storeBusinessTimeLb);
 		
 		storeBusinessTimeTF = new JTextField();
 		storeBusinessTimeTF.setColumns(10);
-		storeBusinessTimeTF.setBounds(83, 384, 229, 25);
+		storeBusinessTimeTF.setBounds(82, 409, 229, 25);
 		add(storeBusinessTimeTF);
 		
 		storeTimeUpdateBtn = new JButton("수정");
@@ -161,17 +159,17 @@ public class AdministratorStoreSetPanel extends JPanel {
 				}
 			}
 		});
-		storeTimeUpdateBtn.setBounds(330, 384, 60, 25);
+		storeTimeUpdateBtn.setBounds(329, 409, 60, 25);
 		add(storeTimeUpdateBtn);
 		
 		JLabel sotrePhoneLb = new JLabel("전화번호");
 		sotrePhoneLb.setHorizontalAlignment(SwingConstants.CENTER);
-		sotrePhoneLb.setBounds(15, 427, 67, 27);
+		sotrePhoneLb.setBounds(14, 452, 67, 27);
 		add(sotrePhoneLb);
 		
 		storePhoneTF = new JTextField();
 		storePhoneTF.setColumns(10);
-		storePhoneTF.setBounds(83, 428, 229, 25);
+		storePhoneTF.setBounds(82, 453, 229, 25);
 		add(storePhoneTF);
 		
 		storePhoneUpdateBtn = new JButton("수정");
@@ -199,17 +197,17 @@ public class AdministratorStoreSetPanel extends JPanel {
 				}
 			}
 		});
-		storePhoneUpdateBtn.setBounds(330, 428, 60, 25);
+		storePhoneUpdateBtn.setBounds(329, 453, 60, 25);
 		add(storePhoneUpdateBtn);
 		
 		JLabel storeAddressLb = new JLabel("주소");
 		storeAddressLb.setHorizontalAlignment(SwingConstants.CENTER);
-		storeAddressLb.setBounds(15, 475, 67, 27);
+		storeAddressLb.setBounds(14, 500, 67, 27);
 		add(storeAddressLb);
 		
 		storeAddressTF = new JTextField();
 		storeAddressTF.setColumns(10);
-		storeAddressTF.setBounds(83, 476, 229, 25);
+		storeAddressTF.setBounds(82, 501, 229, 25);
 		add(storeAddressTF);
 		
 		storeAddressUpdateBtn = new JButton("수정");
@@ -237,39 +235,21 @@ public class AdministratorStoreSetPanel extends JPanel {
 				}
 			}
 		});
-		storeAddressUpdateBtn.setBounds(330, 476, 60, 25);
+		storeAddressUpdateBtn.setBounds(329, 501, 60, 25);
 		add(storeAddressUpdateBtn);
-		
-		JLabel sotreDeliverypriceLb = new JLabel("배달요금");
-		sotreDeliverypriceLb.setHorizontalAlignment(SwingConstants.CENTER);
-		sotreDeliverypriceLb.setBounds(15, 515, 67, 27);
-		add(sotreDeliverypriceLb);
-		
-		storeDeliveryTF = new JTextField();
-		storeDeliveryTF.setColumns(10);
-		storeDeliveryTF.setBounds(83, 516, 229, 25);
-		add(storeDeliveryTF);
-		
-		storeDeliveryUpdateBtn = new JButton("수정");
-		storeDeliveryUpdateBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		storeDeliveryUpdateBtn.setBounds(330, 516, 60, 25);
-		add(storeDeliveryUpdateBtn);
 		
 		JLabel storeEstimatedTimeLb = new JLabel("배달시간");
 		storeEstimatedTimeLb.setHorizontalAlignment(SwingConstants.CENTER);
-		storeEstimatedTimeLb.setBounds(15, 558, 67, 27);
+		storeEstimatedTimeLb.setBounds(14, 547, 67, 27);
 		add(storeEstimatedTimeLb);
 		
 		storeEstimateTimeTF = new JTextField();
 		storeEstimateTimeTF.setColumns(10);
-		storeEstimateTimeTF.setBounds(83, 559, 229, 25);
+		storeEstimateTimeTF.setBounds(82, 548, 229, 25);
 		add(storeEstimateTimeTF);
 		
 		storeEstimatedTimeUpdateBtn = new JButton("수정");
-		storeEstimatedTimeUpdateBtn.setBounds(330, 559, 60, 25);
+		storeEstimatedTimeUpdateBtn.setBounds(329, 548, 60, 25);
 		add(storeEstimatedTimeUpdateBtn);
 		
 		StoredeleteBtn = new JButton("삭제하기");
