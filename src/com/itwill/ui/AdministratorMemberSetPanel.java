@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.List;
+import java.util.Vector;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
@@ -57,7 +58,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
-				memberListList();
+				memberListTable();
 			}
 		});
 
@@ -335,20 +336,28 @@ public class AdministratorMemberSetPanel extends JPanel {
 		memberService = new MemberService();
 
 	}//관리자멤버패널
-	private void memberListList() {
+	private void memberListTable() {
 		try {
 			if(memberService==null) {
 				return;
 			}
 			List<MemberInfo> memberList= memberService.selectMemberAll();
 			int memberCount=0;
-			DefaultListModel defaultListModel=new DefaultListModel();
+			Vector memberListVector = new Vector();
 			for (MemberInfo member : memberList) {
-				defaultListModel.addElement(member.getMember_no());
-				defaultListModel.addElement(member.getMember_id());
+				Vector memberVector = new Vector();
+				memberVector.add(member.getMember_no());
+				memberVector.add(member.getMember_name());
+				memberListVector.add(memberVector);
 				memberCount+=1;
 			}
-			showMemberList.setModel(defaultListModel);
+			Vector columnNames=new Vector();
+			columnNames.add("회원번호");
+			columnNames.add("아이디");
+			
+			DefaultTableModel defaultTableModel =
+					new DefaultTableModel(memberListVector, columnNames);
+			
 			totalMemberTF.setText(memberCount+"명");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
