@@ -35,7 +35,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 	Bob4JoMainFrame bob4JoMainFrame;
 	MemberService memberService;
 
-	private JTextField textField;
+	private JTextField totalMemberTF;
 	private JList showMemberList;
 
 	/**
@@ -155,10 +155,10 @@ public class AdministratorMemberSetPanel extends JPanel {
 		lblNewLabel_4.setBounds(216, 152, 62, 15);
 		add(lblNewLabel_4);
 		
-		textField = new JTextField();
-		textField.setBounds(290, 146, 91, 21);
-		add(textField);
-		textField.setColumns(10);
+		totalMemberTF = new JTextField();
+		totalMemberTF.setBounds(290, 146, 91, 21);
+		add(totalMemberTF);
+		totalMemberTF.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(AdministratorMemberSetPanel.class.getResource("/com/itwill/ui/관리자회원리스트Bob4Jo.png")));
@@ -175,12 +175,15 @@ public class AdministratorMemberSetPanel extends JPanel {
 				return;
 			}
 			List<MemberInfo> memberList= memberService.selectMemberAll();
+			int memberCount=0;
 			DefaultListModel defaultListModel=new DefaultListModel();
 			for (MemberInfo member : memberList) {
 				defaultListModel.addElement(member.getMember_no());
 				defaultListModel.addElement(member.getMember_id());
+				memberCount+=1;
 			}
 			showMemberList.setModel(defaultListModel);
+			totalMemberTF.setText(memberCount+"명");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
