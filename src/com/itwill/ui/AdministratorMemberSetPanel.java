@@ -10,6 +10,9 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.Color;
+import java.awt.SystemColor;
+import javax.swing.SwingConstants;
 
 public class AdministratorMemberSetPanel extends JPanel {
 	private JTextField memberIDtextField;
@@ -23,6 +26,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public AdministratorMemberSetPanel() {
+		setBackground(new Color(211, 211, 211));
 		setLayout(null);
 		
 		JLabel memberIDLabel = new JLabel("회원아이디");
@@ -107,22 +111,24 @@ public class AdministratorMemberSetPanel extends JPanel {
 		add(memberDeleteBtn);
 		
 		JLabel memberListLabel = new JLabel("회원정보리스트");
-		memberListLabel.setBounds(151, 173, 127, 15);
+		memberListLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		memberListLabel.setBounds(173, 177, 115, 15);
 		add(memberListLabel);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(AdministratorMemberSetPanel.class.getResource("/com/itwill/ui/회원사진.png")));
-		lblNewLabel.setBounds(12, 18, 150, 150);
+		lblNewLabel.setBackground(new Color(211, 211, 211));
+		lblNewLabel.setIcon(new ImageIcon(AdministratorMemberSetPanel.class.getResource("/com/itwill/ui/관리자회원리스트.png")));
+		lblNewLabel.setBounds(12, 10, 195, 194);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Bob4Jo");
-		lblNewLabel_1.setFont(new Font("굴림", Font.BOLD, 40));
-		lblNewLabel_1.setBounds(201, 31, 180, 60);
+		lblNewLabel_1.setFont(new Font("D2Coding", Font.BOLD, 40));
+		lblNewLabel_1.setBounds(235, 30, 180, 60);
 		add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Member");
-		lblNewLabel_2.setFont(new Font("굴림", Font.BOLD, 40));
-		lblNewLabel_2.setBounds(201, 85, 180, 60);
+		lblNewLabel_2.setFont(new Font("D2Coding", Font.BOLD, 40));
+		lblNewLabel_2.setBounds(235, 84, 180, 60);
 		add(lblNewLabel_2);
 		
 		JButton memberIDChangeBtn_1 = new JButton("검색");
