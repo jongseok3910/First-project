@@ -25,6 +25,10 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class Bob4JoMainFrame extends JFrame {
 
@@ -43,10 +47,11 @@ public class Bob4JoMainFrame extends JFrame {
 	private PaymentListPanel paymentListPanel;
 	private MemberInfoPanel memberInfoPanel;
 	private JTabbedPane tabbedPane;
-	private JPanel AdministratorPanel;
-	private JTabbedPane AdminTabbedPane;
+	private JPanel administratorPanel;
+	private JTabbedPane adminTabbedPane;
 	private AdministratorStoreSetPanel administratorStoreSetPanel;
 	private AdministratorMemberSetPanel administratorMemberSetPanel;
+	private AdministratorFoodSetPanel administratorFoodSetPanel;
 	/*
 	 * Launch the application.
 	 */
@@ -161,18 +166,38 @@ public class Bob4JoMainFrame extends JFrame {
 		paymentListPanel.setBob4JoMainFrame(this);
 		memberInfoPanel.setBob4JoMainFrame(this);
 		
-		AdministratorPanel = new JPanel();
-		baseCardLayoutPanel.add(AdministratorPanel, "adminPanel");
-		AdministratorPanel.setLayout(new BorderLayout(0, 0));
+		administratorPanel = new JPanel();
+		baseCardLayoutPanel.add(administratorPanel, "adminPanel");
+		administratorPanel.setLayout(new BorderLayout(0, 0));
 		
-		AdminTabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		AdministratorPanel.add(AdminTabbedPane, BorderLayout.CENTER);
+		adminTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		administratorPanel.add(adminTabbedPane, BorderLayout.CENTER);
 		
 		administratorStoreSetPanel = new AdministratorStoreSetPanel();
-		AdminTabbedPane.addTab("가맹점 관리", null, administratorStoreSetPanel, null);
+		administratorStoreSetPanel.addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				administratorStoreSetPanel.storeListList();
+			}
+		});
+		administratorStoreSetPanel.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				administratorStoreSetPanel.storeListList();
+			}
+		});
+		adminTabbedPane.addTab("가맹점 관리", null, administratorStoreSetPanel, null);
 		
 		administratorMemberSetPanel = new AdministratorMemberSetPanel();
-		AdminTabbedPane.addTab("회원 관리", null, administratorMemberSetPanel, null);
+		administratorMemberSetPanel.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				administratorMemberSetPanel.memberListTable();
+			}
+		});
+		
+		administratorFoodSetPanel = new AdministratorFoodSetPanel();
+		adminTabbedPane.addTab("푸드 관리", null, administratorFoodSetPanel, null);
+		adminTabbedPane.addTab("회원 관리", null, administratorMemberSetPanel, null);
 		/**************************************/
 		
 		

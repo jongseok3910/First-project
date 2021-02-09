@@ -13,4 +13,6 @@ public class MemberInfoSQL {
 			"update memberinfo set member_password=?,member_name=?,member_phone=?,member_address=? where member_id=?";
 	public static final String MEMBERINFO_DELETE_BY_ID=
 			"delete memberinfo where member_id=?";
+	public static final String MEMBERINFO_SELECT_BY_NO=
+			"select * from memberinfo where member_no=?";
 }

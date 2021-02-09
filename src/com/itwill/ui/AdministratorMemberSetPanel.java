@@ -35,18 +35,23 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class AdministratorMemberSetPanel extends JPanel {
+	private JTable showMemberTable;
 	private JTextField memberIdTF;
 	private JTextField memberPWTF;
 	private JTextField memberNameTF;
 	private JTextField memberPhoneTF;
 	private JTextField memberAddressTF;
 	private JTextField memberJoinDateTF;
-
+	private JTextField totalMemberTF;
+	private JButton memberIDChangeBtn;
+	private JButton memberPWChangeBtn;
+	private JButton memberNameChangeBtn;
+	private JButton memberPhoneChangeBtn;
+	private JButton memberAddressChangeBtn;
+	private JButton memberDeleteBtn;
+	
 	Bob4JoMainFrame bob4JoMainFrame;
 	MemberService memberService;
-
-	private JTextField totalMemberTF;
-	private JTable showMemberTable;
 
 	/**
 	 * Create the panel.
@@ -54,13 +59,6 @@ public class AdministratorMemberSetPanel extends JPanel {
 	public AdministratorMemberSetPanel() {
 
 		setBackground(new Color(211, 211, 211));
-
-		addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentShown(ComponentEvent e) {
-				memberListTable();
-			}
-		});
 
 		setLayout(null);
 		
@@ -85,6 +83,27 @@ public class AdministratorMemberSetPanel extends JPanel {
 		add(scrollPane);
 		
 		showMemberTable = new JTable();
+		showMemberTable.addMouseListener(new MouseAdapter() {
+//			테이블 마우스 클릭시
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					int selectedRow = showMemberTable.getSelectedRow();
+					int selectedColumn = showMemberTable.getSelectedColumn(); // 0 회원번호 1 아이디
+					String memberNo = (String) showMemberTable.getValueAt(selectedRow, 0);
+					
+					MemberInfo memberInfo = memberService.selectByNo(memberNo);
+					memberIdTF.setText(memberInfo.getMember_id());
+					memberPWTF.setText(memberInfo.getMember_password());
+					memberNameTF.setText(memberInfo.getMember_name());
+					memberPhoneTF.setText(memberInfo.getMember_phone());
+					memberAddressTF.setText(memberInfo.getMember_address());
+					memberJoinDateTF.setText(memberInfo.getJoinDate());
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
+		});
 		showMemberTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
@@ -146,7 +165,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		add(memberJoinDateTF);
 		memberJoinDateTF.setColumns(10);
 		
-		JButton memberPWChangeBtn = new JButton("수정");
+		memberPWChangeBtn = new JButton("수정");
 		memberPWChangeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -172,7 +191,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		memberPWChangeBtn.setBounds(326, 406, 68, 23);
 		add(memberPWChangeBtn);
 		
-		JButton memberNameChangeBtn = new JButton("수정");
+		memberNameChangeBtn = new JButton("수정");
 		memberNameChangeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -199,7 +218,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		memberNameChangeBtn.setBounds(326, 446, 68, 23);
 		add(memberNameChangeBtn);
 		
-		JButton memberPhoneChangeBtn = new JButton("수정");
+		memberPhoneChangeBtn = new JButton("수정");
 		memberPhoneChangeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -230,7 +249,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		memberPhoneChangeBtn.setBounds(326, 486, 68, 23);
 		add(memberPhoneChangeBtn);
 		
-		JButton memberAddressChangeBtn = new JButton("수정");
+		memberAddressChangeBtn = new JButton("수정");
 		memberAddressChangeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -256,7 +275,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		memberAddressChangeBtn.setBounds(326, 526, 68, 23);
 		add(memberAddressChangeBtn);
 		
-		JButton memberDeleteBtn = new JButton("삭제");
+		memberDeleteBtn = new JButton("삭제");
 		memberDeleteBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -294,11 +313,11 @@ public class AdministratorMemberSetPanel extends JPanel {
 		lblNewLabel.setBounds(12, 10, 195, 194);
 		add(lblNewLabel);
 		
-		JButton memberIDChangeBtn_1 = new JButton("검색");
-		memberIDChangeBtn_1.addActionListener(new ActionListener() {
+		memberIDChangeBtn = new JButton("검색");
+		memberIDChangeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String member_id = memberNameTF.getText();
+					String member_id = memberIdTF.getText();
 					if (memberService.isExistedId(member_id)==false) {
 						JOptionPane.showMessageDialog(null, "존재하지 않는 아이디입니다.");
 						return;
@@ -314,8 +333,8 @@ public class AdministratorMemberSetPanel extends JPanel {
 				}
 			}
 		});
-		memberIDChangeBtn_1.setBounds(326, 366, 68, 23);
-		add(memberIDChangeBtn_1);
+		memberIDChangeBtn.setBounds(326, 366, 68, 23);
+		add(memberIDChangeBtn);
 		
 
 		JLabel lblNewLabel_4 = new JLabel("총 인원수");
@@ -331,12 +350,30 @@ public class AdministratorMemberSetPanel extends JPanel {
 		lblNewLabel_1.setIcon(new ImageIcon(AdministratorMemberSetPanel.class.getResource("/com/itwill/ui/관리자회원리스트Bob4Jo.png")));
 		lblNewLabel_1.setBounds(219, 10, 160, 120);
 		add(lblNewLabel_1);
+		
+//		동기화 버튼 클릭
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				memberIdTF.setText("");
+				memberPWTF.setText("");
+				memberNameTF.setText("");
+				memberPhoneTF.setText("");
+				memberAddressTF.setText("");
+				memberJoinDateTF.setText("");
+				}
+		});
+		lblNewLabel_2.setIcon(new ImageIcon(AdministratorMemberSetPanel.class.getResource("/com/itwill/ui/동기화.png")));
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setBounds(336, 559, 42, 35);
+		add(lblNewLabel_2);
 
 		//서비스객체 생성
 		memberService = new MemberService();
 
 	}//관리자멤버패널
-	private void memberListTable() {
+	public void memberListTable() {
 		try {
 			if(memberService==null) {
 				return;
@@ -353,12 +390,13 @@ public class AdministratorMemberSetPanel extends JPanel {
 			}
 			Vector columnNames=new Vector();
 			columnNames.add("회원번호");
-			columnNames.add("아이디");
+			columnNames.add("이름");
 			
 			DefaultTableModel defaultTableModel =
 					new DefaultTableModel(memberListVector, columnNames);
-			
+			showMemberTable.setModel(defaultTableModel);
 			totalMemberTF.setText(memberCount+"명");
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -48,12 +48,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public AdministratorStoreSetPanel() {
-		addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentShown(ComponentEvent e) {
-				storeListList();
-			}
-		});
+		
 		setBackground(new Color(211, 211, 211));
 		setLayout(null);
 		
@@ -110,6 +105,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 						store.setStore_name(storeNameTF.getText());
 						jumunService.updateByStoreNo(store);
 						JOptionPane.showMessageDialog(null, "가게명이 변경되었습니다.");
+						storeListList();
 					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -312,6 +308,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 		storeAddBtn = new JButton("추가하기");
 		storeAddBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 				
 				String storeStr = storeNameTF.getText();
 				// 가맹점 입력이 안되어있으면
@@ -336,6 +333,23 @@ public class AdministratorStoreSetPanel extends JPanel {
 					}
 				}
 			
+=======
+				try {
+					String store_name=storeNameTF.getText();
+					String store_businessTime=storeBusinessTimeTF.getText();
+					String store_phone=storePhoneTF.getText();
+					String store_address=storeAddressTF.getText();
+					String jumun_estimatedTime=storeEstimateTimeTF.getText();
+					Store newStore = new Store(0, store_name, store_businessTime, store_phone, store_address, jumun_estimatedTime, 0.0);
+					jumunService.StoreInsert(newStore);
+					JOptionPane.showMessageDialog(null, "가게가 추가되었습니다.");
+					storeListList();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+>>>>>>> branch 'master' of https://github.com/2020-12-JAVA-BACKEND/1st-project-team4-Bob4Jo.git
 		});
 		storeAddBtn.setBounds(296, 47, 93, 23);
 		add(storeAddBtn);
@@ -355,12 +369,12 @@ public class AdministratorStoreSetPanel extends JPanel {
 		jumunService = new JumunService();
 
 	}//패널
-	private void storeListList() {
+	public void storeListList() {
 		try {
 			if(jumunService==null) {
 				return;
 			}
-			List<Store> storeList= jumunService.selectStoreAll();
+			List<Store> storeList = jumunService.selectStoreAll();
 			int storeCount=0;
 			DefaultListModel defaultListModel=new DefaultListModel();
 			for (Store store : storeList) {

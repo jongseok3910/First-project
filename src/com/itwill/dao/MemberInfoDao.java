@@ -43,6 +43,29 @@ public class MemberInfoDao {
 		ConnectionFactory.releaseConnection(con);
 		return memberInfo;
 	}
+	
+	public MemberInfo selectByNo(String member_no) throws Exception {
+		MemberInfo memberInfo = null;
+		Connection con = ConnectionFactory.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(MemberInfoSQL.MEMBERINFO_SELECT_BY_NO);
+		pstmt.setString(1, member_no);
+		ResultSet rs = pstmt.executeQuery();
+		if(rs.next()) {
+			memberInfo = new MemberInfo(rs.getString("member_no"), 
+										rs.getString("member_id"), 
+										rs.getString("member_password"),
+										rs.getString("member_name"),
+										rs.getString("member_phone"),
+										rs.getString("member_address"),
+										rs.getString("member_joinDate")
+										);
+		}
+		rs.close();
+		pstmt.close();
+		ConnectionFactory.releaseConnection(con);
+		return memberInfo;
+		
+	}
 	public MemberInfo selectByCardNo(String card_no) throws Exception {
 		MemberInfo memberInfo = null;
 		Connection con = ConnectionFactory.getConnection();

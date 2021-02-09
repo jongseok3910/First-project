@@ -1,61 +1,49 @@
 package com.itwill.ui;
 
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import com.itwill.service.JumunService;
+import com.itwill.vo.Food;
+
 import java.awt.Color;
 import java.util.List;
 import java.util.Vector;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.event.ChangeEvent;
+import javax.swing.JButton;
 import javax.swing.event.ChangeListener;
-import javax.swing.table.DefaultTableModel;
-
-import com.itwill.service.JumunService;
-import com.itwill.service.MemberService;
-import com.itwill.vo.Food;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.event.ChangeEvent;
 
 public class AdministratorFoodSetPanel extends JPanel {
-	private JTable sandwichTable;
-	private JTable labTable;
-	private JTable saladTable;
-	private JTable sideMenuTable;
-	private JTable cookieTable;
-	private JTable drinkTable;
-	private JTextField foodNoTF;
-	private JTextField foodNameTF;
-	private JTextField foodPriceTF;
-	private JTextField foodCategoryTF;
-	private JButton foodNoBtn;
-	private JButton foodNameBtn;
-	private JButton foodCategoryBtn;
-	private JButton foodPriceBtn;
-	private JPanel sandwichPanel;
-	private JPanel labPanel;
-	private JPanel saladPanel;
-	private JPanel sideMenuPanel;
-	private JPanel cookiePanel;
-	private JPanel drinkPanel;
+	private JTabbedPane adminfoodTabbedPane;
+	private JTable adminSandwichTable;
+	private JTable adminLabTable;
+	private JTable adminSaladTable;
+	private JTable adminSideMenuTable;
+	private JTable adminCookieTable;
+	private JTable adminDrinkTable;
+	private JTextField adminFoodNoTF;
+	private JTextField admindFoodNameTF;
+	private JTextField adminFoodPriceTF;
+	private JTextField adminFoodCategoryTF;
+	private JButton updateFoodNoBtn;
+	private JButton updateFoodNameBtn;
+	private JButton updateFoodPriceBtn;
+	private JButton updateFoodCategoryBtn;
 	private JButton foodAddBtn;
 	private JButton foodDeleteBtn;
-	private JLabel pictureLabel2;
-	private JTabbedPane AdminfoodTabbedPane;
-//	추가
-	MemberService memberService;
-	JumunService jumunService;
+	
 	Bob4JoMainFrame bob4JoMainFrame;
+	JumunService jumunService;
+
 	/**
 	 * Create the panel.
 	 */
@@ -63,29 +51,26 @@ public class AdministratorFoodSetPanel extends JPanel {
 		setBackground(new Color(220, 220, 220));
 		setLayout(null);
 		
-		AdminfoodTabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		AdminfoodTabbedPane.addChangeListener(new ChangeListener() {
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(22, 89, 368, 319);
+		add(scrollPane);
+		
+		adminfoodTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		adminfoodTabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				int index = AdminfoodTabbedPane.getSelectedIndex();
-				int categoryNo = (index+1)*10;
-				foodListTable(categoryNo);
+				int index=adminfoodTabbedPane.getSelectedIndex();
+				int categoryNo=(index+1)*10;
+				adminFoodListTable(categoryNo);
 			}
 		});
-		AdminfoodTabbedPane.setSelectedIndex(0);
-		AdminfoodTabbedPane.setBounds(30, 62, 355, 348);
-		add(AdminfoodTabbedPane);
+		scrollPane.setViewportView(adminfoodTabbedPane);
 		
-		sandwichPanel = new JPanel();
-		AdminfoodTabbedPane.addTab("샌드위치", null, sandwichPanel, null);
-		sandwichPanel.setLayout(new BorderLayout(0, 0));
+		JPanel adminSandwichPanel = new JPanel();
+		adminfoodTabbedPane.addTab("샌드위치", null, adminSandwichPanel, null);
+		adminSandwichPanel.setLayout(new BorderLayout(0, 0));
 		
-		sandwichTable = new JTable();
-		sandwichTable.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		sandwichTable.setModel(new DefaultTableModel(
+		adminSandwichTable = new JTable();
+		adminSandwichTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
 			},
@@ -93,44 +78,14 @@ public class AdministratorFoodSetPanel extends JPanel {
 				"\uBC88\uD638", "\uC74C\uC2DD\uBA85", "\uAC00\uACA9"
 			}
 		));
-		sandwichPanel.add(sandwichTable, BorderLayout.CENTER);
+		adminSandwichPanel.add(adminSandwichTable, BorderLayout.CENTER);
 		
-		labPanel = new JPanel();
-		AdminfoodTabbedPane.addTab("랩", null, labPanel, null);
-		labPanel.setLayout(new BorderLayout(0, 0));
+		JPanel adminLabPanel = new JPanel();
+		adminfoodTabbedPane.addTab("랩", null, adminLabPanel, null);
+		adminLabPanel.setLayout(new BorderLayout(0, 0));
 		
-		labTable = new JTable();
-		labTable.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-			},
-			new String[] {
-				"\uC74C\uC2DD\uBC88\uD638", "\uC74C\uC2DD\uBA85", "\uAC00\uACA9"
-			}
-		));
-		labPanel.add(labTable, BorderLayout.CENTER);
-		
-		saladPanel = new JPanel();
-		AdminfoodTabbedPane.addTab("샐러드", null, saladPanel, null);
-		saladPanel.setLayout(new BorderLayout(0, 0));
-		
-		saladTable = new JTable();
-		saladTable.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-			},
-			new String[] {
-				"\uC74C\uC2DD\uBC88\uD638", "\uC74C\uC2DD\uBA85", "\uC218\uB7C9"
-			}
-		));
-		saladPanel.add(saladTable, BorderLayout.CENTER);
-		
-		sideMenuPanel = new JPanel();
-		AdminfoodTabbedPane.addTab("사이드메뉴", null, sideMenuPanel, null);
-		sideMenuPanel.setLayout(new BorderLayout(0, 0));
-		
-		sideMenuTable = new JTable();
-		sideMenuTable.setModel(new DefaultTableModel(
+		adminLabTable = new JTable();
+		adminLabTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
 			},
@@ -138,150 +93,164 @@ public class AdministratorFoodSetPanel extends JPanel {
 				"\uBC88\uD638", "\uC74C\uC2DD\uBA85", "\uAC00\uACA9"
 			}
 		));
-		sideMenuPanel.add(sideMenuTable, BorderLayout.CENTER);
+		adminLabPanel.add(adminLabTable, BorderLayout.CENTER);
 		
-		cookiePanel = new JPanel();
-		AdminfoodTabbedPane.addTab("쿠키", null, cookiePanel, null);
-		cookiePanel.setLayout(new BorderLayout(0, 0));
+		JPanel adminSaladPanel = new JPanel();
+		adminfoodTabbedPane.addTab("샐러드", null, adminSaladPanel, null);
+		adminSaladPanel.setLayout(new BorderLayout(0, 0));
 		
-		cookieTable = new JTable();
-		cookieTable.setModel(new DefaultTableModel(
+		adminSaladTable = new JTable();
+		adminSaladTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
 			},
 			new String[] {
-				"\uBC88\uD638", "\uC74C\uC2DD\uBA85", "\uAC00\uACA9"
+				"New column", "New column", "New column"
 			}
 		));
-		cookiePanel.add(cookieTable, BorderLayout.CENTER);
+		adminSaladPanel.add(adminSaladTable, BorderLayout.CENTER);
 		
-		drinkPanel = new JPanel();
-		AdminfoodTabbedPane.addTab("음료", null, drinkPanel, null);
-		drinkPanel.setLayout(new BorderLayout(0, 0));
+		JPanel adminSideMenuPanel = new JPanel();
+		adminfoodTabbedPane.addTab("사이드메뉴", null, adminSideMenuPanel, null);
+		adminSideMenuPanel.setLayout(new BorderLayout(0, 0));
 		
-		drinkTable = new JTable();
-		drinkTable.setModel(new DefaultTableModel(
+		adminSideMenuTable = new JTable();
+		adminSideMenuTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
 			},
 			new String[] {
-				"\uBC88\uD638", "\uC74C\uC2DD\uBA85", "\uAC00\uACA9"
+				"New column", "New column", "New column"
 			}
 		));
-		drinkPanel.add(drinkTable, BorderLayout.CENTER);
+		adminSideMenuPanel.add(adminSideMenuTable, BorderLayout.CENTER);
+		
+		JPanel adminCookiePanel = new JPanel();
+		adminfoodTabbedPane.addTab("쿠키", null, adminCookiePanel, null);
+		adminCookiePanel.setLayout(new BorderLayout(0, 0));
+		
+		adminCookieTable = new JTable();
+		adminCookieTable.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+			},
+			new String[] {
+				"New column", "New column", "New column"
+			}
+		));
+		adminCookiePanel.add(adminCookieTable, BorderLayout.CENTER);
+		
+		JPanel adminDrinkPanel = new JPanel();
+		adminfoodTabbedPane.addTab("음료", null, adminDrinkPanel, null);
+		adminDrinkPanel.setLayout(new BorderLayout(0, 0));
+		
+		adminDrinkTable = new JTable();
+		adminDrinkTable.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+			},
+			new String[] {
+				"New column", "New column", "New column"
+			}
+		));
+		adminDrinkPanel.add(adminDrinkTable, BorderLayout.CENTER);
+		
+		JLabel pictureLb1 = new JLabel("");
+		pictureLb1.setHorizontalAlignment(SwingConstants.CENTER);
+		pictureLb1.setIcon(new ImageIcon(AdministratorFoodSetPanel.class.getResource("/com/itwill/ui/관리자음식관리.png")));
+		pictureLb1.setBounds(12, 10, 391, 53);
+		add(pictureLb1);
+		
+		JLabel pictureLb2 = new JLabel("");
+		pictureLb2.setIcon(new ImageIcon(AdministratorFoodSetPanel.class.getResource("/com/itwill/ui/△▼.png")));
+		pictureLb2.setBounds(0, 415, 415, 21);
+		add(pictureLb2);
 		
 		JLabel noLb = new JLabel("번호");
 		noLb.setHorizontalAlignment(SwingConstants.CENTER);
-		noLb.setBounds(27, 452, 57, 15);
+		noLb.setBounds(22, 450, 57, 15);
 		add(noLb);
+		
+		adminFoodNoTF = new JTextField();
+		adminFoodNoTF.setBounds(91, 447, 214, 21);
+		add(adminFoodNoTF);
+		adminFoodNoTF.setColumns(10);
+		
+		updateFoodNoBtn = new JButton("수정");
+		updateFoodNoBtn.setBounds(319, 446, 71, 23);
+		add(updateFoodNoBtn);
 		
 		JLabel foodNameLb = new JLabel("음식명");
 		foodNameLb.setHorizontalAlignment(SwingConstants.CENTER);
-		foodNameLb.setBounds(27, 485, 57, 15);
+		foodNameLb.setBounds(22, 482, 57, 15);
 		add(foodNameLb);
 		
-		JLabel priceLb = new JLabel("가격");
-		priceLb.setHorizontalAlignment(SwingConstants.CENTER);
-		priceLb.setBounds(27, 516, 57, 15);
-		add(priceLb);
+		admindFoodNameTF = new JTextField();
+		admindFoodNameTF.setColumns(10);
+		admindFoodNameTF.setBounds(91, 479, 214, 21);
+		add(admindFoodNameTF);
 		
-		JLabel categoryLb = new JLabel("카테고리");
-		categoryLb.setHorizontalAlignment(SwingConstants.CENTER);
-		categoryLb.setBounds(27, 549, 57, 15);
-		add(categoryLb);
+		updateFoodNameBtn = new JButton("수정");
+		updateFoodNameBtn.setBounds(319, 478, 71, 23);
+		add(updateFoodNameBtn);
 		
-		foodNoTF = new JTextField();
-		foodNoTF.setBounds(104, 449, 214, 21);
-		add(foodNoTF);
-		foodNoTF.setColumns(10);
+		JLabel foodPriceLb = new JLabel("가격");
+		foodPriceLb.setHorizontalAlignment(SwingConstants.CENTER);
+		foodPriceLb.setBounds(22, 519, 57, 15);
+		add(foodPriceLb);
 		
-		foodNameTF = new JTextField();
-		foodNameTF.setColumns(10);
-		foodNameTF.setBounds(104, 482, 214, 21);
-		add(foodNameTF);
+		adminFoodPriceTF = new JTextField();
+		adminFoodPriceTF.setColumns(10);
+		adminFoodPriceTF.setBounds(91, 516, 214, 21);
+		add(adminFoodPriceTF);
 		
-		foodPriceTF = new JTextField();
-		foodPriceTF.setColumns(10);
-		foodPriceTF.setBounds(104, 513, 214, 21);
-		add(foodPriceTF);
+		updateFoodPriceBtn = new JButton("수정");
+		updateFoodPriceBtn.setBounds(319, 515, 71, 23);
+		add(updateFoodPriceBtn);
 		
-		foodCategoryTF = new JTextField();
-		foodCategoryTF.setColumns(10);
-		foodCategoryTF.setBounds(104, 546, 214, 21);
-		add(foodCategoryTF);
+		JLabel foodCategoryLb = new JLabel("카테고리");
+		foodCategoryLb.setHorizontalAlignment(SwingConstants.CENTER);
+		foodCategoryLb.setBounds(22, 552, 57, 15);
+		add(foodCategoryLb);
 		
-		foodNoBtn = new JButton("수정");
-		foodNoBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		foodNoBtn.setBounds(325, 448, 62, 23);
-		add(foodNoBtn);
+		adminFoodCategoryTF = new JTextField();
+		adminFoodCategoryTF.setColumns(10);
+		adminFoodCategoryTF.setBounds(91, 549, 214, 21);
+		add(adminFoodCategoryTF);
 		
-		foodNameBtn = new JButton("수정");
-		foodNameBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		foodNameBtn.setBounds(325, 481, 62, 23);
-		add(foodNameBtn);
+		updateFoodCategoryBtn = new JButton("수정");
+		updateFoodCategoryBtn.setBounds(319, 548, 71, 23);
+		add(updateFoodCategoryBtn);
 		
-		foodPriceBtn = new JButton("수정");
-		foodPriceBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		foodPriceBtn.setBounds(325, 512, 62, 23);
-		add(foodPriceBtn);
-		
-		foodCategoryBtn = new JButton("수정");
-		foodCategoryBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		foodCategoryBtn.setBounds(325, 545, 62, 23);
-		add(foodCategoryBtn);
-		
-		foodAddBtn = new JButton("추가");
-		foodAddBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		foodAddBtn.setBounds(103, 576, 97, 23);
+		foodAddBtn = new JButton("추가하기");
+		foodAddBtn.setBounds(91, 580, 97, 23);
 		add(foodAddBtn);
 		
-		foodDeleteBtn = new JButton("삭제");
-		foodDeleteBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		foodDeleteBtn.setBounds(223, 576, 97, 23);
+		foodDeleteBtn = new JButton("삭제하기");
+		foodDeleteBtn.setBounds(208, 580, 97, 23);
 		add(foodDeleteBtn);
 		
-		JLabel pictureLabel1 = new JLabel("");
-		pictureLabel1.setIcon(new ImageIcon(AdministratorFoodSetPanel.class.getResource("/com/itwill/ui/관리자음식관리.png")));
-		pictureLabel1.setBounds(12, 10, 391, 42);
-		add(pictureLabel1);
+		JLabel pictureLb3 = new JLabel("");
+		pictureLb3.setIcon(new ImageIcon(AdministratorFoodSetPanel.class.getResource("/com/itwill/ui/△▼.png")));
+		pictureLb3.setBounds(0, 60, 415, 21);
+		add(pictureLb3);
 		
-		pictureLabel2 = new JLabel("");
-		pictureLabel2.setIcon(new ImageIcon(AdministratorFoodSetPanel.class.getResource("/com/itwill/ui/△▼.png")));
-		pictureLabel2.setBounds(0, 409, 415, 33);
-		add(pictureLabel2);
-		
-		//service 객체 생성
-		memberService = new MemberService();
+		//서비스객체 생성
 		jumunService = new JumunService();
 		
-		/**************************************/
-		AdminfoodTabbedPane.setSelectedIndex(0);
-		int index=AdminfoodTabbedPane.getSelectedIndex();
+		/*********************************/
+		adminfoodTabbedPane.setSelectedIndex(0);
+		int index=adminfoodTabbedPane.getSelectedIndex();
 		int categoryNo=(index+1)*10;
-		foodListTable(categoryNo);
-		/**************************************/
+		adminFoodListTable(categoryNo);
+		/*********************************/
 
-	}//푸드셀렉트 패널
-	private void foodListTable(int categoryNo) {
+	}//푸드셋패널
+	public void adminFoodListTable(int categoryNo) {
 		try {
+			if(jumunService==null) {
+				return;
+			}
 			List<Food> foodList = jumunService.selectByCategoryNo(categoryNo);
 			
 			Vector foodListVector = new Vector();
@@ -293,25 +262,25 @@ public class AdministratorFoodSetPanel extends JPanel {
 				foodListVector.add(foodVector);
 			}
 			
-			Vector columnNames = new Vector();
+			Vector columnNames=new Vector();
 			columnNames.add("번호");
 			columnNames.add("음식명");
 			columnNames.add("가격");
 			
 			DefaultTableModel defaultTableModel =
-						new DefaultTableModel(foodListVector, columnNames);
-			if(categoryNo == 10) {
-				sandwichTable.setModel(defaultTableModel);
-			}else if (categoryNo == 20) {
-				labTable.setModel(defaultTableModel);
-			}else if (categoryNo == 30) {
-				saladTable.setModel(defaultTableModel);
-			} else if (categoryNo == 40) {
-				sideMenuTable.setModel(defaultTableModel);
-			} else if (categoryNo == 50) {
-				cookieTable.setModel(defaultTableModel);
-			} else if (categoryNo == 60) {
-				drinkTable.setModel(defaultTableModel);
+					new DefaultTableModel(foodListVector, columnNames);
+			if(categoryNo==10) {
+				adminSandwichTable.setModel(defaultTableModel);				
+			}else if(categoryNo==20) {
+				adminLabTable.setModel(defaultTableModel);
+			}else if(categoryNo==30) {
+				adminSaladTable.setModel(defaultTableModel);
+			}else if(categoryNo==40 ) {
+				adminSideMenuTable.setModel(defaultTableModel);
+			}else if(categoryNo==50 ) {
+				adminCookieTable.setModel(defaultTableModel);
+			}else if(categoryNo==60 ) {
+				adminDrinkTable.setModel(defaultTableModel);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -321,5 +290,4 @@ public class AdministratorFoodSetPanel extends JPanel {
 	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
 		this.bob4JoMainFrame=bob4JoMainFrame;
 	}
-	
 }
