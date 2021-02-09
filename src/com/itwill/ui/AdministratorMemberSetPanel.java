@@ -90,6 +90,15 @@ public class AdministratorMemberSetPanel extends JPanel {
 				try {
 					int selectedRow = showMemberTable.getSelectedRow();
 					int selectedColumn = showMemberTable.getSelectedColumn(); // 0 회원번호 1 아이디
+					String memberNo = (String) showMemberTable.getValueAt(selectedRow, 0);
+					
+					MemberInfo memberInfo = memberService.selectByNo(memberNo);
+					memberIdTF.setText(memberInfo.getMember_id());
+					memberPWTF.setText(memberInfo.getMember_password());
+					memberNameTF.setText(memberInfo.getMember_name());
+					memberPhoneTF.setText(memberInfo.getMember_phone());
+					memberAddressTF.setText(memberInfo.getMember_address());
+					memberJoinDateTF.setText(memberInfo.getJoinDate());
 				} catch (Exception e2) {
 					// TODO: handle exception
 				}

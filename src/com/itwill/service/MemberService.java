@@ -90,6 +90,11 @@ public class MemberService {
 		return memberInfoDao.selectAll();
 	}
 	
+	//회원번호로 회원찾기
+	public MemberInfo selectByNo(String noStr) throws Exception{
+		return memberInfoDao.selectByNo(noStr);
+	}
+	
 	public int memberUpdate(MemberInfo memberInfo) throws Exception{
 		return memberInfoDao.updateById(memberInfo);
 	}
