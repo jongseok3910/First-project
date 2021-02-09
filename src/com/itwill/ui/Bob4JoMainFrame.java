@@ -165,9 +165,6 @@ public class Bob4JoMainFrame extends JFrame {
 		basketPanel.setBob4JoMainFrame(this);
 		paymentListPanel.setBob4JoMainFrame(this);
 		memberInfoPanel.setBob4JoMainFrame(this);
-		administratorStoreSetPanel.setBob4JoMainFrame(this);
-		administratorFoodSetPanel.setBob4JoMainFrame(this);
-		administratorMemberSetPanel.setBob4JoMainFrame(this);
 		
 		administratorPanel = new JPanel();
 		baseCardLayoutPanel.add(administratorPanel, "adminPanel");

@@ -317,7 +317,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		memberIDChangeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String member_id = memberNameTF.getText();
+					String member_id = memberIdTF.getText();
 					if (memberService.isExistedId(member_id)==false) {
 						JOptionPane.showMessageDialog(null, "존재하지 않는 아이디입니다.");
 						return;
@@ -350,6 +350,24 @@ public class AdministratorMemberSetPanel extends JPanel {
 		lblNewLabel_1.setIcon(new ImageIcon(AdministratorMemberSetPanel.class.getResource("/com/itwill/ui/관리자회원리스트Bob4Jo.png")));
 		lblNewLabel_1.setBounds(219, 10, 160, 120);
 		add(lblNewLabel_1);
+		
+//		동기화 버튼 클릭
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				memberIdTF.setText("");
+				memberPWTF.setText("");
+				memberNameTF.setText("");
+				memberPhoneTF.setText("");
+				memberAddressTF.setText("");
+				memberJoinDateTF.setText("");
+				}
+		});
+		lblNewLabel_2.setIcon(new ImageIcon(AdministratorMemberSetPanel.class.getResource("/com/itwill/ui/동기화.png")));
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setBounds(336, 559, 42, 35);
+		add(lblNewLabel_2);
 
 		//서비스객체 생성
 		memberService = new MemberService();
