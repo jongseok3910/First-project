@@ -1,4 +1,3 @@
-
 --CATEGORY
 insert into category values(10,'샌드위치');
 insert into category values(20,'랩');
@@ -77,29 +76,39 @@ INSERT INTO MEMBERINFO VALUES(to_char(sysdate,'YYYYMMDD')||member_seq1.NEXTVAL,'
 INSERT INTO MEMBERINFO VALUES(to_char(sysdate,'YYYYMMDD')||member_seq1.NEXTVAL,'ID3','1111','박종은','333-3333-3333','XX시 XX구 XX동 XX빌라 301호','21-02-03');
 INSERT INTO MEMBERINFO VALUES(to_char(sysdate,'YYYYMMDD')||member_seq1.NEXTVAL,'ID4','1111','이현민','444-4444-4444','XX시 XX구 XX동 XX빌라 401호','21-02-03');
 INSERT INTO MEMBERINFO VALUES(to_char(sysdate,'YYYYMMDD')||member_seq1.NEXTVAL,'ID5','1111','최혜조','555-5555-5555','XX시 XX구 XX동 XX빌라 501호','21-02-03');
+INSERT INTO MEMBERINFO VALUES(to_char(sysdate,'YYYYMMDD')||member_SEQ1.NEXTVAL,'ADMIN1','ADMIN1','BOB4JO','000-0000-0000','XX시 XX구 XX동 XX빌라 601호','21-02-03');
 
 --Store
+
+DELETE FROM STORE;
+DROP SEQUENCE STORE_SEQ1;
+CREATE SEQUENCE STORE_SEQ1
+    increment by 1
+    start with 1
+    maxvalue 99999999999
+    nocycle
+    nocache;
 desc store;
 --1번 학동점 정보입력
-insert into STORE values(1,'학동점','00:00~23:59','02-515-1014','서울 강남구 학동로 171','15분~20분',null);
+insert into STORE values(STORE_SEQ1.NEXTVAL,'학동점','00:00~23:59','02-515-1014','서울 강남구 학동로 171','15분~20분',null);
 --2번 수서점 정보입력
-insert into STORE values(2,'수서점','08:00~23:00','02-445-1636','서울 강남구 밤고개로 1길 10 B1','10분~20분',null);
+insert into STORE values(STORE_SEQ1.NEXTVAL,'수서점','08:00~23:00','02-445-1636','서울 강남구 밤고개로 1길 10 B1','10분~20분',null);
 --3번 봉은사점 정보입력
-insert into STORE values(3,'봉은사점','08:00~22:00','02-545-5729','서울시 강남구 봉은사로 627','10분~20분',null);
+insert into STORE values(STORE_SEQ1.NEXTVAL,'봉은사점','08:00~22:00','02-545-5729','서울시 강남구 봉은사로 627','10분~20분',null);
 --4번 강남역 정보입력
-insert into STORE values(4,'강남역','08:00~22:00','02-557-4727','서울 강남구 강남대로96길 12','15분~20분',null);
+insert into STORE values(STORE_SEQ1.NEXTVAL,'강남역','08:00~22:00','02-557-4727','서울 강남구 강남대로96길 12','15분~20분',null);
 --5번 선정릉점 정보입력
-insert into STORE values(5,'선정릉점','08:00~23:00','02-555-9389','서울 강남구 봉은사로 328','10분~20분',null);
+insert into STORE values(STORE_SEQ1.NEXTVAL,'선정릉점','08:00~23:00','02-555-9389','서울 강남구 봉은사로 328','10분~20분',null);
 --6번 강남구청점 정보입력
-insert into STORE values(6,'강남구청점','08:00~22:00','02-545-0806','서울 강남구 선릉로 653','10분~20분',null);
+insert into STORE values(STORE_SEQ1.NEXTVAL,'강남구청점','08:00~22:00','02-545-0806','서울 강남구 선릉로 653','10분~20분',null);
 --7번 압구정점 정보입력
-insert into STORE values(7,'압구정점','08:00~22:00','02-548-1014','서울 강남구 압구정로 28길 13','15분~20분',null);
+insert into STORE values(STORE_SEQ1.NEXTVAL,'압구정점','08:00~22:00','02-548-1014','서울 강남구 압구정로 28길 13','15분~20분',null);
 --8번 언주점 정보입력
-insert into STORE values(8,'언주점','08:00~23:00','02-557-8805','서울 강남구 봉은사로 206대명빌딩','10분~20분',null);
+insert into STORE values(STORE_SEQ1.NEXTVAL,'언주점','08:00~23:00','02-557-8805','서울 강남구 봉은사로 206대명빌딩','10분~20분',null);
 --9번 삼성점 정보입력
-insert into STORE values(9,'삼성점','08:00~23:00','02-2051-2008','서울 강남구 삼성로 520','10분~20분',null);
+insert into STORE values(STORE_SEQ1.NEXTVAL,'삼성점','08:00~23:00','02-2051-2008','서울 강남구 삼성로 520','10분~20분',null);
 --10번 신사점 정보입력
-insert into STORE values(10,'신사점','08:00~22:00','02-546-2007','서울 강남구 도산대로 124 대영빌딩','15분~20분',null);
+insert into STORE values(STORE_SEQ1.NEXTVAL,'신사점','08:00~22:00','02-546-2007','서울 강남구 도산대로 124 대영빌딩','15분~20분',null);
 commit;
 
 --JUMUN
