@@ -27,6 +27,8 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class Bob4JoMainFrame extends JFrame {
 
@@ -176,6 +178,11 @@ public class Bob4JoMainFrame extends JFrame {
 		administratorPanel.add(adminTabbedPane, BorderLayout.CENTER);
 		
 		administratorStoreSetPanel = new AdministratorStoreSetPanel();
+		administratorStoreSetPanel.addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				administratorStoreSetPanel.storeListList();
+			}
+		});
 		administratorStoreSetPanel.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
