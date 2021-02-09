@@ -162,7 +162,7 @@ public class Bob4JoMainFrame extends JFrame {
 		memberInfoPanel.setBob4JoMainFrame(this);
 		
 		AdministratorPanel = new JPanel();
-		baseCardLayoutPanel.add(AdministratorPanel, "name_1719816080714700");
+		baseCardLayoutPanel.add(AdministratorPanel, "adminPanel");
 		AdministratorPanel.setLayout(new BorderLayout(0, 0));
 		
 		AdminTabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -191,8 +191,13 @@ public class Bob4JoMainFrame extends JFrame {
 		loginMenuItem.setEnabled(false);
 		logoutMenuItem.setEnabled(true);
 		joinMenuItem.setEnabled(false);
-		CardLayout cl=(CardLayout)baseCardLayoutPanel.getLayout();
-		cl.show(baseCardLayoutPanel, "mainUsePanel");
+		if(loginMember.getMember_id().equals("admin1")) {
+			CardLayout cl=(CardLayout)baseCardLayoutPanel.getLayout();
+			cl.show(baseCardLayoutPanel, "adminPanel");
+		}else {			
+			CardLayout cl=(CardLayout)baseCardLayoutPanel.getLayout();
+			cl.show(baseCardLayoutPanel, "mainUsePanel");
+		}
 	}
 	public void logoutProcess() {
 		this.loginMember=null;
