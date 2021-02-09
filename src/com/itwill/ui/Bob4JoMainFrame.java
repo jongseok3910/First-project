@@ -191,7 +191,7 @@ public class Bob4JoMainFrame extends JFrame {
 		loginMenuItem.setEnabled(false);
 		logoutMenuItem.setEnabled(true);
 		joinMenuItem.setEnabled(false);
-		if(loginMember.getMember_id().equals("admin1")) {
+		if(loginMember.getMember_id().equals("ADMIN1")) {
 			CardLayout cl=(CardLayout)baseCardLayoutPanel.getLayout();
 			cl.show(baseCardLayoutPanel, "adminPanel");
 		}else {			
