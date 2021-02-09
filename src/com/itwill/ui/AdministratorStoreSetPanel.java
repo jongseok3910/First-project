@@ -296,7 +296,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 				}
 			}
 		});
-		storeDeleteBtn.setBounds(308, 80, 81, 23);
+		storeDeleteBtn.setBounds(296, 80, 93, 23);
 		add(storeDeleteBtn);
 		
 		JLabel storeListLb = new JLabel("가맹점 정보");
@@ -310,7 +310,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 		add(lblNewLabel);
 		
 		storeAddBtn = new JButton("추가하기");
-		storeAddBtn.setBounds(308, 47, 81, 23);
+		storeAddBtn.setBounds(296, 47, 93, 23);
 		add(storeAddBtn);
 		
 		JLabel storeVolumeLb = new JLabel("가맹점 수");
