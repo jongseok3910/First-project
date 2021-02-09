@@ -35,18 +35,23 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class AdministratorMemberSetPanel extends JPanel {
+	private JTable showMemberTable;
 	private JTextField memberIdTF;
 	private JTextField memberPWTF;
 	private JTextField memberNameTF;
 	private JTextField memberPhoneTF;
 	private JTextField memberAddressTF;
 	private JTextField memberJoinDateTF;
-
+	private JTextField totalMemberTF;
+	private JButton memberIDChangeBtn;
+	private JButton memberPWChangeBtn;
+	private JButton memberNameChangeBtn;
+	private JButton memberPhoneChangeBtn;
+	private JButton memberAddressChangeBtn;
+	private JButton memberDeleteBtn;
+	
 	Bob4JoMainFrame bob4JoMainFrame;
 	MemberService memberService;
-
-	private JTextField totalMemberTF;
-	private JTable showMemberTable;
 
 	/**
 	 * Create the panel.
@@ -146,7 +151,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		add(memberJoinDateTF);
 		memberJoinDateTF.setColumns(10);
 		
-		JButton memberPWChangeBtn = new JButton("수정");
+		memberPWChangeBtn = new JButton("수정");
 		memberPWChangeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -172,7 +177,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		memberPWChangeBtn.setBounds(326, 406, 68, 23);
 		add(memberPWChangeBtn);
 		
-		JButton memberNameChangeBtn = new JButton("수정");
+		memberNameChangeBtn = new JButton("수정");
 		memberNameChangeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -199,7 +204,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		memberNameChangeBtn.setBounds(326, 446, 68, 23);
 		add(memberNameChangeBtn);
 		
-		JButton memberPhoneChangeBtn = new JButton("수정");
+		memberPhoneChangeBtn = new JButton("수정");
 		memberPhoneChangeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -230,7 +235,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		memberPhoneChangeBtn.setBounds(326, 486, 68, 23);
 		add(memberPhoneChangeBtn);
 		
-		JButton memberAddressChangeBtn = new JButton("수정");
+		memberAddressChangeBtn = new JButton("수정");
 		memberAddressChangeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -256,7 +261,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		memberAddressChangeBtn.setBounds(326, 526, 68, 23);
 		add(memberAddressChangeBtn);
 		
-		JButton memberDeleteBtn = new JButton("삭제");
+		memberDeleteBtn = new JButton("삭제");
 		memberDeleteBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -294,8 +299,8 @@ public class AdministratorMemberSetPanel extends JPanel {
 		lblNewLabel.setBounds(12, 10, 195, 194);
 		add(lblNewLabel);
 		
-		JButton memberIDChangeBtn_1 = new JButton("검색");
-		memberIDChangeBtn_1.addActionListener(new ActionListener() {
+		memberIDChangeBtn = new JButton("검색");
+		memberIDChangeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String member_id = memberNameTF.getText();
@@ -314,8 +319,8 @@ public class AdministratorMemberSetPanel extends JPanel {
 				}
 			}
 		});
-		memberIDChangeBtn_1.setBounds(326, 366, 68, 23);
-		add(memberIDChangeBtn_1);
+		memberIDChangeBtn.setBounds(326, 366, 68, 23);
+		add(memberIDChangeBtn);
 		
 
 		JLabel lblNewLabel_4 = new JLabel("총 인원수");
@@ -336,7 +341,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 		memberService = new MemberService();
 
 	}//관리자멤버패널
-	private void memberListTable() {
+	public void memberListTable() {
 		try {
 			if(memberService==null) {
 				return;
@@ -357,8 +362,9 @@ public class AdministratorMemberSetPanel extends JPanel {
 			
 			DefaultTableModel defaultTableModel =
 					new DefaultTableModel(memberListVector, columnNames);
-			
+			showMemberTable.setModel(defaultTableModel);
 			totalMemberTF.setText(memberCount+"명");
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -48,12 +48,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public AdministratorStoreSetPanel() {
-		addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentShown(ComponentEvent e) {
-				storeListList();
-			}
-		});
+		
 		setBackground(new Color(211, 211, 211));
 		setLayout(null);
 		
@@ -328,7 +323,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 		jumunService = new JumunService();
 
 	}//패널
-	private void storeListList() {
+	public void storeListList() {
 		try {
 			if(jumunService==null) {
 				return;

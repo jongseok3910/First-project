@@ -25,6 +25,8 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class Bob4JoMainFrame extends JFrame {
 
@@ -166,12 +168,29 @@ public class Bob4JoMainFrame extends JFrame {
 		AdministratorPanel.setLayout(new BorderLayout(0, 0));
 		
 		AdminTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		AdminTabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				
+			}
+		});
 		AdministratorPanel.add(AdminTabbedPane, BorderLayout.CENTER);
 		
 		administratorStoreSetPanel = new AdministratorStoreSetPanel();
+		administratorStoreSetPanel.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				administratorStoreSetPanel.storeListList();
+			}
+		});
 		AdminTabbedPane.addTab("가맹점 관리", null, administratorStoreSetPanel, null);
 		
 		administratorMemberSetPanel = new AdministratorMemberSetPanel();
+		administratorMemberSetPanel.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				administratorMemberSetPanel.memberListTable();
+			}
+		});
 		AdminTabbedPane.addTab("회원 관리", null, administratorMemberSetPanel, null);
 		/**************************************/
 		
