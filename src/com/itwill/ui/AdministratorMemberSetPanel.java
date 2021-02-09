@@ -33,6 +33,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class AdministratorMemberSetPanel extends JPanel {
 	private JTable showMemberTable;
@@ -57,6 +59,11 @@ public class AdministratorMemberSetPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public AdministratorMemberSetPanel() {
+		addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				memberListTable();
+			}
+		});
 
 		setBackground(new Color(211, 211, 211));
 
@@ -209,6 +216,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 //					System.out.println(memberInfo);
 					memberService.memberUpdate(member);
 					JOptionPane.showMessageDialog(null, "이름이 변경되었습니다.");
+					memberListTable();
 					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -290,6 +298,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 						//예를 눌렀을 때 회원탈퇴
 						memberService.memberUnRegister(member_id);
 						JOptionPane.showMessageDialog(null, "탈퇴가 완료되었습니다.");
+						memberListTable();
 					}else {
 						//아니오를 눌렀을 때
 					}
