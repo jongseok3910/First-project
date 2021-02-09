@@ -308,6 +308,16 @@ public class AdministratorStoreSetPanel extends JPanel {
 		storeAddBtn = new JButton("추가하기");
 		storeAddBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String storeStr = storeNameTF.getText();
+				//가맹점 입력이 안되어 있으면
+				if(storeStr.trim().equals("")) {
+					storeNameTF.setText("");
+					JOptionPane.showMessageDialog(null, "가맹점을 입력하세요.");
+					storeNameTF.requestFocus();
+					return;
+				}
+					
 				try {
 					String store_name=storeNameTF.getText();
 					String store_businessTime=storeBusinessTimeTF.getText();
