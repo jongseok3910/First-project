@@ -51,6 +51,7 @@ public class Bob4JoMainFrame extends JFrame {
 	private JTabbedPane adminTabbedPane;
 	private AdministratorStoreSetPanel administratorStoreSetPanel;
 	private AdministratorMemberSetPanel administratorMemberSetPanel;
+	private AdministratorFoodSetPanel administratorFoodSetPanel;
 	/*
 	 * Launch the application.
 	 */
@@ -164,17 +165,15 @@ public class Bob4JoMainFrame extends JFrame {
 		basketPanel.setBob4JoMainFrame(this);
 		paymentListPanel.setBob4JoMainFrame(this);
 		memberInfoPanel.setBob4JoMainFrame(this);
+		administratorStoreSetPanel.setBob4JoMainFrame(this);
+		administratorFoodSetPanel.setBob4JoMainFrame(this);
+		administratorMemberSetPanel.setBob4JoMainFrame(this);
 		
 		administratorPanel = new JPanel();
 		baseCardLayoutPanel.add(administratorPanel, "adminPanel");
 		administratorPanel.setLayout(new BorderLayout(0, 0));
 		
 		adminTabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		adminTabbedPane.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				
-			}
-		});
 		administratorPanel.add(adminTabbedPane, BorderLayout.CENTER);
 		
 		administratorStoreSetPanel = new AdministratorStoreSetPanel();
@@ -198,6 +197,9 @@ public class Bob4JoMainFrame extends JFrame {
 				administratorMemberSetPanel.memberListTable();
 			}
 		});
+		
+		administratorFoodSetPanel = new AdministratorFoodSetPanel();
+		adminTabbedPane.addTab("푸드 관리", null, administratorFoodSetPanel, null);
 		adminTabbedPane.addTab("회원 관리", null, administratorMemberSetPanel, null);
 		/**************************************/
 		
