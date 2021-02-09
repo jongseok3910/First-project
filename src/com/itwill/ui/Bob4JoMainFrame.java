@@ -165,17 +165,15 @@ public class Bob4JoMainFrame extends JFrame {
 		basketPanel.setBob4JoMainFrame(this);
 		paymentListPanel.setBob4JoMainFrame(this);
 		memberInfoPanel.setBob4JoMainFrame(this);
+		administratorStoreSetPanel.setBob4JoMainFrame(this);
+		administratorFoodSetPanel.setBob4JoMainFrame(this);
+		administratorMemberSetPanel.setBob4JoMainFrame(this);
 		
 		administratorPanel = new JPanel();
 		baseCardLayoutPanel.add(administratorPanel, "adminPanel");
 		administratorPanel.setLayout(new BorderLayout(0, 0));
 		
 		adminTabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		adminTabbedPane.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				
-			}
-		});
 		administratorPanel.add(adminTabbedPane, BorderLayout.CENTER);
 		
 		administratorStoreSetPanel = new AdministratorStoreSetPanel();
