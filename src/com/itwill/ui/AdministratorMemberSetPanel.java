@@ -390,7 +390,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 			}
 			Vector columnNames=new Vector();
 			columnNames.add("회원번호");
-			columnNames.add("아이디");
+			columnNames.add("이름");
 			
 			DefaultTableModel defaultTableModel =
 					new DefaultTableModel(memberListVector, columnNames);
