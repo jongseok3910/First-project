@@ -11,10 +11,16 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.itwill.service.JumunService;
+import com.itwill.vo.Food;
 
 import java.awt.Color;
+import java.util.List;
+import java.util.Vector;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class AdministratorFoodSetPanel extends JPanel {
 	private JTabbedPane adminfoodTabbedPane;
@@ -50,6 +56,13 @@ public class AdministratorFoodSetPanel extends JPanel {
 		add(scrollPane);
 		
 		adminfoodTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		adminfoodTabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				int index=adminfoodTabbedPane.getSelectedIndex();
+				int categoryNo=(index+1)*10;
+				adminFoodListTable(categoryNo);
+			}
+		});
 		scrollPane.setViewportView(adminfoodTabbedPane);
 		
 		JPanel adminSandwichPanel = new JPanel();
@@ -221,8 +234,59 @@ public class AdministratorFoodSetPanel extends JPanel {
 		pictureLb3.setIcon(new ImageIcon(AdministratorFoodSetPanel.class.getResource("/com/itwill/ui/△▼.png")));
 		pictureLb3.setBounds(0, 60, 415, 21);
 		add(pictureLb3);
+		
+		//서비스객체 생성
+		jumunService = new JumunService();
+		
+		/*********************************/
+		adminfoodTabbedPane.setSelectedIndex(0);
+		int index=adminfoodTabbedPane.getSelectedIndex();
+		int categoryNo=(index+1)*10;
+		adminFoodListTable(categoryNo);
+		/*********************************/
 
 	}//푸드셋패널
+	public void adminFoodListTable(int categoryNo) {
+		try {
+			if(jumunService==null) {
+				return;
+			}
+			List<Food> foodList = jumunService.selectByCategoryNo(categoryNo);
+			
+			Vector foodListVector = new Vector();
+			for (Food food : foodList) {
+				Vector foodVector = new Vector();
+				foodVector.add(food.getFood_no());
+				foodVector.add(food.getFood_name());
+				foodVector.add(food.getFood_price());
+				foodListVector.add(foodVector);
+			}
+			
+			Vector columnNames=new Vector();
+			columnNames.add("번호");
+			columnNames.add("음식명");
+			columnNames.add("가격");
+			
+			DefaultTableModel defaultTableModel =
+					new DefaultTableModel(foodListVector, columnNames);
+			if(categoryNo==10) {
+				adminSandwichTable.setModel(defaultTableModel);				
+			}else if(categoryNo==20) {
+				adminLabTable.setModel(defaultTableModel);
+			}else if(categoryNo==30) {
+				adminSaladTable.setModel(defaultTableModel);
+			}else if(categoryNo==40 ) {
+				adminSideMenuTable.setModel(defaultTableModel);
+			}else if(categoryNo==50 ) {
+				adminCookieTable.setModel(defaultTableModel);
+			}else if(categoryNo==60 ) {
+				adminDrinkTable.setModel(defaultTableModel);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
 		this.bob4JoMainFrame=bob4JoMainFrame;
 	}
