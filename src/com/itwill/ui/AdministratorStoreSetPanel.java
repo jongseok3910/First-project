@@ -306,6 +306,24 @@ public class AdministratorStoreSetPanel extends JPanel {
 		add(lblNewLabel);
 		
 		storeAddBtn = new JButton("추가하기");
+		storeAddBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String store_name=storeNameTF.getText();
+					String store_businessTime=storeBusinessTimeTF.getText();
+					String store_phone=storePhoneTF.getText();
+					String store_address=storeAddressTF.getText();
+					String jumun_estimatedTime=storeEstimateTimeTF.getText();
+					Store newStore = new Store(0, store_name, store_businessTime, store_phone, store_address, jumun_estimatedTime, 0.0);
+					jumunService.StoreInsert(newStore);
+					JOptionPane.showMessageDialog(null, "가게가 추가되었습니다.");
+					storeListList();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		storeAddBtn.setBounds(296, 47, 93, 23);
 		add(storeAddBtn);
 		
@@ -329,7 +347,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 			if(jumunService==null) {
 				return;
 			}
-			List<Store> storeList= jumunService.selectStoreAll();
+			List<Store> storeList = jumunService.selectStoreAll();
 			int storeCount=0;
 			DefaultListModel defaultListModel=new DefaultListModel();
 			for (Store store : storeList) {
