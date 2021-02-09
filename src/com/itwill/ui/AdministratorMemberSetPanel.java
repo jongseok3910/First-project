@@ -169,7 +169,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 				}
 			}
 		});
-		memberPWChangeBtn.setBounds(326, 406, 55, 23);
+		memberPWChangeBtn.setBounds(326, 406, 68, 23);
 		add(memberPWChangeBtn);
 		
 		JButton memberNameChangeBtn = new JButton("수정");
@@ -196,7 +196,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 				}
 			}
 		});
-		memberNameChangeBtn.setBounds(326, 446, 55, 23);
+		memberNameChangeBtn.setBounds(326, 446, 68, 23);
 		add(memberNameChangeBtn);
 		
 		JButton memberPhoneChangeBtn = new JButton("수정");
@@ -227,7 +227,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 				}
 			}
 		});
-		memberPhoneChangeBtn.setBounds(326, 486, 55, 23);
+		memberPhoneChangeBtn.setBounds(326, 486, 68, 23);
 		add(memberPhoneChangeBtn);
 		
 		JButton memberAddressChangeBtn = new JButton("수정");
@@ -253,7 +253,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 				}
 			}
 		});
-		memberAddressChangeBtn.setBounds(326, 526, 55, 23);
+		memberAddressChangeBtn.setBounds(326, 526, 68, 23);
 		add(memberAddressChangeBtn);
 		
 		JButton memberDeleteBtn = new JButton("삭제");
@@ -314,7 +314,7 @@ public class AdministratorMemberSetPanel extends JPanel {
 				}
 			}
 		});
-		memberIDChangeBtn_1.setBounds(326, 366, 55, 23);
+		memberIDChangeBtn_1.setBounds(326, 366, 68, 23);
 		add(memberIDChangeBtn_1);
 		
 
