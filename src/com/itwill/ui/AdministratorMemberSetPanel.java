@@ -60,13 +60,6 @@ public class AdministratorMemberSetPanel extends JPanel {
 
 		setBackground(new Color(211, 211, 211));
 
-		addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentShown(ComponentEvent e) {
-				memberListTable();
-			}
-		});
-
 		setLayout(null);
 		
 		JLabel memberIDLabel = new JLabel("회원아이디");
