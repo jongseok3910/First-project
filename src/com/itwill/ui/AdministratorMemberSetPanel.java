@@ -83,6 +83,18 @@ public class AdministratorMemberSetPanel extends JPanel {
 		add(scrollPane);
 		
 		showMemberTable = new JTable();
+		showMemberTable.addMouseListener(new MouseAdapter() {
+//			테이블 마우스 클릭시
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					int selectedRow = showMemberTable.getSelectedRow();
+					int selectedColumn = showMemberTable.getSelectedColumn(); // 0 회원번호 1 아이디
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
+		});
 		showMemberTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
