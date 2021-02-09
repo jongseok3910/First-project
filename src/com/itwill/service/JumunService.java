@@ -25,6 +25,27 @@ public class JumunService {
 		cardDao = new CardDao();
 	}
 	
+	public boolean storeNameCheck(String nameStr) throws Exception{
+		boolean isRegister=false;
+		if (!isExistedName(nameStr)) {
+			isRegister=true;
+		} else {
+			isRegister=false;
+		}
+		return isRegister;
+	}
+	
+	public boolean storeRegister(Store newStore) throws Exception{
+		boolean isRegister=false;
+		if (!isExistedName(newStore.getStore_name())) {
+			storeDao.create(newStore);
+			isRegister=true;
+		} else {
+			isRegister=false;
+		}
+		return isRegister;
+	}
+	
 	
 	/*
 	 * 장바구니:메뉴선택내용,수량수정,합계금액,메뉴삭제
@@ -105,4 +126,17 @@ public class JumunService {
 	public int deleteByStoreNo(String store_name) throws Exception {
 		return storeDao.deleteByName(store_name);
 	}
+	
+	public boolean isExistedName(String name)  throws Exception{
+		boolean isExisted=false;
+		Store store = storeDao.selectByStoreName(name);
+		if(store==null) {
+			isExisted=false;
+		}else if(store!=null) {
+			isExisted=true;
+		}
+		return isExisted;
+	}
+	
+	
 }
