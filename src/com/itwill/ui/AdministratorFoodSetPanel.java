@@ -21,6 +21,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AdministratorFoodSetPanel extends JPanel {
 	private JTabbedPane adminfoodTabbedPane;
@@ -31,7 +33,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 	private JTable adminCookieTable;
 	private JTable adminDrinkTable;
 	private JTextField adminFoodNoTF;
-	private JTextField admindFoodNameTF;
+	private JTextField adminFoodNameTF;
 	private JTextField adminFoodPriceTF;
 	private JTextField adminFoodCategoryTF;
 	private JButton updateFoodNoBtn;
@@ -40,9 +42,10 @@ public class AdministratorFoodSetPanel extends JPanel {
 	private JButton updateFoodCategoryBtn;
 	private JButton foodAddBtn;
 	private JButton foodDeleteBtn;
-	
+
 	Bob4JoMainFrame bob4JoMainFrame;
 	JumunService jumunService;
+	int selectedFoodNo;
 
 	/**
 	 * Create the panel.
@@ -61,6 +64,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 				int index=adminfoodTabbedPane.getSelectedIndex();
 				int categoryNo=(index+1)*10;
 				adminFoodListTable(categoryNo);
+				
 			}
 		});
 		scrollPane.setViewportView(adminfoodTabbedPane);
@@ -70,6 +74,23 @@ public class AdministratorFoodSetPanel extends JPanel {
 		adminSandwichPanel.setLayout(new BorderLayout(0, 0));
 		
 		adminSandwichTable = new JTable();
+		adminSandwichTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					int selectedRow = adminSandwichTable.getSelectedRow();
+					selectedFoodNo = (Integer)adminSandwichTable.getValueAt(selectedRow, 0);
+					Food food = jumunService.selectByFoodNo(selectedFoodNo);
+					adminFoodNoTF.setText(food.getFood_no()+"");
+					adminFoodNameTF.setText(food.getFood_name());
+					adminFoodPriceTF.setText(food.getFood_price()+"");
+					adminFoodCategoryTF.setText("샌드위치");
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		adminSandwichTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
@@ -85,6 +106,23 @@ public class AdministratorFoodSetPanel extends JPanel {
 		adminLabPanel.setLayout(new BorderLayout(0, 0));
 		
 		adminLabTable = new JTable();
+		adminLabTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					int selectedRow = adminLabTable.getSelectedRow();
+					selectedFoodNo = (Integer)adminLabTable.getValueAt(selectedRow, 0);
+					Food food = jumunService.selectByFoodNo(selectedFoodNo);
+					adminFoodNoTF.setText(food.getFood_no()+"");
+					adminFoodNameTF.setText(food.getFood_name());
+					adminFoodPriceTF.setText(food.getFood_price()+"");
+					adminFoodCategoryTF.setText("랩");
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		adminLabTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
@@ -100,6 +138,23 @@ public class AdministratorFoodSetPanel extends JPanel {
 		adminSaladPanel.setLayout(new BorderLayout(0, 0));
 		
 		adminSaladTable = new JTable();
+		adminSaladTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					int selectedRow = adminSaladTable.getSelectedRow();
+					selectedFoodNo = (Integer)adminSaladTable.getValueAt(selectedRow, 0);
+					Food food = jumunService.selectByFoodNo(selectedFoodNo);
+					adminFoodNoTF.setText(food.getFood_no()+"");
+					adminFoodNameTF.setText(food.getFood_name());
+					adminFoodPriceTF.setText(food.getFood_price()+"");
+					adminFoodCategoryTF.setText("샐러드");
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		adminSaladTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
@@ -115,6 +170,23 @@ public class AdministratorFoodSetPanel extends JPanel {
 		adminSideMenuPanel.setLayout(new BorderLayout(0, 0));
 		
 		adminSideMenuTable = new JTable();
+		adminSideMenuTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					int selectedRow = adminSideMenuTable.getSelectedRow();
+					selectedFoodNo = (Integer)adminSideMenuTable.getValueAt(selectedRow, 0);
+					Food food = jumunService.selectByFoodNo(selectedFoodNo);
+					adminFoodNoTF.setText(food.getFood_no()+"");
+					adminFoodNameTF.setText(food.getFood_name());
+					adminFoodPriceTF.setText(food.getFood_price()+"");
+					adminFoodCategoryTF.setText("사이드메뉴");
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		adminSideMenuTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
@@ -130,6 +202,23 @@ public class AdministratorFoodSetPanel extends JPanel {
 		adminCookiePanel.setLayout(new BorderLayout(0, 0));
 		
 		adminCookieTable = new JTable();
+		adminCookieTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					int selectedRow = adminCookieTable.getSelectedRow();
+					selectedFoodNo = (Integer)adminCookieTable.getValueAt(selectedRow, 0);
+					Food food = jumunService.selectByFoodNo(selectedFoodNo);
+					adminFoodNoTF.setText(food.getFood_no()+"");
+					adminFoodNameTF.setText(food.getFood_name());
+					adminFoodPriceTF.setText(food.getFood_price()+"");
+					adminFoodCategoryTF.setText("쿠키");
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		adminCookieTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
@@ -145,6 +234,23 @@ public class AdministratorFoodSetPanel extends JPanel {
 		adminDrinkPanel.setLayout(new BorderLayout(0, 0));
 		
 		adminDrinkTable = new JTable();
+		adminDrinkTable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					int selectedRow = adminDrinkTable.getSelectedRow();
+					selectedFoodNo = (Integer)adminDrinkTable.getValueAt(selectedRow, 0);
+					Food food = jumunService.selectByFoodNo(selectedFoodNo);
+					adminFoodNoTF.setText(food.getFood_no()+"");
+					adminFoodNameTF.setText(food.getFood_name());
+					adminFoodPriceTF.setText(food.getFood_price()+"");
+					adminFoodCategoryTF.setText("음료");
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		adminDrinkTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
@@ -185,10 +291,10 @@ public class AdministratorFoodSetPanel extends JPanel {
 		foodNameLb.setBounds(22, 482, 57, 15);
 		add(foodNameLb);
 		
-		admindFoodNameTF = new JTextField();
-		admindFoodNameTF.setColumns(10);
-		admindFoodNameTF.setBounds(91, 479, 214, 21);
-		add(admindFoodNameTF);
+		adminFoodNameTF = new JTextField();
+		adminFoodNameTF.setColumns(10);
+		adminFoodNameTF.setBounds(91, 479, 214, 21);
+		add(adminFoodNameTF);
 		
 		updateFoodNameBtn = new JButton("수정");
 		updateFoodNameBtn.setBounds(319, 478, 71, 23);
