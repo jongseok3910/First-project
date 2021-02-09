@@ -350,6 +350,36 @@ public class AdministratorFoodSetPanel extends JPanel {
 		add(foodAddBtn);
 		
 		foodUpdateBtn = new JButton("수정");
+		foodUpdateBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int food_no = Integer.parseInt(adminFoodNoTF.getText());
+					String food_name = adminFoodNameTF.getText();
+					int food_price = Integer.parseInt(adminFoodPriceTF.getText());
+					int category_no=0;
+					String category_name=adminFoodCategoryTF.getText();
+					if(category_name.equals("샌드위치")) {
+						category_no=10;
+					}else if(category_name.equals("랩")) {
+						category_no=20;
+					}else if(category_name.equals("샐러드")) {
+						category_no=30;
+					}else if(category_name.equals("사이드메뉴")) {
+						category_no=40;
+					}else if(category_name.equals("쿠키")) {
+						category_no=50;
+					}else if(category_name.equals("음료")) {
+						category_no=60;
+					}
+					Food newFood = new Food(food_no,food_name,food_price,category_no);
+					jumunService.foodUpdateByFoodNo(newFood);
+					JOptionPane.showMessageDialog(null, "메뉴를 수정하였습니다.");
+					adminFoodListTable(category_no);
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "수정을 실패하였습니다.");
+				}
+			}
+		});
 		foodUpdateBtn.setBounds(148, 580, 73, 23);
 		add(foodUpdateBtn);
 		

@@ -71,6 +71,10 @@ public class JumunService {
 	public int foodDeleteByFoodNo(int food_no) throws Exception {
 		return foodDao.deleteByNo(food_no);
 	}
+	//푸드넘버로 업데이트
+	public int foodUpdateByFoodNo(Food food) throws Exception {
+		return foodDao.updateByNo(food);
+	}
 	
 	//푸드명으로 정보찾기
 	public Food selectByFoodName(String food_name) throws Exception {
