@@ -105,6 +105,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 						store.setStore_name(storeNameTF.getText());
 						jumunService.updateByStoreNo(store);
 						JOptionPane.showMessageDialog(null, "가게명이 변경되었습니다.");
+						storeListList();
 					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
