@@ -51,6 +51,7 @@ public class Bob4JoMainFrame extends JFrame {
 	private JTabbedPane adminTabbedPane;
 	private AdministratorStoreSetPanel administratorStoreSetPanel;
 	private AdministratorMemberSetPanel administratorMemberSetPanel;
+	private AdministratorFoodSetPanel administratorFoodSetPanel;
 	/*
 	 * Launch the application.
 	 */
@@ -199,7 +200,7 @@ public class Bob4JoMainFrame extends JFrame {
 			}
 		});
 		
-		AdministratorFoodSetPanel administratorFoodSetPanel = new AdministratorFoodSetPanel();
+		administratorFoodSetPanel = new AdministratorFoodSetPanel();
 		adminTabbedPane.addTab("푸드 관리", null, administratorFoodSetPanel, null);
 		adminTabbedPane.addTab("회원 관리", null, administratorMemberSetPanel, null);
 		/**************************************/

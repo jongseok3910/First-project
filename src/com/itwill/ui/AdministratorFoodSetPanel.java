@@ -9,6 +9,9 @@ import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import com.itwill.service.JumunService;
+
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -31,6 +34,9 @@ public class AdministratorFoodSetPanel extends JPanel {
 	private JButton updateFoodCategoryBtn;
 	private JButton foodAddBtn;
 	private JButton foodDeleteBtn;
+	
+	Bob4JoMainFrame bob4JoMainFrame;
+	JumunService jumunService;
 
 	/**
 	 * Create the panel.
@@ -216,5 +222,8 @@ public class AdministratorFoodSetPanel extends JPanel {
 		pictureLb3.setBounds(0, 60, 415, 21);
 		add(pictureLb3);
 
+	}//푸드셋패널
+	public void setBob4JoMainFrame(Bob4JoMainFrame bob4JoMainFrame) {
+		this.bob4JoMainFrame=bob4JoMainFrame;
 	}
 }
