@@ -308,32 +308,6 @@ public class AdministratorStoreSetPanel extends JPanel {
 		storeAddBtn = new JButton("추가하기");
 		storeAddBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				
-				String storeStr = storeNameTF.getText();
-				// 가맹점 입력이 안되어있으면
-				if(storeStr.trim().equals("")) {
-					storeNameTF.setText("");
-					JOptionPane.showMessageDialog(null, "가맹점을 입력하세요.");
-					storeNameTF.requestFocus();
-					return;
-				}
-				
-					try {
-						boolean isSuccess=jumunService.storeNameCheck(storeStr);
-						if(isSuccess) {
-							JOptionPane.showMessageDialog(null, "중복되는 가맹점입니다.");
-							storeNameTF.requestFocus();
-							storeNameTF.setSelectionStart(0);
-							storeNameTF.setSelectionEnd(storeStr.length());
-							return;
-						}
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-				}
-			
-
 				try {
 					String store_name=storeNameTF.getText();
 					String store_businessTime=storeBusinessTimeTF.getText();
@@ -349,7 +323,6 @@ public class AdministratorStoreSetPanel extends JPanel {
 					e1.printStackTrace();
 				}
 			}
-
 		});
 		storeAddBtn.setBounds(296, 47, 93, 23);
 		add(storeAddBtn);
