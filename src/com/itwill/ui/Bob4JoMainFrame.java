@@ -45,8 +45,8 @@ public class Bob4JoMainFrame extends JFrame {
 	private PaymentListPanel paymentListPanel;
 	private MemberInfoPanel memberInfoPanel;
 	private JTabbedPane tabbedPane;
-	private JPanel AdministratorPanel;
-	private JTabbedPane AdminTabbedPane;
+	private JPanel administratorPanel;
+	private JTabbedPane adminTabbedPane;
 	private AdministratorStoreSetPanel administratorStoreSetPanel;
 	private AdministratorMemberSetPanel administratorMemberSetPanel;
 	/*
@@ -163,17 +163,17 @@ public class Bob4JoMainFrame extends JFrame {
 		paymentListPanel.setBob4JoMainFrame(this);
 		memberInfoPanel.setBob4JoMainFrame(this);
 		
-		AdministratorPanel = new JPanel();
-		baseCardLayoutPanel.add(AdministratorPanel, "adminPanel");
-		AdministratorPanel.setLayout(new BorderLayout(0, 0));
+		administratorPanel = new JPanel();
+		baseCardLayoutPanel.add(administratorPanel, "adminPanel");
+		administratorPanel.setLayout(new BorderLayout(0, 0));
 		
-		AdminTabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		AdminTabbedPane.addChangeListener(new ChangeListener() {
+		adminTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		adminTabbedPane.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				
 			}
 		});
-		AdministratorPanel.add(AdminTabbedPane, BorderLayout.CENTER);
+		administratorPanel.add(adminTabbedPane, BorderLayout.CENTER);
 		
 		administratorStoreSetPanel = new AdministratorStoreSetPanel();
 		administratorStoreSetPanel.addComponentListener(new ComponentAdapter() {
@@ -182,7 +182,7 @@ public class Bob4JoMainFrame extends JFrame {
 				administratorStoreSetPanel.storeListList();
 			}
 		});
-		AdminTabbedPane.addTab("가맹점 관리", null, administratorStoreSetPanel, null);
+		adminTabbedPane.addTab("가맹점 관리", null, administratorStoreSetPanel, null);
 		
 		administratorMemberSetPanel = new AdministratorMemberSetPanel();
 		administratorMemberSetPanel.addComponentListener(new ComponentAdapter() {
@@ -191,7 +191,7 @@ public class Bob4JoMainFrame extends JFrame {
 				administratorMemberSetPanel.memberListTable();
 			}
 		});
-		AdminTabbedPane.addTab("회원 관리", null, administratorMemberSetPanel, null);
+		adminTabbedPane.addTab("회원 관리", null, administratorMemberSetPanel, null);
 		/**************************************/
 		
 		
