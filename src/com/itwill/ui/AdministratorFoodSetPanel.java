@@ -11,6 +11,7 @@ import java.awt.BorderLayout;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.itwill.dao.FoodDao;
 import com.itwill.service.JumunService;
 import com.itwill.vo.Food;
 
@@ -355,7 +356,20 @@ public class AdministratorFoodSetPanel extends JPanel {
 		foodDeleteBtn = new JButton("삭제");
 		foodDeleteBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+				int food_no = Integer.parseInt(adminFoodNoTF.getText());
+					jumunService.foodDeleteByFoodNo(food_no);
+					JOptionPane.showMessageDialog(null, "메뉴가 삭제되었습니다.");
+					adminFoodNoTF.setText("");
+					adminFoodNameTF.setText("");
+					adminFoodPriceTF.setText("");
+					adminFoodCategoryTF.setText("");
+					int index=adminfoodTabbedPane.getSelectedIndex();
+					int categoryNo=(index+1)*10;
+					adminFoodListTable(categoryNo);
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "삭제할 메뉴를 다시 클릭해주세요.");
+				}
 			}
 		});
 		foodDeleteBtn.setBounds(256, 580, 66, 23);

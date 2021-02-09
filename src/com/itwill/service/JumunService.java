@@ -67,6 +67,10 @@ public class JumunService {
 	public int foodInsert(Food food) throws Exception {
 		return foodDao.create(food);
 	}
+	//푸드 삭제
+	public int foodDeleteByFoodNo(int food_no) throws Exception {
+		return foodDao.deleteByNo(food_no);
+	}
 	
 	//푸드명으로 정보찾기
 	public Food selectByFoodName(String food_name) throws Exception {
