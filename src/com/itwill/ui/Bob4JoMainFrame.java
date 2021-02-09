@@ -198,6 +198,9 @@ public class Bob4JoMainFrame extends JFrame {
 				administratorMemberSetPanel.memberListTable();
 			}
 		});
+		
+		AdministratorFoodSetPanel administratorFoodSetPanel = new AdministratorFoodSetPanel();
+		adminTabbedPane.addTab("푸드 관리", null, administratorFoodSetPanel, null);
 		adminTabbedPane.addTab("회원 관리", null, administratorMemberSetPanel, null);
 		/**************************************/
 		
