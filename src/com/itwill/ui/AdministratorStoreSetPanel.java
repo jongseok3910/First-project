@@ -308,7 +308,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 		storeAddBtn = new JButton("추가하기");
 		storeAddBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
+
 				
 				String storeStr = storeNameTF.getText();
 				// 가맹점 입력이 안되어있으면
@@ -333,7 +333,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 					}
 				}
 			
-=======
+
 				try {
 					String store_name=storeNameTF.getText();
 					String store_businessTime=storeBusinessTimeTF.getText();
@@ -349,7 +349,7 @@ public class AdministratorStoreSetPanel extends JPanel {
 					e1.printStackTrace();
 				}
 			}
->>>>>>> branch 'master' of https://github.com/2020-12-JAVA-BACKEND/1st-project-team4-Bob4Jo.git
+
 		});
 		storeAddBtn.setBounds(296, 47, 93, 23);
 		add(storeAddBtn);
