@@ -38,16 +38,13 @@ public class AdministratorFoodSetPanel extends JPanel {
 	private JTextField adminFoodNameTF;
 	private JTextField adminFoodPriceTF;
 	private JTextField adminFoodCategoryTF;
-	private JButton updateFoodNoBtn;
-	private JButton updateFoodNameBtn;
-	private JButton updateFoodPriceBtn;
-	private JButton updateFoodCategoryBtn;
 	private JButton foodAddBtn;
 	private JButton foodDeleteBtn;
 
 	Bob4JoMainFrame bob4JoMainFrame;
 	JumunService jumunService;
 	int selectedFoodNo;
+	private JButton foodUpdateBtn;
 
 	/**
 	 * Create the panel.
@@ -280,13 +277,9 @@ public class AdministratorFoodSetPanel extends JPanel {
 		add(noLb);
 		
 		adminFoodNoTF = new JTextField();
-		adminFoodNoTF.setBounds(91, 447, 214, 21);
+		adminFoodNoTF.setBounds(91, 447, 264, 21);
 		add(adminFoodNoTF);
 		adminFoodNoTF.setColumns(10);
-		
-		updateFoodNoBtn = new JButton("수정");
-		updateFoodNoBtn.setBounds(319, 446, 71, 23);
-		add(updateFoodNoBtn);
 		
 		JLabel foodNameLb = new JLabel("음식명");
 		foodNameLb.setHorizontalAlignment(SwingConstants.CENTER);
@@ -295,12 +288,8 @@ public class AdministratorFoodSetPanel extends JPanel {
 		
 		adminFoodNameTF = new JTextField();
 		adminFoodNameTF.setColumns(10);
-		adminFoodNameTF.setBounds(91, 479, 214, 21);
+		adminFoodNameTF.setBounds(91, 479, 264, 21);
 		add(adminFoodNameTF);
-		
-		updateFoodNameBtn = new JButton("수정");
-		updateFoodNameBtn.setBounds(319, 478, 71, 23);
-		add(updateFoodNameBtn);
 		
 		JLabel foodPriceLb = new JLabel("가격");
 		foodPriceLb.setHorizontalAlignment(SwingConstants.CENTER);
@@ -309,12 +298,8 @@ public class AdministratorFoodSetPanel extends JPanel {
 		
 		adminFoodPriceTF = new JTextField();
 		adminFoodPriceTF.setColumns(10);
-		adminFoodPriceTF.setBounds(91, 516, 214, 21);
+		adminFoodPriceTF.setBounds(91, 516, 264, 21);
 		add(adminFoodPriceTF);
-		
-		updateFoodPriceBtn = new JButton("수정");
-		updateFoodPriceBtn.setBounds(319, 515, 71, 23);
-		add(updateFoodPriceBtn);
 		
 		JLabel foodCategoryLb = new JLabel("카테고리");
 		foodCategoryLb.setHorizontalAlignment(SwingConstants.CENTER);
@@ -323,19 +308,15 @@ public class AdministratorFoodSetPanel extends JPanel {
 		
 		adminFoodCategoryTF = new JTextField();
 		adminFoodCategoryTF.setColumns(10);
-		adminFoodCategoryTF.setBounds(91, 549, 214, 21);
+		adminFoodCategoryTF.setBounds(91, 549, 264, 21);
 		add(adminFoodCategoryTF);
 		
-		updateFoodCategoryBtn = new JButton("수정");
-		updateFoodCategoryBtn.setBounds(319, 548, 71, 23);
-		add(updateFoodCategoryBtn);
-		
-		foodAddBtn = new JButton("추가하기");
-		foodAddBtn.setBounds(91, 580, 97, 23);
+		foodAddBtn = new JButton("추가");
+		foodAddBtn.setBounds(148, 580, 73, 23);
 		add(foodAddBtn);
 		
-		foodDeleteBtn = new JButton("삭제하기");
-		foodDeleteBtn.setBounds(208, 580, 97, 23);
+		foodDeleteBtn = new JButton("삭제");
+		foodDeleteBtn.setBounds(256, 580, 66, 23);
 		add(foodDeleteBtn);
 		
 		JLabel pictureLb3 = new JLabel("");
@@ -348,6 +329,27 @@ public class AdministratorFoodSetPanel extends JPanel {
 		
 		/*********************************/
 		adminfoodTabbedPane.setSelectedIndex(0);
+		
+		foodUpdateBtn = new JButton("수정");
+		foodUpdateBtn.setBounds(42, 580, 73, 23);
+		add(foodUpdateBtn);
+		
+		JLabel lblNewLabel = new JLabel("");
+//		동기화 버튼
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				adminFoodNoTF.setText("");
+				adminFoodNameTF.setText("");
+				adminFoodPriceTF.setText("");
+				adminFoodCategoryTF.setText("");
+				
+			}
+		});
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setIcon(new ImageIcon(AdministratorFoodSetPanel.class.getResource("/com/itwill/ui/동기화.png")));
+		lblNewLabel.setBounds(346, 580, 46, 21);
+		add(lblNewLabel);
 		int index=adminfoodTabbedPane.getSelectedIndex();
 		int categoryNo=(index+1)*10;
 		adminFoodListTable(categoryNo);
