@@ -3,6 +3,7 @@ package com.itwill.ui;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JTabbedPane;
@@ -25,6 +26,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class AdministratorFoodSetPanel extends JPanel {
 	private JTabbedPane adminfoodTabbedPane;
@@ -38,13 +41,13 @@ public class AdministratorFoodSetPanel extends JPanel {
 	private JTextField adminFoodNameTF;
 	private JTextField adminFoodPriceTF;
 	private JTextField adminFoodCategoryTF;
-	private JButton foodAddBtn;
+	private JButton foodUpdateBtn;
 	private JButton foodDeleteBtn;
 
 	Bob4JoMainFrame bob4JoMainFrame;
 	JumunService jumunService;
 	int selectedFoodNo;
-	private JButton foodUpdateBtn;
+	private JButton foodAddBtn;
 
 	/**
 	 * Create the panel.
@@ -63,7 +66,6 @@ public class AdministratorFoodSetPanel extends JPanel {
 				int index=adminfoodTabbedPane.getSelectedIndex();
 				int categoryNo=(index+1)*10;
 				adminFoodListTable(categoryNo);
-				
 			}
 		});
 		scrollPane.setViewportView(adminfoodTabbedPane);
@@ -312,10 +314,50 @@ public class AdministratorFoodSetPanel extends JPanel {
 		add(adminFoodCategoryTF);
 		
 		foodAddBtn = new JButton("추가");
-		foodAddBtn.setBounds(148, 580, 73, 23);
+		foodAddBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int food_no = Integer.parseInt(adminFoodNoTF.getText());
+					String food_name = adminFoodNameTF.getText();
+					int food_price = Integer.parseInt(adminFoodPriceTF.getText());
+					int category_no=0;
+					String category_name=adminFoodCategoryTF.getText();
+					if(category_name.equals("샌드위치")) {
+						category_no=10;
+					}else if(category_name.equals("랩")) {
+						category_no=20;
+					}else if(category_name.equals("샐러드")) {
+						category_no=30;
+					}else if(category_name.equals("사이드메뉴")) {
+						category_no=40;
+					}else if(category_name.equals("쿠키")) {
+						category_no=50;
+					}else if(category_name.equals("음료")) {
+						category_no=60;
+					}
+					Food newFood = new Food(food_no,food_name,food_price,category_no);
+					jumunService.foodInsert(newFood);
+					JOptionPane.showMessageDialog(null, "메뉴가 추가되었습니다.");
+					adminFoodListTable(category_no);
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "입력을 다시 확인해주세요");
+				}
+				
+			}
+		});
+		foodAddBtn.setBounds(42, 580, 73, 23);
 		add(foodAddBtn);
 		
+		foodUpdateBtn = new JButton("수정");
+		foodUpdateBtn.setBounds(148, 580, 73, 23);
+		add(foodUpdateBtn);
+		
 		foodDeleteBtn = new JButton("삭제");
+		foodDeleteBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		foodDeleteBtn.setBounds(256, 580, 66, 23);
 		add(foodDeleteBtn);
 		
@@ -330,9 +372,6 @@ public class AdministratorFoodSetPanel extends JPanel {
 		/*********************************/
 		adminfoodTabbedPane.setSelectedIndex(0);
 		
-		foodUpdateBtn = new JButton("수정");
-		foodUpdateBtn.setBounds(42, 580, 73, 23);
-		add(foodUpdateBtn);
 		
 		JLabel lblNewLabel = new JLabel("");
 //		동기화 버튼

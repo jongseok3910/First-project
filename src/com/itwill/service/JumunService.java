@@ -63,6 +63,11 @@ public class JumunService {
 	public List<Store> selectStoreAll() throws Exception {
 		return storeDao.selectAll();
 	}
+	//푸드 입력
+	public int foodInsert(Food food) throws Exception {
+		return foodDao.create(food);
+	}
+	
 	//푸드명으로 정보찾기
 	public Food selectByFoodName(String food_name) throws Exception {
 		return foodDao.selectByName(food_name);
