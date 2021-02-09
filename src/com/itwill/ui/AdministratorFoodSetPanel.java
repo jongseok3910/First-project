@@ -81,15 +81,14 @@ public class AdministratorFoodSetPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					int selectedRow = adminSandwichTable.getSelectedRow();
-					selectedFoodNo = (Integer)adminSandwichTable.getValueAt(selectedRow, 0);
+					selectedFoodNo = (Integer)adminSandwichTable.getValueAt(selectedRow, 0);	
 					Food food = jumunService.selectByFoodNo(selectedFoodNo);
 					adminFoodNoTF.setText(food.getFood_no()+"");
 					adminFoodNameTF.setText(food.getFood_name());
 					adminFoodPriceTF.setText(food.getFood_price()+"");
 					adminFoodCategoryTF.setText("샌드위치");
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					return;
 				}
 			}
 		});
@@ -120,8 +119,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 					adminFoodPriceTF.setText(food.getFood_price()+"");
 					adminFoodCategoryTF.setText("랩");
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					return;
 				}
 			}
 		});
@@ -152,8 +150,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 					adminFoodPriceTF.setText(food.getFood_price()+"");
 					adminFoodCategoryTF.setText("샐러드");
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					return;
 				}
 			}
 		});
@@ -184,8 +181,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 					adminFoodPriceTF.setText(food.getFood_price()+"");
 					adminFoodCategoryTF.setText("사이드메뉴");
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					return;
 				}
 			}
 		});
@@ -216,8 +212,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 					adminFoodPriceTF.setText(food.getFood_price()+"");
 					adminFoodCategoryTF.setText("쿠키");
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					return;
 				}
 			}
 		});
@@ -248,8 +243,7 @@ public class AdministratorFoodSetPanel extends JPanel {
 					adminFoodPriceTF.setText(food.getFood_price()+"");
 					adminFoodCategoryTF.setText("음료");
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					return;
 				}
 			}
 		});
